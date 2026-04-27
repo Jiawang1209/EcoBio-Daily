@@ -1,0 +1,34 @@
+# {{ digest.title }} - {{ digest.date.isoformat() }}
+
+> 生态学与微生物学最新研究进展日报。内容由配置源抓取、主题筛选和自动摘要生成，建议发布前人工快速复核。
+
+## Highlights
+
+{% for item in digest.highlights -%}
+- **{{ item.item.title }}**：{{ item.item.summary | default("", true) | truncate(180) }} 来源：{{ item.item.source }}。
+{% endfor %}
+
+{% for section in digest.sections %}
+## {{ section.title }}
+
+{% for scored in section.items -%}
+### {{ scored.item.title }}
+
+{{ scored.item.summary | default("暂无摘要。", true) }}
+
+- 来源：{{ scored.item.source }}
+- 链接：{{ scored.item.url }}
+- 相关性评分：{{ scored.relevance_score }}
+- 命中关键词：{{ scored.topic_scores[0].matched_keywords | join(", ") }}
+
+{% endfor %}
+{% endfor %}
+## Looking Forward
+
+今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
+
+## References
+
+{% for item in digest.references -%}
+- **{{ item.title }}** — [{{ item.source }}]({{ item.url }})
+{% endfor %}

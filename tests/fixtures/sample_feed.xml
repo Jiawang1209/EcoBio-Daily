@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Sample Ecology Feed</title>
+    <item>
+      <title>Soil microbial diversity increases drought resilience</title>
+      <link>https://example.org/paper-1</link>
+      <guid>paper-1</guid>
+      <pubDate>Tue, 28 Apr 2026 08:00:00 GMT</pubDate>
+      <description>Microbial diversity was associated with stronger ecosystem resilience under drought.</description>
+    </item>
+    <item>
+      <title>Remote sensing reveals biodiversity loss in fragmented forests</title>
+      <link>https://example.org/paper-2</link>
+      <guid>paper-2</guid>
+      <pubDate>Mon, 27 Apr 2026 08:00:00 GMT</pubDate>
+      <description>Satellite data quantified biodiversity changes in fragmented landscapes.</description>
+    </item>
+  </channel>
+</rss>

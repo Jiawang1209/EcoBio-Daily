@@ -1,0 +1,13 @@
+sources:
+  - id: bioarxiv_ecology
+    name: bioRxiv Ecology
+    type: rss
+    url: https://connect.biorxiv.org/biorxiv_xml.php?subject=ecology
+  - id: bioarxiv_microbiology
+    name: bioRxiv Microbiology
+    type: rss
+    url: https://connect.biorxiv.org/biorxiv_xml.php?subject=microbiology
+  - id: nature_ecology
+    name: Nature Ecology & Evolution
+    type: rss
+    url: https://www.nature.com/natecolevol.rss

@@ -1,0 +1,46 @@
+topics:
+  - id: biodiversity_conservation
+    name: 生物多样性与保护
+    keywords:
+      - biodiversity
+      - conservation
+      - species richness
+      - ecosystem services
+      - protected area
+      - extinction
+  - id: soil_microbiome_biogeochemistry
+    name: 土壤微生物与生物地球化学
+    keywords:
+      - soil microbiome
+      - microbial community
+      - biogeochemistry
+      - carbon cycling
+      - nitrogen cycling
+      - rhizosphere
+  - id: global_change_ecology
+    name: 全球变化生态学
+    keywords:
+      - climate change
+      - warming
+      - drought
+      - precipitation
+      - land use
+      - disturbance
+  - id: environmental_microbiology
+    name: 环境微生物学
+    keywords:
+      - environmental microbiology
+      - metagenomics
+      - microbial ecology
+      - antibiotic resistance
+      - pathogen
+      - biofilm
+  - id: methods_models_tools
+    name: 方法、模型与数据工具
+    keywords:
+      - remote sensing
+      - machine learning
+      - model
+      - dataset
+      - pipeline
+      - database

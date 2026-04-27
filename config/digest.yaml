@@ -1,0 +1,8 @@
+digest:
+  title: EcoBio Daily
+  language: zh
+  output_pattern: "{year}/{month}/ecobio_digest_1d_{date}_zh.md"
+  max_items: 12
+  highlights: 3
+  min_relevance_score: 2
+  lookback_days: 2
