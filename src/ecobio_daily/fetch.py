@@ -13,10 +13,22 @@ from ecobio_daily.models import SourceItem
 def _parse_datetime(value: str | None) -> datetime:
     if not value:
         return datetime.now(timezone.utc)
-    parsed = parsedate_to_datetime(value)
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        parsed = parsedate_to_datetime(value)
     if parsed.tzinfo is None:
         return parsed.replace(tzinfo=timezone.utc)
     return parsed
+
+
+def _entry_datetime(entry: dict) -> datetime:
+    value = (
+        entry.get("published")
+        or entry.get("updated")
+        or entry.get("prism_publicationdate")
+    )
+    return _parse_datetime(value)
 
 
 def parse_rss(xml: str, source_id: str, source_name: str) -> list[SourceItem]:
@@ -30,7 +42,7 @@ def parse_rss(xml: str, source_id: str, source_name: str) -> list[SourceItem]:
             title=entry.get("title", "").strip(),
             url=url,
             source=source_name,
-            published_at=_parse_datetime(entry.get("published")),
+            published_at=_entry_datetime(entry),
             summary=entry.get("summary", ""),
             tags=[source_id],
         )
