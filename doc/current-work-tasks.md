@@ -66,6 +66,7 @@
 - 已添加 LLM 配置模板：
   - `config/llm.yaml`
   - API key 通过环境变量配置，不写入仓库
+  - 支持多模型 profiles、任务 routing、embedding 配置、预算与失败回退
 
 ## 当前验证结果
 
