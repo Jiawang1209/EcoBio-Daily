@@ -1,0 +1,29 @@
+llm:
+  enabled: false
+
+  # OpenAI-compatible chat/completions endpoint.
+  # Examples:
+  #   DeepSeek: https://api.deepseek.com
+  #   Qwen: https://dashscope.aliyuncs.com/compatible-mode/v1
+  #   Kimi: https://api.moonshot.cn/v1
+  #   OpenAI: https://api.openai.com/v1
+  provider: openai_compatible
+  base_url: https://api.deepseek.com
+  model: deepseek-chat
+  api_key_env: DEEPSEEK_API_KEY
+
+  generation:
+    temperature: 0.2
+    max_tokens: 3000
+    timeout_seconds: 60
+
+  digest_zh:
+    enabled: true
+    max_items_for_llm: 12
+    style: concise_research_brief
+    output_language: zh-CN
+    require_json: true
+
+  fallback:
+    on_error: use_rss_summary
+    save_error_details: true

@@ -63,6 +63,9 @@
   - `data/processed/YYYY-MM-DD-scored.json`
 - 已完成日期过滤与候选数据保存合并：
   - `471cf5c Merge branch 'codex/date-filtering'`
+- 已添加 LLM 配置模板：
+  - `config/llm.yaml`
+  - API key 通过环境变量配置，不写入仓库
 
 ## 当前验证结果
 
@@ -149,6 +152,10 @@ data/processed/2026-04-28-scored.json
 - `src/ecobio_daily/llm.py`
 - `templates/prompts/digest_zh.md.j2`
 - LLM mock 测试
+
+已先创建：
+
+- `config/llm.yaml`
 
 ### 优先级 P1：优化主题分类
 
