@@ -11,3 +11,18 @@ sources:
     name: Nature Ecology & Evolution
     type: rss
     url: https://www.nature.com/natecolevol.rss
+  - id: openalex_ecobio
+    name: OpenAlex EcoBio
+    type: openalex
+    query: ecology OR microbiome OR "microbial ecology" OR metagenomics
+    max_results: 50
+  - id: europe_pmc_ecobio
+    name: Europe PMC EcoBio
+    type: europe_pmc
+    query: '"microbial ecology" OR microbiome OR metagenomics OR "global change ecology"'
+    max_results: 50
+  - id: pubmed_ecobio
+    name: PubMed EcoBio
+    type: pubmed
+    query: '("microbiome"[Title/Abstract] OR "microbial ecology"[Title/Abstract] OR metagenomics[Title/Abstract])'
+    max_results: 50

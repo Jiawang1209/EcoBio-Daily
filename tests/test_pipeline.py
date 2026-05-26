@@ -2,10 +2,10 @@ import json
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from ecobio_daily.config import DigestConfig, TopicConfig
+from ecobio_daily.config import DigestConfig, SourceConfig, TopicConfig
 from ecobio_daily.digest import build_digest
 from ecobio_daily.models import ScoredItem, SourceItem, TopicScore
-from ecobio_daily.pipeline import run_pipeline_from_items
+from ecobio_daily.pipeline import run_pipeline, run_pipeline_from_items
 
 
 def _scored_item(title: str, topic_id: str, topic_name: str, score: int) -> ScoredItem:
@@ -211,3 +211,62 @@ def test_run_pipeline_from_items_persists_raw_and_scored_candidates(tmp_path: Pa
         "microbiome",
         "carbon cycling",
     ]
+
+
+def test_run_pipeline_continues_when_one_source_fails(monkeypatch, tmp_path: Path):
+    sources = [
+        SourceConfig(
+            id="bad",
+            name="Bad Source",
+            type="rss",
+            url="https://example.org/bad.xml",
+        ),
+        SourceConfig(
+            id="good",
+            name="Good Source",
+            type="rss",
+            url="https://example.org/good.xml",
+        ),
+    ]
+
+    def fake_fetch_source(source: SourceConfig) -> list[SourceItem]:
+        if source.id == "bad":
+            raise RuntimeError("source unavailable")
+        return [
+            SourceItem(
+                id="paper-1",
+                title="Soil microbial diversity increases drought resilience",
+                url="https://example.org/paper-1",
+                source=source.name,
+                published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+                summary="The soil microbiome changed carbon cycling under drought.",
+            )
+        ]
+
+    monkeypatch.setattr("ecobio_daily.pipeline.fetch_source", fake_fetch_source)
+
+    output_path = run_pipeline(
+        sources=sources,
+        topics=[
+            TopicConfig(
+                id="soil",
+                name="土壤微生物",
+                keywords=["soil", "microbiome", "carbon cycling"],
+            )
+        ],
+        digest_config=DigestConfig(
+            title="EcoBio Daily",
+            language="zh",
+            output_pattern="{year}/{month}/ecobio_digest_1d_{date}_zh.md",
+            max_items=12,
+            highlights=3,
+            min_relevance_score=2,
+            lookback_days=2,
+        ),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+    )
+
+    assert output_path.exists()
+    assert "Soil microbial diversity" in output_path.read_text(encoding="utf-8")

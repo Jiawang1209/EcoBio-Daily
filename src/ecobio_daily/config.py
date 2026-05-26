@@ -10,7 +10,9 @@ class SourceConfig(BaseModel):
     id: str
     name: str
     type: str
-    url: HttpUrl
+    url: HttpUrl | None = None
+    query: str | None = None
+    max_results: int = 50
 
 
 class TopicConfig(BaseModel):

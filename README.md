@@ -4,7 +4,7 @@ EcoBio Daily 是一个本地优先的生态学与微生物学研究进展日报�
 
 ## 第一版能力
 
-- 从配置的数据源抓取最新研究条目。
+- 从配置的数据源抓取最新研究条目，支持 RSS、OpenAlex、Europe PMC、PubMed 和 bioRxiv API。
 - 按生态学和微生物学主题进行关键词筛选。
 - 选择高相关内容生成中文 Markdown 日报。
 - 将日报保存到 `YYYY/MM/` 目录。
@@ -20,6 +20,35 @@ mamba activate ecobio-daily
 ```bash
 python scripts/run_daily.py --date 2026-04-28
 ```
+
+## 文献来源配置
+
+数据源在 `config/sources.yaml` 中维护。RSS 源使用 `url`，学术搜索源使用 `query` 和 `max_results`：
+
+```yaml
+sources:
+  - id: openalex_ecobio
+    name: OpenAlex EcoBio
+    type: openalex
+    query: ecology OR microbiome OR "microbial ecology"
+    max_results: 50
+
+  - id: pubmed_ecobio
+    name: PubMed EcoBio
+    type: pubmed
+    query: '("microbiome"[Title/Abstract] OR "microbial ecology"[Title/Abstract])'
+    max_results: 50
+```
+
+当前支持的 `type`：
+
+- `rss`
+- `openalex`
+- `europe_pmc`
+- `pubmed`
+- `biorxiv_api`
+
+Web of Science 适合作为后续增强来源，但通常需要 Clarivate API key 和机构权限，因此不作为默认运行依赖。
 
 ## 输出文件
 

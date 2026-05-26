@@ -62,3 +62,25 @@ digest:
 
     assert config.title == "EcoBio Daily"
     assert config.highlights == 3
+
+
+def test_load_query_based_source_from_yaml(tmp_path: Path):
+    path = tmp_path / "sources.yaml"
+    path.write_text(
+        """
+sources:
+  - id: openalex_ecobio
+    name: OpenAlex EcoBio
+    type: openalex
+    query: ecology OR microbiome
+    max_results: 25
+""".strip(),
+        encoding="utf-8",
+    )
+
+    sources = load_sources(path)
+
+    assert sources[0].id == "openalex_ecobio"
+    assert sources[0].url is None
+    assert sources[0].query == "ecology OR microbiome"
+    assert sources[0].max_results == 25

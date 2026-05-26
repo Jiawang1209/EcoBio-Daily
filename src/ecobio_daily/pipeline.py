@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 from pathlib import Path
+import sys
 
 from ecobio_daily.config import DigestConfig, SourceConfig, TopicConfig
 from ecobio_daily.digest import build_digest
@@ -84,7 +85,10 @@ def run_pipeline(
 ) -> Path:
     items: list[SourceItem] = []
     for source in sources:
-        items.extend(fetch_source(source))
+        try:
+            items.extend(fetch_source(source))
+        except Exception as error:
+            print(f"Skipping source {source.id}: {error}", file=sys.stderr)
     return run_pipeline_from_items(
         items=items,
         topics=topics,
