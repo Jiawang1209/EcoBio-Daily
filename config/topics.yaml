@@ -1,150 +1,207 @@
 topics:
-  - id: soil_microbiology
-    name: 土壤与陆地微生物
+  - id: forest_soil_microbiology
+    name: 森林土壤微生物
     keywords:
-      - soil microbiome
-      - soil microbial
-      - soil bacteria
-      - soil fungi
-      - soil-borne
-      - rhizosphere
-      - mycorrhiza
-      - mycorrhizal
-      - rhizobium
-      - bacillus subtilis
-      - pseudomonas
-      - bradyrhizobium
-      - frankia
-      - nitrogen-fixing
-      - plant growth-promoting
-      - biocontrol
-      - bacterial inoculation
-      - microbial inoculant
-      - paddy soil
       - forest soil
-      - grassland soil
-      - cropland soil
-      - agricultural soil
-      - permafrost
-      - peatland
-      - wetland soil
-      - soil organic carbon
-      - soil respiration
+      - forest soil microbiome
+      - forest soil microbial
+      - forest soil bacterial
+      - forest soil fungal
+      - boreal forest soil
+      - temperate forest soil
+      - tropical forest soil
+      - subalpine forest
+      - alpine forest soil
+      - woodland soil
+      - taiga soil
+      - forest floor
+      - leaf litter decomposition
+      - tree rhizosphere
+      - ectomycorrhiza
+      - ectomycorrhizal
+      - tree mycorrhiza
+      - pinus rhizosphere
+      - picea rhizosphere
+      - oak rhizosphere
+      - beech rhizosphere
+      - subsoil microbi
+      - subsoil bacteri
+      - subsoil fungi
+      - oak mortality
+      - tree mortality
+      - litterfall
+      - tree species effect on soil
     excludes:
       - gut microbiome
       - gut microbiota
       - oral microbiome
       - skin microbiome
-      - vaginal microbiome
       - lung microbiome
       - airway microbiome
       - host microbiome
       - human microbiome
       - mouse microbiome
-      - rat microbiome
-      - infant microbiome
-      - maternal microbiome
       - patient
       - clinical trial
       - tumor
       - cancer
       - diabetes
-      - oncology
 
-  - id: aquatic_microbiology
-    name: 水体与水源微生物
+  - id: cropland_soil_microbiology
+    name: 农田土壤微生物
     keywords:
-      - marine microbi
-      - ocean microbi
-      - seawater microbi
-      - freshwater microbi
-      - lake microbi
-      - river microbi
-      - estuary microbi
-      - estuarine microbi
-      - sediment microbi
-      - groundwater microbi
-      - drinking water microbi
-      - wastewater microbi
-      - aquatic microbial community
-      - phytoplankton
-      - cyanobacteria
-      - cyanobacterial bloom
-      - algal bloom
-      - aquaculture microbi
+      - cropland soil
+      - agricultural soil
+      - arable soil
+      - farmland soil
+      - paddy soil
+      - rice paddy
+      - wheat soil
+      - maize soil
+      - soybean rhizosphere
+      - agroecosystem
+      - cover crop
+      - tillage
+      - no-till soil
+      - fertilizer microbiome
+      - crop rotation
+      - manure amendment
+      - biofertilizer
+      - bacterial inoculation
+      - microbial inoculant
+      - plant growth-promoting
+      - biocontrol
+      - rhizobium
+      - bradyrhizobium
+      - frankia
+      - bacillus subtilis
+      - arbuscular mycorrhiza
+      - rhizosphere
+      - crop root
+      - crop residue
+      - straw amend
+      - straw return
+      - saline soil
+      - sodic soil
+      - organic amendment
+      - compost amend
+      - nitrogen fertilizer effect
+      - cover cropping
     excludes:
       - gut microbiome
       - gut microbiota
       - oral microbiome
       - skin microbiome
-      - host microbiome
       - human microbiome
       - patient
       - clinical trial
       - tumor
       - cancer
 
-  - id: atmospheric_microbiology
-    name: 大气与气溶胶微生物
+  - id: grassland_soil_microbiology
+    name: 草地土壤微生物
     keywords:
-      - bioaerosol
-      - airborne microbi
-      - airborne bacteria
-      - airborne fungi
-      - atmospheric microbi
-      - air microbial
-      - aeromicrobiology
+      - grassland soil
+      - grassland microbi
+      - prairie soil
+      - steppe soil
+      - meadow soil
+      - savanna soil
+      - pasture soil
+      - rangeland soil
+      - grazing effect
+      - grazing intensity
+      - alpine meadow
+      - alpine grassland
+      - tundra microbi
+      - mongolian grassland
+      - tibetan grassland
+      - tibetan plateau soil
     excludes:
+      - gut microbiome
       - patient
       - clinical trial
+      - tumor
+      - cancer
 
-  - id: microbial_biogeochemistry
-    name: 微生物驱动生物地球化学
+  - id: soil_biogeochemistry
+    name: 土壤微生物驱动生物地球化学
     keywords:
-      - microbial biogeochemistry
-      - biogeochemical cycling
-      - microbial carbon cycling
-      - microbial nitrogen cycling
+      - soil carbon cycling
+      - soil nitrogen cycling
+      - soil organic carbon
+      - soil organic matter
+      - microbial carbon use efficiency
+      - soil respiration
+      - litter decomposition
       - methane oxidation
+      - methanogenesis
       - methanogen
       - methanotroph
-      - sulfur cycling
-      - sulfate reduction
       - nitrification
       - denitrification
-      - nitrogen fixation
       - anammox
+      - nitrogen fixation
+      - biological nitrogen fixation
+      - sulfate reduction
+      - sulfur cycling
       - iron reduction
-      - environmental antibiotic resistance
-      - environmental resistome
-      - heavy metal contamination
-      - bioremediation
+      - microbial biogeochemistry
+      - biogeochemical cycling
+      - n2o emission
+      - n2o flux
+      - ch4 flux
+      - soil greenhouse gas
+      - priming effect
+      - ammonia oxidiz
+      - ammonia oxidation
+      - ammonium oxidiz
+      - nitrate reduction
+      - nitrate leaching
+      - microbial necromass
+      - microbial residue
+      - litter mass loss
+      - litter quality
+      - litter decay
+      - soil organic
+      - carbon stabilization
+      - carbon sequestration
+      - subsoil carbon
+      - macrofauna
+      - soil pore
     excludes:
       - gut microbiome
       - human gut
       - patient
       - clinical trial
       - tumor
+      - cancer
 
   - id: env_micro_methods
-    name: 环境微生物方法与工具
+    name: 土壤微生物方法与工具
     keywords:
-      - environmental metagenomics
       - soil metagenomics
-      - marine metagenomics
+      - soil amplicon
       - amplicon sequencing
-      - 16s rrna
+      - 16s rrna sequencing
+      - its sequencing
       - shotgun metagenomics
       - long-read metagenomics
       - hi-c metagenomic
       - mag recovery
       - metagenome-assembled genome
-      - microbial community ecology
-      - microbial ecology
-      - microbial dark matter
+      - stable isotope probing
+      - dna sip
+      - phyloseq
+      - dada2
+      - qiime
+      - soil dna extraction
+      - soil microbial community ecology
+      - soil health
+      - soil enzyme assay
+      - soil enzyme activity
     excludes:
       - gut microbiome
-      - gut microbiota
       - human microbiome
       - patient outcome
       - clinical trial

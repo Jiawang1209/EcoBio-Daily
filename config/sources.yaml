@@ -23,20 +23,20 @@ sources:
     name: Nature Communications
     type: rss
     url: https://www.nature.com/ncomms.rss
-  - id: openalex_env_micro
-    name: OpenAlex Environmental Microbiology
+  - id: openalex_soil_micro
+    name: OpenAlex Soil Microbiology & Biogeochemistry
     type: openalex
-    query: '"soil microbiome" OR "soil microbial community" OR rhizosphere OR mycorrhiza OR "marine microbial" OR "freshwater microbial" OR "aquatic microbial community" OR bioaerosol OR "atmospheric microbiome" OR "wastewater microbial" OR "groundwater microbial" OR "environmental microbiology" OR "microbial biogeochemistry"'
+    query: '"soil microbiome" OR "soil microbial community" OR "soil bacterial community" OR "soil fungal community" OR rhizosphere OR mycorrhiza OR "forest soil microbi" OR "grassland soil microbi" OR "cropland soil microbi" OR "agricultural soil microbi" OR "paddy soil microbi" OR "soil carbon cycling" OR "soil nitrogen cycling" OR "soil biogeochemistry" OR methanogen OR methanotroph OR nitrification OR denitrification OR "biological nitrogen fixation"'
     max_results: 50
-  - id: europe_pmc_env_micro
-    name: Europe PMC Environmental Microbiology
+  - id: europe_pmc_soil_micro
+    name: Europe PMC Soil Microbiology & Biogeochemistry
     type: europe_pmc
-    query: '"soil microbiome" OR "soil microbial community" OR rhizosphere OR mycorrhiza OR "marine microbial" OR "freshwater microbial" OR "aquatic microbial community" OR bioaerosol OR "atmospheric microbiome" OR "wastewater microbial" OR "groundwater microbial" OR "environmental microbiology" OR "microbial biogeochemistry"'
+    query: '"soil microbiome" OR "soil microbial community" OR "soil bacterial community" OR "soil fungal community" OR rhizosphere OR mycorrhiza OR "forest soil microbi" OR "grassland soil microbi" OR "cropland soil microbi" OR "agricultural soil microbi" OR "paddy soil microbi" OR "soil carbon cycling" OR "soil nitrogen cycling" OR "soil biogeochemistry" OR methanogen OR methanotroph OR nitrification OR denitrification OR "biological nitrogen fixation"'
     max_results: 50
-  - id: pubmed_env_micro
-    name: PubMed Environmental Microbiology
+  - id: pubmed_soil_micro
+    name: PubMed Soil Microbiology & Biogeochemistry
     type: pubmed
-    query: '("soil microbiome"[Title/Abstract] OR "soil microbial community"[Title/Abstract] OR rhizosphere[Title/Abstract] OR mycorrhiza[Title/Abstract] OR "marine microbial"[Title/Abstract] OR "freshwater microbial"[Title/Abstract] OR "aquatic microbial community"[Title/Abstract] OR bioaerosol[Title/Abstract] OR "atmospheric microbiome"[Title/Abstract] OR "wastewater microbial"[Title/Abstract] OR "groundwater microbial"[Title/Abstract] OR "environmental microbiology"[Title/Abstract])'
+    query: '("soil microbiome"[Title/Abstract] OR "soil microbial community"[Title/Abstract] OR "soil bacterial community"[Title/Abstract] OR "soil fungal community"[Title/Abstract] OR rhizosphere[Title/Abstract] OR mycorrhiza[Title/Abstract] OR "forest soil"[Title/Abstract] OR "grassland soil"[Title/Abstract] OR "cropland soil"[Title/Abstract] OR "agricultural soil"[Title/Abstract] OR "paddy soil"[Title/Abstract] OR "soil carbon cycling"[Title/Abstract] OR "soil nitrogen cycling"[Title/Abstract] OR methanogen[Title/Abstract] OR methanotroph[Title/Abstract] OR nitrification[Title/Abstract] OR denitrification[Title/Abstract] OR "biological nitrogen fixation"[Title/Abstract])'
     max_results: 50
   - id: crossref_ecology_letters
     name: Crossref Ecology Letters
@@ -47,6 +47,31 @@ sources:
     name: Crossref Global Change Biology
     type: crossref
     issn: 1354-1013
+    max_results: 30
+  - id: crossref_soil_biology_biochemistry
+    name: Crossref Soil Biology & Biochemistry
+    type: crossref
+    issn: 0038-0717
+    max_results: 30
+  - id: crossref_applied_soil_ecology
+    name: Crossref Applied Soil Ecology
+    type: crossref
+    issn: 0929-1393
+    max_results: 30
+  - id: crossref_fems_microbiology_ecology
+    name: Crossref FEMS Microbiology Ecology
+    type: crossref
+    issn: 0168-6496
+    max_results: 30
+  - id: crossref_biology_fertility_soils
+    name: Crossref Biology and Fertility of Soils
+    type: crossref
+    issn: 0178-2762
+    max_results: 30
+  - id: crossref_agriculture_ecosystems_environment
+    name: Crossref Agriculture, Ecosystems & Environment
+    type: crossref
+    issn: 0167-8809
     max_results: 30
   - id: crossref_microbiome
     name: Crossref Microbiome
@@ -63,8 +88,8 @@ sources:
     type: crossref
     issn: 0169-5347
     max_results: 20
-  - id: semantic_scholar_env_micro
-    name: Semantic Scholar Environmental Microbiology
+  - id: semantic_scholar_soil_micro
+    name: Semantic Scholar Soil Microbiology
     type: semantic_scholar
-    query: soil microbiome OR rhizosphere OR mycorrhiza OR marine microbial OR freshwater microbial OR bioaerosol OR atmospheric microbiome OR wastewater microbial OR environmental microbiology
+    query: soil microbiome OR soil microbial community OR rhizosphere OR mycorrhiza OR forest soil microbi OR grassland soil microbi OR agricultural soil microbi OR soil carbon cycling OR soil nitrogen cycling OR methanogen OR methanotroph OR nitrification OR denitrification
     max_results: 50
