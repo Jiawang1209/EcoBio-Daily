@@ -67,6 +67,13 @@
   - `config/llm.yaml`
   - API key 通过环境变量配置，不写入仓库
   - 支持多模型 profiles、任务 routing、embedding 配置、预算与失败回退
+- 已扩展文献来源：
+  - RSS
+  - OpenAlex
+  - Europe PMC
+  - PubMed
+  - bioRxiv API
+- 已让流水线在单个来源失败时继续处理其他来源，适合后续定时任务运行。
 
 ## 当前验证结果
 
@@ -114,20 +121,21 @@ data/processed/2026-04-28-scored.json
 
 下一阶段需要接入 LLM，将英文摘要压缩、翻译并改写为真正的中文研究综述。
 
-### 2. 当前数据源还比较少
+### 2. 文献来源已扩展，但还需要继续优化覆盖质量
 
-目前主要数据源是：
+目前来源已从 RSS 扩展到开放学术索引和生物医学数据库：
 
-- bioRxiv Ecology
-- bioRxiv Microbiology
-- Nature Ecology & Evolution RSS
-
-后续可以增加：
-
-- PubMed
+- bioRxiv / Nature RSS
+- OpenAlex
 - Europe PMC
-- Crossref
-- Semantic Scholar
+- PubMed
+- bioRxiv API
+
+后续可以继续增加：
+
+- Crossref 元数据补全
+- Semantic Scholar 影响与引用信号
+- Web of Science API 增强来源（需要 Clarivate API key 和机构权限）
 - PNAS / Nature / Science / Cell 相关 RSS
 - 生态学和微生物学重点期刊
 - 机构新闻源
@@ -170,16 +178,13 @@ data/processed/2026-04-28-scored.json
 - 手动置顶主题
 - LLM 相关性评分
 
-### 优先级 P2：增加更多数据源
+### 优先级 P2：继续增强来源质量
 
-建议分批增加，不要一次全加。
+建议下一批增加：
 
-第一批建议：
-
-- PubMed ecology/microbiology query
-- Europe PMC
-- Crossref recent works
-- 重点期刊 RSS
+- Crossref recent works，用于 DOI 和出版元数据补全
+- Semantic Scholar，用于摘要、引用和影响信号
+- Web of Science，可在具备 API key 时作为订阅增强后端
 
 ## 常用命令
 
