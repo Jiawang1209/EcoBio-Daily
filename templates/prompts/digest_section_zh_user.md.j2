@@ -1,0 +1,14 @@
+主题：{{ topic_name }}
+
+下面是本主题下的 {{ items | length }} 篇候选论文：
+
+{% for it in items -%}
+{{ loop.index }}. **{{ it.item.title }}**
+   - URL：{{ it.item.url }}
+   - 来源：{{ it.item.source }}
+   {% if it.item.authors -%}- 作者：{{ it.item.authors[:3] | join(", ") }}
+   {% endif -%}
+   - 摘要：{{ it.item.summary if it.item.summary else "(无摘要)" }}
+
+{% endfor %}
+请按系统消息里的 JSON 格式输出，每篇论文一条 item，顺序保持输入顺序。
