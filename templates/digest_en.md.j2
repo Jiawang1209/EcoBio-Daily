@@ -1,0 +1,36 @@
+# {{ digest.title }} - {{ digest.date.isoformat() }} (EN)
+
+> Daily research digest covering soil microbiology and microbially-driven biogeochemistry. Items are scope-filtered and LLM-relevance-ranked; bodies preserve original English abstracts.
+
+## Highlights
+
+{% for item in digest.highlights -%}
+- **{{ item.item.title }}**: {{ item.item.summary | default("", true) | truncate(200) }} Source: {{ item.item.source }}.
+{% endfor %}
+
+{% for section in digest.sections %}
+## {{ section.title }}
+
+{% for scored in section.items %}
+### {{ scored.item.title }}
+
+{{ scored.item.summary | default("Abstract not available.", true) }}
+
+- Source: {{ scored.item.source }}
+- Link: {{ scored.item.url }}
+- Keyword score: {{ scored.relevance_score }}{% if scored.llm_score is not none %} | LLM score: {{ scored.llm_score }}{% endif %}
+
+{% if scored.topic_scores -%}
+- Matched keywords: {{ scored.topic_scores[0].matched_keywords | join(", ") }}
+{% endif %}
+{% endfor %}
+{% endfor %}
+## Looking Forward
+
+Today's candidates reflect ongoing progress in soil microbial ecology and microbially-driven biogeochemistry. Items to keep tracking: cross-scale observations, long-term experiments, mechanistic interpretations, and reusable analytical workflows.
+
+## References
+
+{% for item in digest.references -%}
+- **{{ item.title }}** — [{{ item.source }}]({{ item.url }})
+{% endfor %}

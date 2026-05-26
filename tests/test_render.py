@@ -160,3 +160,83 @@ def test_render_highlights_falls_back_when_no_llm_brief_item():
 
     highlights_block = output.split("## Highlights", 1)[1].split("##", 1)[0]
     assert "Original English summary about soil microbes" in highlights_block
+
+
+def test_render_zh_uses_title_zh_when_present():
+    scored = _scored_for_render("Forest nitrogen paper")
+    scored.llm_brief_item = {
+        "title": "Forest nitrogen paper",
+        "title_zh": "森林氮循环新机制",
+        "summary_zh": "中文摘要。",
+        "why_it_matters": "重要。",
+        "evidence_type": "实验",
+        "caveat": None,
+        "source_url": "https://example.org/Forest-nitrogen-paper",
+    }
+    digest = Digest(
+        date=date(2026, 5, 27),
+        title="EcoBio Daily",
+        highlights=[scored],
+        sections=[
+            DigestSection(
+                title="土壤微生物",
+                items=[scored],
+                llm_brief={
+                    "section_title": "森林土壤简报",
+                    "highlights": ["a", "b", "c"],
+                    "items": [scored.llm_brief_item],
+                },
+            )
+        ],
+        references=[scored.item],
+    )
+
+    output = render_digest(digest, Path("templates/digest_zh.md.j2"))
+
+    # Section body shows Chinese title
+    body = output.split("## 森林土壤简报", 1)[1].split("## References", 1)[0]
+    assert "森林氮循环新机制" in body
+    # References section keeps the authoritative English title
+    refs = output.split("## References", 1)[1]
+    assert "Forest nitrogen paper" in refs
+
+
+def test_render_en_uses_original_english():
+    scored = _scored_for_render("Forest nitrogen paper")
+    scored.llm_brief_item = {
+        "title": "Forest nitrogen paper",
+        "title_zh": "森林氮循环新机制",
+        "summary_zh": "中文摘要。",
+        "why_it_matters": "重要。",
+        "evidence_type": "实验",
+        "caveat": None,
+        "source_url": "https://example.org/Forest-nitrogen-paper",
+    }
+    digest = Digest(
+        date=date(2026, 5, 27),
+        title="EcoBio Daily",
+        highlights=[scored],
+        sections=[
+            DigestSection(
+                title="土壤微生物",
+                items=[scored],
+                llm_brief={
+                    "section_title": "森林土壤简报",
+                    "highlights": ["a", "b", "c"],
+                    "items": [scored.llm_brief_item],
+                },
+            )
+        ],
+        references=[scored.item],
+    )
+
+    output = render_digest(digest, Path("templates/digest_en.md.j2"))
+
+    # English version uses original title and abstract
+    assert "Forest nitpgen paper".replace("p", "p") in output or "Forest nitrogen paper" in output
+    assert "Original English summary about soil microbes" in output
+    # No Chinese-only fields leak through
+    assert "森林氮循环新机制" not in output
+    assert "中文摘要" not in output
+    assert "为什么值得关注" not in output
+    assert "证据类型" not in output

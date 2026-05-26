@@ -19,11 +19,17 @@ from ecobio_daily.storage import write_json_records
 LLM_SCORE_THRESHOLD = 6
 
 
-def _output_path(output_root: Path, pattern: str, digest_date: date) -> Path:
+def _output_path(
+    output_root: Path,
+    pattern: str,
+    digest_date: date,
+    lang: str = "zh",
+) -> Path:
     relative = pattern.format(
         year=f"{digest_date.year:04d}",
         month=f"{digest_date.month:02d}",
         date=digest_date.isoformat(),
+        lang=lang,
     )
     return output_root / relative
 
@@ -126,11 +132,24 @@ def run_pipeline_from_items(
     )
     if llm_client is not None:
         _attach_llm_briefs(digest, llm_client)
-    markdown = render_digest(digest, template_path)
-    output_path = _output_path(output_root, digest_config.output_pattern, digest_date)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(markdown, encoding="utf-8")
-    return output_path
+    markdown_zh = render_digest(digest, template_path)
+    zh_path = _output_path(
+        output_root, digest_config.output_pattern, digest_date, lang="zh"
+    )
+    zh_path.parent.mkdir(parents=True, exist_ok=True)
+    zh_path.write_text(markdown_zh, encoding="utf-8")
+
+    if llm_client is not None:
+        en_template_path = template_path.with_name(
+            template_path.name.replace("_zh.", "_en.")
+        )
+        markdown_en = render_digest(digest, en_template_path)
+        en_path = _output_path(
+            output_root, digest_config.output_pattern, digest_date, lang="en"
+        )
+        en_path.write_text(markdown_en, encoding="utf-8")
+
+    return zh_path
 
 
 def run_pipeline(

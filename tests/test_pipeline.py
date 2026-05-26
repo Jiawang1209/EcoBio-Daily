@@ -26,7 +26,7 @@ def _digest_config() -> DigestConfig:
     return DigestConfig(
         title="EcoBio Daily",
         language="zh",
-        output_pattern="{year}/{month}/ecobio_digest_1d_{date}_zh.md",
+        output_pattern="{year}/{month}/ecobio_digest_1d_{date}_{lang}.md",
         max_items=12,
         highlights=3,
         min_relevance_score=2,
@@ -433,6 +433,7 @@ def _fake_brief(topic_name: str, items_arg, client):
         "items": [
             {
                 "title": it.item.title,
+                "title_zh": f"中文标题-{it.item.title}",
                 "summary_zh": f"中文摘要-{it.item.title}",
                 "why_it_matters": "值得关注",
                 "evidence_type": "实验",
@@ -482,6 +483,52 @@ def test_pipeline_attaches_llm_brief_item_for_highlights(tmp_path: Path, monkeyp
     text = output_path.read_text(encoding="utf-8")
     highlights_block = text.split("## Highlights", 1)[1].split("## ", 1)[0]
     assert "中文摘要-Soil microbiome p1" in highlights_block
+
+
+def test_pipeline_writes_both_zh_and_en_when_llm_enabled(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+
+    run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    zh = tmp_path / "2026/04/ecobio_digest_1d_2026-04-28_zh.md"
+    en = tmp_path / "2026/04/ecobio_digest_1d_2026-04-28_en.md"
+    assert zh.exists(), "zh file should be written"
+    assert en.exists(), "en file should be written"
+    en_text = en.read_text(encoding="utf-8")
+    # EN file uses original English abstract
+    assert "Soil microbial communities drive carbon cycling" in en_text
+    # EN file does NOT contain Chinese-only fields
+    assert "中文摘要-Soil microbiome p1" not in en_text
+    assert "为什么值得关注" not in en_text
+
+
+def test_pipeline_writes_only_zh_when_llm_disabled(tmp_path: Path):
+    items = [_soil_item("p1")]
+
+    run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    zh = tmp_path / "2026/04/ecobio_digest_1d_2026-04-28_zh.md"
+    en = tmp_path / "2026/04/ecobio_digest_1d_2026-04-28_en.md"
+    assert zh.exists()
+    assert not en.exists(), "en file should NOT be written when LLM is disabled"
 
 
 def test_pipeline_falls_back_per_section_when_brief_is_none(tmp_path: Path, monkeypatch):

@@ -5,10 +5,11 @@
 ## Highlights
 
 {% for item in digest.highlights -%}
+{% set hl_title = item.llm_brief_item["title_zh"] if item.llm_brief_item and item.llm_brief_item.get("title_zh") else item.item.title -%}
 {% if item.llm_brief_item and item.llm_brief_item["summary_zh"] -%}
-- **{{ item.item.title }}**：{{ item.llm_brief_item["summary_zh"] | truncate(180) }} 来源：{{ item.item.source }}。
+- **{{ hl_title }}**：{{ item.llm_brief_item["summary_zh"] | truncate(180) }} 来源：{{ item.item.source }}。
 {% else -%}
-- **{{ item.item.title }}**：{{ item.item.summary | default("", true) | truncate(180) }} 来源：{{ item.item.source }}。
+- **{{ hl_title }}**：{{ item.item.summary | default("", true) | truncate(180) }} 来源：{{ item.item.source }}。
 {% endif -%}
 {% endfor %}
 
@@ -26,7 +27,11 @@
 {% set brief_items = section.llm_brief["items"] if section.llm_brief and section.llm_brief["items"] else [] %}
 {% for scored in section.items %}
 {% set brief = brief_items[loop.index0] if loop.index0 < (brief_items | length) else None %}
+{% if brief and brief.get("title_zh") -%}
+### {{ brief["title_zh"] }}
+{% else -%}
 ### {{ scored.item.title }}
+{% endif %}
 
 {% if brief %}
 {{ brief.summary_zh }}
