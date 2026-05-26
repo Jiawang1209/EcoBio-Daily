@@ -57,8 +57,12 @@ def _attach_llm_briefs(digest: Digest, llm_client: LLMClient) -> None:
         section.llm_brief = brief
         if brief is None:
             failed += 1
-        else:
-            ok += 1
+            continue
+        ok += 1
+        brief_items = brief.get("items") or []
+        for i, scored in enumerate(section.items):
+            if i < len(brief_items) and isinstance(brief_items[i], dict):
+                scored.llm_brief_item = brief_items[i]
     print(f"LLM brief: {ok} ok, {failed} failed", file=sys.stderr)
 
 

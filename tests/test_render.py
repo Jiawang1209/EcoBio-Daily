@@ -119,3 +119,44 @@ def test_render_falls_back_to_summary_when_no_llm_brief():
 
     assert "Original English summary about soil microbes." in output
     assert "中文凝练的摘要内容。" not in output
+
+
+def test_render_highlights_uses_llm_brief_item_summary_zh():
+    scored = _scored_for_render("Forest nitrogen paper")
+    scored.llm_brief_item = {
+        "title": "Forest nitrogen paper",
+        "summary_zh": "中文版摘要-顶部高亮",
+        "why_it_matters": "X",
+        "evidence_type": "实验",
+        "caveat": None,
+        "source_url": "https://example.org/Forest-nitrogen-paper",
+    }
+    digest = Digest(
+        date=date(2026, 5, 27),
+        title="EcoBio Daily",
+        highlights=[scored],
+        sections=[DigestSection(title="土壤微生物", items=[scored])],
+        references=[scored.item],
+    )
+
+    output = render_digest(digest, Path("templates/digest_zh.md.j2"))
+
+    highlights_block = output.split("## Highlights", 1)[1].split("##", 1)[0]
+    assert "中文版摘要-顶部高亮" in highlights_block
+    assert "Original English summary about soil microbes" not in highlights_block
+
+
+def test_render_highlights_falls_back_when_no_llm_brief_item():
+    scored = _scored_for_render("Plain paper")
+    digest = Digest(
+        date=date(2026, 5, 27),
+        title="EcoBio Daily",
+        highlights=[scored],
+        sections=[DigestSection(title="土壤微生物", items=[scored])],
+        references=[scored.item],
+    )
+
+    output = render_digest(digest, Path("templates/digest_zh.md.j2"))
+
+    highlights_block = output.split("## Highlights", 1)[1].split("##", 1)[0]
+    assert "Original English summary about soil microbes" in highlights_block

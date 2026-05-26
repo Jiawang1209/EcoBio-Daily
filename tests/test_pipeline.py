@@ -464,6 +464,26 @@ def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
     assert "LLM-土壤微生物" in text
 
 
+def test_pipeline_attaches_llm_brief_item_for_highlights(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1"), _soil_item("p2")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    highlights_block = text.split("## Highlights", 1)[1].split("## ", 1)[0]
+    assert "中文摘要-Soil microbiome p1" in highlights_block
+
+
 def test_pipeline_falls_back_per_section_when_brief_is_none(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])

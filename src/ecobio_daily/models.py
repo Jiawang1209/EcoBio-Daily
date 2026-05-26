@@ -37,6 +37,7 @@ class ScoredItem(BaseModel):
     relevance_score: int
     topic_scores: list[TopicScore]
     llm_score: int | None = None
+    llm_brief_item: dict | None = None
 
 
 class DigestSection(BaseModel):

@@ -5,7 +5,11 @@
 ## Highlights
 
 {% for item in digest.highlights -%}
+{% if item.llm_brief_item and item.llm_brief_item["summary_zh"] -%}
+- **{{ item.item.title }}**：{{ item.llm_brief_item["summary_zh"] | truncate(180) }} 来源：{{ item.item.source }}。
+{% else -%}
 - **{{ item.item.title }}**：{{ item.item.summary | default("", true) | truncate(180) }} 来源：{{ item.item.source }}。
+{% endif -%}
 {% endfor %}
 
 {% for section in digest.sections %}
