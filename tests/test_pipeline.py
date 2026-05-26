@@ -205,7 +205,9 @@ def test_run_pipeline_from_items_persists_raw_and_scored_candidates(tmp_path: Pa
     raw_items = json.loads(raw_path.read_text(encoding="utf-8"))
     scored_items = json.loads(scored_path.read_text(encoding="utf-8"))
     assert raw_items[0]["title"] == "Soil microbiome candidate"
-    assert scored_items[0]["relevance_score"] == 3
+    # Two title hits ("soil", "microbiome") at weight 2 plus one summary hit
+    # ("carbon cycling") at weight 1.
+    assert scored_items[0]["relevance_score"] == 5
     assert scored_items[0]["topic_scores"][0]["matched_keywords"] == [
         "soil",
         "microbiome",

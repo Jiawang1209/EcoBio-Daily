@@ -4,22 +4,35 @@ from ecobio_daily.config import TopicConfig
 from ecobio_daily.models import ScoredItem, SourceItem, TopicScore
 
 
-def _search_text(item: SourceItem) -> str:
-    return f"{item.title}\n{item.summary}".lower()
+TITLE_WEIGHT = 2
+SUMMARY_WEIGHT = 1
 
 
 def score_item(item: SourceItem, topics: list[TopicConfig]) -> ScoredItem:
-    text = _search_text(item)
+    title = item.title.lower()
+    summary = item.summary.lower()
+    combined = f"{title}\n{summary}"
     topic_scores: list[TopicScore] = []
 
     for topic in topics:
-        matched = [keyword for keyword in topic.keywords if keyword.lower() in text]
+        if any(exclude.lower() in combined for exclude in topic.excludes):
+            continue
+        matched: list[str] = []
+        score = 0
+        for keyword in topic.keywords:
+            needle = keyword.lower()
+            if needle in title:
+                score += TITLE_WEIGHT
+                matched.append(keyword)
+            elif needle in summary:
+                score += SUMMARY_WEIGHT
+                matched.append(keyword)
         if matched:
             topic_scores.append(
                 TopicScore(
                     topic_id=topic.id,
                     topic_name=topic.name,
-                    score=len(matched),
+                    score=score,
                     matched_keywords=matched,
                 )
             )

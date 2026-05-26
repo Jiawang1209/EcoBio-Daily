@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import yaml
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, Field, HttpUrl
 
 
 class SourceConfig(BaseModel):
@@ -20,6 +20,7 @@ class TopicConfig(BaseModel):
     id: str
     name: str
     keywords: list[str]
+    excludes: list[str] = Field(default_factory=list)
 
 
 class DigestConfig(BaseModel):
