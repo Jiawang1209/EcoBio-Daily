@@ -8,6 +8,42 @@ from ecobio_daily.models import ScoredItem, SourceItem, TopicScore
 from ecobio_daily.pipeline import run_pipeline, run_pipeline_from_items
 
 
+_FAKE_CLIENT = object()
+
+
+def _soil_item(slug: str, suffix: str = "") -> SourceItem:
+    return SourceItem(
+        id=slug,
+        title=f"Soil microbiome {slug} {suffix}".strip(),
+        url=f"https://example.org/{slug}",
+        source="example",
+        published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+        summary="Soil microbial communities drive carbon cycling under drought.",
+    )
+
+
+def _digest_config() -> DigestConfig:
+    return DigestConfig(
+        title="EcoBio Daily",
+        language="zh",
+        output_pattern="{year}/{month}/ecobio_digest_1d_{date}_zh.md",
+        max_items=12,
+        highlights=3,
+        min_relevance_score=2,
+        lookback_days=2,
+    )
+
+
+def _soil_topics() -> list[TopicConfig]:
+    return [
+        TopicConfig(
+            id="soil",
+            name="土壤微生物",
+            keywords=["soil", "microbiome", "carbon cycling"],
+        )
+    ]
+
+
 def _scored_item(title: str, topic_id: str, topic_name: str, score: int) -> ScoredItem:
     item = SourceItem(
         id=title,
@@ -272,3 +308,110 @@ def test_run_pipeline_continues_when_one_source_fails(monkeypatch, tmp_path: Pat
 
     assert output_path.exists()
     assert "Soil microbial diversity" in output_path.read_text(encoding="utf-8")
+
+
+def test_scored_item_llm_score_defaults_to_none():
+    item = _soil_item("p1")
+    scored = ScoredItem(item=item, relevance_score=5, topic_scores=[])
+    assert scored.llm_score is None
+
+
+def test_scored_item_accepts_explicit_llm_score():
+    item = _soil_item("p1")
+    scored = ScoredItem(item=item, relevance_score=5, topic_scores=[], llm_score=8)
+    assert scored.llm_score == 8
+
+
+def test_pipeline_skips_llm_scoring_when_client_is_none(tmp_path: Path, monkeypatch):
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("batch_score should not be called when llm_client is None")
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fail_if_called)
+
+    output_path = run_pipeline_from_items(
+        items=[_soil_item("p1")],
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    assert "Soil microbiome p1" in output_path.read_text(encoding="utf-8")
+
+
+def test_pipeline_drops_items_with_low_llm_score(tmp_path: Path, monkeypatch):
+    items = [_soil_item("good1"), _soil_item("bad"), _soil_item("good2")]
+
+    captured: dict = {}
+
+    def fake_batch_score(items_arg, client):
+        captured["titles"] = [it.title for it in items_arg]
+        return [9, 3, 8]  # bad below threshold of 6
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    assert "Soil microbiome good1" in text
+    assert "Soil microbiome good2" in text
+    assert "Soil microbiome bad" not in text
+    assert len(captured["titles"]) == 3
+
+
+def test_pipeline_falls_back_when_llm_returns_all_minus_one(tmp_path: Path, monkeypatch):
+    items = [_soil_item("a"), _soil_item("b")]
+
+    def fake_batch_score(items_arg, client):
+        return [-1] * len(items_arg)
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    assert "Soil microbiome a" in text
+    assert "Soil microbiome b" in text
+
+
+def test_pipeline_only_scores_top_n_keyword_items(tmp_path: Path, monkeypatch):
+    items = [_soil_item(f"p{i}") for i in range(6)]
+
+    seen: dict = {"count": 0}
+
+    def fake_batch_score(items_arg, client):
+        seen["count"] = len(items_arg)
+        return [9] * len(items_arg)
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+
+    run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+        llm_max_items=3,
+    )
+
+    assert seen["count"] == 3
