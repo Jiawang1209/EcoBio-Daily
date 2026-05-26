@@ -145,6 +145,77 @@ def parse_europe_pmc(payload: dict, source_id: str, source_name: str) -> list[So
     return items
 
 
+_JATS_TAG_PATTERN = re.compile(r"<[^>]+>")
+
+
+def _strip_jats(text: str | None) -> str:
+    if not text:
+        return ""
+    return _JATS_TAG_PATTERN.sub("", text).strip()
+
+
+def _crossref_date(issued: dict | None) -> datetime:
+    parts = (issued or {}).get("date-parts") or []
+    if not parts or not parts[0]:
+        return datetime.now(timezone.utc)
+    fragment = parts[0]
+    year = fragment[0] if len(fragment) >= 1 else 1970
+    month = fragment[1] if len(fragment) >= 2 else 1
+    day = fragment[2] if len(fragment) >= 3 else 1
+    return datetime(year, month, day, tzinfo=timezone.utc)
+
+
+def parse_crossref(payload: dict, source_id: str, source_name: str) -> list[SourceItem]:
+    items: list[SourceItem] = []
+    for work in payload.get("message", {}).get("items", []):
+        doi = work.get("DOI")
+        titles = work.get("title") or []
+        title = (titles[0] if titles else "").strip()
+        containers = work.get("container-title") or []
+        journal = containers[0] if containers else None
+        url = _doi_url(doi) or work.get("URL", "")
+        authors = [
+            f"{author.get('given', '')} {author.get('family', '')}".strip()
+            for author in work.get("author") or []
+        ]
+        item = SourceItem(
+            id=doi or url or title,
+            title=title,
+            url=url,
+            source=_source_with_journal(source_name, journal),
+            published_at=_crossref_date(work.get("issued")),
+            summary=_strip_jats(work.get("abstract")),
+            authors=[author for author in authors if author],
+            tags=[source_id],
+        )
+        if item.title and item.url:
+            items.append(item)
+    return items
+
+
+def parse_semantic_scholar(payload: dict, source_id: str, source_name: str) -> list[SourceItem]:
+    items: list[SourceItem] = []
+    for paper in payload.get("data", []):
+        doi = (paper.get("externalIds") or {}).get("DOI")
+        url = _doi_url(doi) or paper.get("url", "")
+        authors = [author.get("name", "") for author in paper.get("authors") or []]
+        item = SourceItem(
+            id=doi or paper.get("paperId") or url,
+            title=(paper.get("title") or "").strip(),
+            url=url,
+            source=_source_with_journal(source_name, paper.get("venue")),
+            published_at=_parse_publication_date(
+                paper.get("publicationDate") or (str(paper.get("year")) if paper.get("year") else None)
+            ),
+            summary=paper.get("abstract") or "",
+            authors=[author for author in authors if author],
+            tags=[source_id],
+        )
+        if item.title and item.url:
+            items.append(item)
+    return items
+
+
 def parse_pubmed(payload: dict, source_id: str, source_name: str) -> list[SourceItem]:
     result = payload.get("result", {})
     items: list[SourceItem] = []
@@ -242,6 +313,45 @@ def _fetch_pubmed(source: SourceConfig, timeout_seconds: float) -> list[SourceIt
     return parse_pubmed(summary_response.json(), source_id=source.id, source_name=source.name)
 
 
+def _fetch_crossref(source: SourceConfig, timeout_seconds: float) -> list[SourceItem]:
+    if not source.query and not source.issn:
+        raise ValueError(f"Crossref source requires query or issn: {source.id}")
+    params: dict[str, str | int] = {
+        "rows": source.max_results,
+        "sort": "issued",
+        "order": "desc",
+    }
+    if source.query:
+        params["query.bibliographic"] = source.query
+    if source.issn:
+        params["filter"] = f"issn:{source.issn}"
+    response = httpx.get(
+        "https://api.crossref.org/works",
+        params=params,
+        timeout=timeout_seconds,
+        follow_redirects=True,
+    )
+    response.raise_for_status()
+    return parse_crossref(response.json(), source_id=source.id, source_name=source.name)
+
+
+def _fetch_semantic_scholar(source: SourceConfig, timeout_seconds: float) -> list[SourceItem]:
+    if not source.query:
+        raise ValueError(f"Semantic Scholar source requires query: {source.id}")
+    response = httpx.get(
+        "https://api.semanticscholar.org/graph/v1/paper/search",
+        params={
+            "query": source.query,
+            "limit": source.max_results,
+            "fields": "title,abstract,authors,venue,publicationDate,year,citationCount,externalIds,url",
+        },
+        timeout=timeout_seconds,
+        follow_redirects=True,
+    )
+    response.raise_for_status()
+    return parse_semantic_scholar(response.json(), source_id=source.id, source_name=source.name)
+
+
 def _fetch_biorxiv_api(source: SourceConfig, timeout_seconds: float) -> list[SourceItem]:
     if not source.query:
         raise ValueError(f"bioRxiv API source requires query: {source.id}")
@@ -283,6 +393,8 @@ def fetch_source(source: SourceConfig, timeout_seconds: float = 20.0) -> list[So
         "europe_pmc": _fetch_europe_pmc,
         "pubmed": _fetch_pubmed,
         "biorxiv_api": _fetch_biorxiv_api,
+        "crossref": _fetch_crossref,
+        "semantic_scholar": _fetch_semantic_scholar,
     }
     fetcher = fetchers.get(source.type)
     if fetcher is None:

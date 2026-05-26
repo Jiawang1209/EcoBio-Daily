@@ -1,7 +1,14 @@
 from pathlib import Path
 from datetime import date
 
-from ecobio_daily.fetch import parse_europe_pmc, parse_openalex, parse_pubmed, parse_rss
+from ecobio_daily.fetch import (
+    parse_crossref,
+    parse_europe_pmc,
+    parse_openalex,
+    parse_pubmed,
+    parse_rss,
+    parse_semantic_scholar,
+)
 
 
 def test_parse_rss_fixture():
@@ -125,3 +132,69 @@ def test_parse_pubmed_maps_esummary_records_to_source_item():
     assert items[0].source == "PubMed: Applied and Environmental Microbiology"
     assert items[0].authors == ["Lovelace A", "Hopper G"]
     assert items[0].published_date == date(2026, 5, 18)
+
+
+def test_parse_crossref_maps_work_to_source_item():
+    payload = {
+        "message": {
+            "items": [
+                {
+                    "DOI": "10.1234/example",
+                    "title": ["Microbial ecology shifts under warming"],
+                    "abstract": "<jats:p>Soil microbiomes responded to warming.</jats:p>",
+                    "author": [
+                        {"given": "Ada", "family": "Lovelace"},
+                        {"given": "Grace", "family": "Hopper"},
+                    ],
+                    "container-title": ["Ecology Letters"],
+                    "issued": {"date-parts": [[2026, 5, 20]]},
+                    "URL": "https://doi.org/10.1234/example",
+                }
+            ]
+        }
+    }
+
+    items = parse_crossref(payload, source_id="crossref_ecolett", source_name="Crossref EcoLett")
+
+    assert len(items) == 1
+    assert items[0].id == "10.1234/example"
+    assert items[0].url == "https://doi.org/10.1234/example"
+    assert items[0].title == "Microbial ecology shifts under warming"
+    assert items[0].summary == "Soil microbiomes responded to warming."
+    assert items[0].source == "Crossref EcoLett: Ecology Letters"
+    assert items[0].authors == ["Ada Lovelace", "Grace Hopper"]
+    assert items[0].published_date == date(2026, 5, 20)
+    assert items[0].tags == ["crossref_ecolett"]
+
+
+def test_parse_semantic_scholar_maps_paper_to_source_item():
+    payload = {
+        "data": [
+            {
+                "paperId": "ss-abc-123",
+                "title": "Drought drives microbiome turnover",
+                "abstract": "Drought reshapes soil microbial communities.",
+                "authors": [{"name": "Ada Lovelace"}, {"name": "Grace Hopper"}],
+                "venue": "ISME Journal",
+                "publicationDate": "2026-05-17",
+                "year": 2026,
+                "citationCount": 4,
+                "externalIds": {"DOI": "10.9999/example"},
+                "url": "https://www.semanticscholar.org/paper/ss-abc-123",
+            }
+        ]
+    }
+
+    items = parse_semantic_scholar(
+        payload, source_id="semantic_scholar_eco", source_name="Semantic Scholar Eco"
+    )
+
+    assert len(items) == 1
+    assert items[0].id == "10.9999/example"
+    assert items[0].url == "https://doi.org/10.9999/example"
+    assert items[0].title == "Drought drives microbiome turnover"
+    assert items[0].summary == "Drought reshapes soil microbial communities."
+    assert items[0].source == "Semantic Scholar Eco: ISME Journal"
+    assert items[0].authors == ["Ada Lovelace", "Grace Hopper"]
+    assert items[0].published_date == date(2026, 5, 17)
+    assert items[0].tags == ["semantic_scholar_eco"]

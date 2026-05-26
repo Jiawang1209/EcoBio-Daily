@@ -12,6 +12,7 @@ class SourceConfig(BaseModel):
     type: str
     url: HttpUrl | None = None
     query: str | None = None
+    issn: str | None = None
     max_results: int = 50
 
 

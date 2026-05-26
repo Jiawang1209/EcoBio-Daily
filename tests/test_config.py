@@ -84,3 +84,24 @@ sources:
     assert sources[0].url is None
     assert sources[0].query == "ecology OR microbiome"
     assert sources[0].max_results == 25
+
+
+def test_load_crossref_source_with_issn(tmp_path: Path):
+    path = tmp_path / "sources.yaml"
+    path.write_text(
+        """
+sources:
+  - id: crossref_ecolett
+    name: Crossref Ecology Letters
+    type: crossref
+    issn: 1461-0248
+    max_results: 30
+""".strip(),
+        encoding="utf-8",
+    )
+
+    sources = load_sources(path)
+
+    assert sources[0].type == "crossref"
+    assert sources[0].issn == "1461-0248"
+    assert sources[0].query is None
