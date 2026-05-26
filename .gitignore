@@ -6,6 +6,7 @@ __pycache__/
 .mypy_cache/
 .venv/
 .worktrees/
+.omc/
 data/raw/*
 data/processed/*
 data/cache/*
