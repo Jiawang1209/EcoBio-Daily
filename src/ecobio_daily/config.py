@@ -33,6 +33,23 @@ class DigestConfig(BaseModel):
     lookback_days: int
 
 
+class LLMProfile(BaseModel):
+    provider: str
+    base_url: HttpUrl
+    model: str
+    api_key_env: str
+    temperature: float = 0.2
+    max_tokens: int = 2000
+    timeout_seconds: int = 60
+
+
+class LLMConfig(BaseModel):
+    enabled: bool = False
+    active_profile: str
+    profiles: dict[str, LLMProfile]
+    routing: dict[str, str | None] = Field(default_factory=dict)
+
+
 def _load_yaml(path: Path) -> dict:
     with path.open("r", encoding="utf-8") as handle:
         data = yaml.safe_load(handle)
@@ -52,3 +69,8 @@ def load_topics(path: Path) -> list[TopicConfig]:
 def load_digest_config(path: Path) -> DigestConfig:
     data = _load_yaml(path)
     return DigestConfig.model_validate(data["digest"])
+
+
+def load_llm_config(path: Path) -> LLMConfig:
+    data = _load_yaml(path)
+    return LLMConfig.model_validate(data["llm"])

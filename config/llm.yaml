@@ -1,43 +1,31 @@
 llm:
-  # Keep this false until API keys are configured in your shell environment.
-  enabled: false
+  enabled: true
 
   # Default profile used when a task does not specify its own route.
-  active_profile: deepseek_fast
+  active_profile: cstcloud_flash
 
   # Never put real API keys in this file. Each profile points to an
-  # environment variable name, for example DEEPSEEK_API_KEY.
+  # environment variable name, for example CSTCLOUD_API_KEY.
+  # All profiles below go through the CSTCloud uni-api gateway
+  # (https://uni-api.cstcloud.cn/v1), which is OpenAI-compatible.
   profiles:
-    deepseek_fast:
+    cstcloud_flash:
       provider: openai_compatible
-      base_url: https://api.deepseek.com
-      model: deepseek-chat
-      api_key_env: DEEPSEEK_API_KEY
+      base_url: https://uni-api.cstcloud.cn/v1
+      model: deepseek-v4-flash
+      api_key_env: CSTCLOUD_API_KEY
       temperature: 0.2
-      max_tokens: 3000
+      max_tokens: 1500
       timeout_seconds: 60
       use_for:
         - relevance_scoring
         - topic_classification
-        - draft_digest
 
-    deepseek_reasoner:
+    cstcloud_v32:
       provider: openai_compatible
-      base_url: https://api.deepseek.com
-      model: deepseek-reasoner
-      api_key_env: DEEPSEEK_API_KEY
-      temperature: 0.1
-      max_tokens: 4000
-      timeout_seconds: 90
-      use_for:
-        - evidence_check
-        - difficult_classification
-
-    kimi_long_context:
-      provider: openai_compatible
-      base_url: https://api.moonshot.cn/v1
-      model: kimi-k2-0711-preview
-      api_key_env: MOONSHOT_API_KEY
+      base_url: https://uni-api.cstcloud.cn/v1
+      model: deepseek-v3.2
+      api_key_env: CSTCLOUD_API_KEY
       temperature: 0.2
       max_tokens: 4000
       timeout_seconds: 90
@@ -45,37 +33,25 @@ llm:
         - digest_generation
         - long_context_synthesis
 
-    qwen_balanced:
+    cstcloud_minimax:
       provider: openai_compatible
-      base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
-      model: qwen-plus
-      api_key_env: DASHSCOPE_API_KEY
+      base_url: https://uni-api.cstcloud.cn/v1
+      model: minimax-m27
+      api_key_env: CSTCLOUD_API_KEY
       temperature: 0.2
-      max_tokens: 3500
-      timeout_seconds: 75
+      max_tokens: 4000
+      timeout_seconds: 90
       use_for:
         - digest_generation
         - chinese_rewrite
 
-    openai_quality:
-      provider: openai_compatible
-      base_url: https://api.openai.com/v1
-      model: gpt-5.4
-      api_key_env: OPENAI_API_KEY
-      temperature: 0.15
-      max_tokens: 4500
-      timeout_seconds: 90
-      use_for:
-        - final_polish
-        - quality_review
-
   routing:
     # Fast, cheaper model for early pipeline decisions.
-    relevance_scoring: deepseek_fast
-    topic_classification: deepseek_fast
+    relevance_scoring: cstcloud_flash
+    topic_classification: cstcloud_flash
 
     # Strong Chinese synthesis model for the actual digest prose.
-    digest_generation: kimi_long_context
+    digest_generation: cstcloud_v32
 
     # Optional final pass. Set to null to skip later in code.
     final_polish: null
@@ -108,18 +84,19 @@ llm:
 
   embeddings:
     enabled: false
-    active_profile: qwen_embedding
+    active_profile: cstcloud_bge_zh
     profiles:
-      qwen_embedding:
+      cstcloud_bge_zh:
         provider: openai_compatible
-        base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
-        model: text-embedding-v4
-        api_key_env: DASHSCOPE_API_KEY
+        base_url: https://uni-api.cstcloud.cn/v1
+        model: bge-large-zh
+        api_key_env: CSTCLOUD_API_KEY
         dimensions: 1024
-      local_bge_m3:
-        provider: local
-        model: BAAI/bge-m3
-        api_key_env: null
+      cstcloud_qwen3_embedding:
+        provider: openai_compatible
+        base_url: https://uni-api.cstcloud.cn/v1
+        model: qwen3-embedding:8b
+        api_key_env: CSTCLOUD_API_KEY
         dimensions: 1024
 
   budget:
