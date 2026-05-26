@@ -46,9 +46,22 @@ def generate_section(
         return None
 
     try:
-        result = json.loads(response)
+        result = json.loads(_strip_code_fence(response))
     except json.JSONDecodeError:
         return None
     if not isinstance(result, dict):
         return None
     return result
+
+
+def _strip_code_fence(text: str) -> str:
+    stripped = text.strip()
+    if not stripped.startswith("```"):
+        return stripped
+    first_newline = stripped.find("\n")
+    if first_newline == -1:
+        return stripped
+    inner = stripped[first_newline + 1 :]
+    if inner.endswith("```"):
+        inner = inner[:-3]
+    return inner.strip()

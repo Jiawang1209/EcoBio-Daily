@@ -8,8 +8,9 @@ from ecobio_daily.config import DigestConfig, SourceConfig, TopicConfig
 from ecobio_daily.digest import build_digest
 from ecobio_daily.fetch import fetch_source
 from ecobio_daily.llm import LLMClient
+from ecobio_daily.llm_digest import generate_section
 from ecobio_daily.llm_scoring import batch_score
-from ecobio_daily.models import ScoredItem, SourceItem
+from ecobio_daily.models import Digest, ScoredItem, SourceItem
 from ecobio_daily.render import render_digest
 from ecobio_daily.scoring import deduplicate_items, score_item
 from ecobio_daily.storage import write_json_records
@@ -46,6 +47,19 @@ def _raw_items_path(output_root: Path, digest_date: date) -> Path:
 
 def _scored_items_path(output_root: Path, digest_date: date) -> Path:
     return output_root / "data" / "processed" / f"{digest_date.isoformat()}-scored.json"
+
+
+def _attach_llm_briefs(digest: Digest, llm_client: LLMClient) -> None:
+    ok = 0
+    failed = 0
+    for section in digest.sections:
+        brief = generate_section(section.title, section.items, llm_client)
+        section.llm_brief = brief
+        if brief is None:
+            failed += 1
+        else:
+            ok += 1
+    print(f"LLM brief: {ok} ok, {failed} failed", file=sys.stderr)
 
 
 def _apply_llm_scoring(
@@ -106,6 +120,8 @@ def run_pipeline_from_items(
         max_items=digest_config.max_items,
         highlight_count=digest_config.highlights,
     )
+    if llm_client is not None:
+        _attach_llm_briefs(digest, llm_client)
     markdown = render_digest(digest, template_path)
     output_path = _output_path(output_root, digest_config.output_pattern, digest_date)
     output_path.parent.mkdir(parents=True, exist_ok=True)

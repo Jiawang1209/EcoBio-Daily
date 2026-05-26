@@ -351,6 +351,9 @@ def test_pipeline_drops_items_with_low_llm_score(tmp_path: Path, monkeypatch):
         return [9, 3, 8]  # bad below threshold of 6
 
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section", lambda *a, **kw: None
+    )
 
     output_path = run_pipeline_from_items(
         items=items,
@@ -376,6 +379,9 @@ def test_pipeline_falls_back_when_llm_returns_all_minus_one(tmp_path: Path, monk
         return [-1] * len(items_arg)
 
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section", lambda *a, **kw: None
+    )
 
     output_path = run_pipeline_from_items(
         items=items,
@@ -402,6 +408,9 @@ def test_pipeline_only_scores_top_n_keyword_items(tmp_path: Path, monkeypatch):
         return [9] * len(items_arg)
 
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section", lambda *a, **kw: None
+    )
 
     run_pipeline_from_items(
         items=items,
@@ -415,3 +424,85 @@ def test_pipeline_only_scores_top_n_keyword_items(tmp_path: Path, monkeypatch):
     )
 
     assert seen["count"] == 3
+
+
+def _fake_brief(topic_name: str, items_arg, client):
+    return {
+        "section_title": f"LLM-{topic_name}",
+        "highlights": ["要点1", "要点2", "要点3"],
+        "items": [
+            {
+                "title": it.item.title,
+                "summary_zh": f"中文摘要-{it.item.title}",
+                "why_it_matters": "值得关注",
+                "evidence_type": "实验",
+                "caveat": None,
+                "source_url": it.item.url,
+            }
+            for it in items_arg
+        ],
+    }
+
+
+def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1"), _soil_item("p2")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    assert "中文摘要-Soil microbiome p1" in text
+    assert "LLM-土壤微生物" in text
+
+
+def test_pipeline_falls_back_per_section_when_brief_is_none(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section",
+        lambda topic, items_arg, client: None,
+    )
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    # Falls back to original English summary
+    assert "Soil microbial communities drive carbon cycling" in text
+
+
+def test_pipeline_skips_brief_when_client_is_none(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1")]
+
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("generate_section should not be called")
+
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", fail_if_called)
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    assert "Soil microbiome p1" in output_path.read_text(encoding="utf-8")

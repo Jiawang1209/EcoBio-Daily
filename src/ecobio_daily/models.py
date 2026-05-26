@@ -42,6 +42,7 @@ class ScoredItem(BaseModel):
 class DigestSection(BaseModel):
     title: str
     items: list[ScoredItem]
+    llm_brief: dict | None = None
 
 
 class Digest(BaseModel):

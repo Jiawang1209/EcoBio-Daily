@@ -9,18 +9,40 @@
 {% endfor %}
 
 {% for section in digest.sections %}
-## {{ section.title }}
+## {{ section.llm_brief.section_title if section.llm_brief and section.llm_brief.section_title else section.title }}
 
-{% for scored in section.items -%}
+{% if section.llm_brief and section.llm_brief.highlights %}
+**本节要点：**
+
+{% for h in section.llm_brief.highlights -%}
+- {{ h }}
+{% endfor %}
+
+{% endif %}
+{% set brief_items = section.llm_brief["items"] if section.llm_brief and section.llm_brief["items"] else [] %}
+{% for scored in section.items %}
+{% set brief = brief_items[loop.index0] if loop.index0 < (brief_items | length) else None %}
 ### {{ scored.item.title }}
 
+{% if brief %}
+{{ brief.summary_zh }}
+
+- **为什么值得关注**：{{ brief.why_it_matters }}
+- **证据类型**：{{ brief.evidence_type }}
+{% if brief.caveat %}
+- **限制**：{{ brief.caveat }}
+{% endif %}
+{% else %}
 {{ scored.item.summary | default("暂无摘要。", true) }}
+{% endif %}
 
 - 来源：{{ scored.item.source }}
 - 链接：{{ scored.item.url }}
-- 相关性评分：{{ scored.relevance_score }}
-- 命中关键词：{{ scored.topic_scores[0].matched_keywords | join(", ") }}
+- 相关性评分：{{ scored.relevance_score }}{% if scored.llm_score is not none %} | LLM 评分：{{ scored.llm_score }}{% endif %}
 
+{% if not brief and scored.topic_scores -%}
+- 命中关键词：{{ scored.topic_scores[0].matched_keywords | join(", ") }}
+{% endif %}
 {% endfor %}
 {% endfor %}
 ## Looking Forward

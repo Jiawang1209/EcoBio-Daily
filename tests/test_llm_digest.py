@@ -171,3 +171,24 @@ def test_generate_section_requests_json_response_format(tmp_path: Path):
     generate_section("topic", items, client)
 
     assert captured["response_format"] == {"type": "json_object"}
+
+
+def test_generate_section_strips_markdown_code_fence(tmp_path: Path):
+    wrapped = f"```json\n{_HAPPY_PATH_JSON}\n```"
+    client, _ = _capturing_client(tmp_path, response_text=wrapped)
+    items = [_scored("any title")]
+
+    result = generate_section("土壤微生物", items, client)
+
+    assert result is not None
+    assert result["section_title"] == "土壤微生物简报"
+
+
+def test_generate_section_strips_bare_code_fence(tmp_path: Path):
+    wrapped = f"```\n{_HAPPY_PATH_JSON}\n```"
+    client, _ = _capturing_client(tmp_path, response_text=wrapped)
+    items = [_scored("any title")]
+
+    result = generate_section("土壤微生物", items, client)
+
+    assert result is not None
