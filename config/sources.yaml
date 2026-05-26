@@ -23,20 +23,20 @@ sources:
     name: Nature Communications
     type: rss
     url: https://www.nature.com/ncomms.rss
-  - id: openalex_ecobio
-    name: OpenAlex EcoBio
+  - id: openalex_env_micro
+    name: OpenAlex Environmental Microbiology
     type: openalex
-    query: ecology OR microbiome OR "microbial ecology" OR metagenomics
+    query: '"soil microbiome" OR "soil microbial community" OR rhizosphere OR mycorrhiza OR "marine microbial" OR "freshwater microbial" OR "aquatic microbial community" OR bioaerosol OR "atmospheric microbiome" OR "wastewater microbial" OR "groundwater microbial" OR "environmental microbiology" OR "microbial biogeochemistry"'
     max_results: 50
-  - id: europe_pmc_ecobio
-    name: Europe PMC EcoBio
+  - id: europe_pmc_env_micro
+    name: Europe PMC Environmental Microbiology
     type: europe_pmc
-    query: '"microbial ecology" OR microbiome OR metagenomics OR "global change ecology"'
+    query: '"soil microbiome" OR "soil microbial community" OR rhizosphere OR mycorrhiza OR "marine microbial" OR "freshwater microbial" OR "aquatic microbial community" OR bioaerosol OR "atmospheric microbiome" OR "wastewater microbial" OR "groundwater microbial" OR "environmental microbiology" OR "microbial biogeochemistry"'
     max_results: 50
-  - id: pubmed_ecobio
-    name: PubMed EcoBio
+  - id: pubmed_env_micro
+    name: PubMed Environmental Microbiology
     type: pubmed
-    query: '("microbiome"[Title/Abstract] OR "microbial ecology"[Title/Abstract] OR metagenomics[Title/Abstract])'
+    query: '("soil microbiome"[Title/Abstract] OR "soil microbial community"[Title/Abstract] OR rhizosphere[Title/Abstract] OR mycorrhiza[Title/Abstract] OR "marine microbial"[Title/Abstract] OR "freshwater microbial"[Title/Abstract] OR "aquatic microbial community"[Title/Abstract] OR bioaerosol[Title/Abstract] OR "atmospheric microbiome"[Title/Abstract] OR "wastewater microbial"[Title/Abstract] OR "groundwater microbial"[Title/Abstract] OR "environmental microbiology"[Title/Abstract])'
     max_results: 50
   - id: crossref_ecology_letters
     name: Crossref Ecology Letters
@@ -63,8 +63,8 @@ sources:
     type: crossref
     issn: 0169-5347
     max_results: 20
-  - id: semantic_scholar_ecobio
-    name: Semantic Scholar EcoBio
+  - id: semantic_scholar_env_micro
+    name: Semantic Scholar Environmental Microbiology
     type: semantic_scholar
-    query: microbial ecology OR microbiome OR metagenomics OR global change ecology
+    query: soil microbiome OR rhizosphere OR mycorrhiza OR marine microbial OR freshwater microbial OR bioaerosol OR atmospheric microbiome OR wastewater microbial OR environmental microbiology
     max_results: 50

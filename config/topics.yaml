@@ -1,100 +1,152 @@
 topics:
-  - id: biodiversity_conservation
-    name: 生物多样性与保护
-    keywords:
-      - biodiversity
-      - conservation
-      - species richness
-      - ecosystem services
-      - protected area
-      - extinction
-      - habitat
-      - functional trait
-      - community assembly
-  - id: soil_microbiome_biogeochemistry
-    name: 土壤微生物与生物地球化学
+  - id: soil_microbiology
+    name: 土壤与陆地微生物
     keywords:
       - soil microbiome
-      - microbial community
-      - biogeochemistry
-      - carbon cycling
-      - nitrogen cycling
+      - soil microbial
+      - soil bacteria
+      - soil fungi
+      - soil-borne
       - rhizosphere
       - mycorrhiza
-      - decomposition
-  - id: global_change_ecology
-    name: 全球变化生态学
-    keywords:
-      - climate change
-      - warming
-      - drought
-      - precipitation
-      - land use
-      - disturbance
-      - elevated co2
-      - phenology
-  - id: environmental_microbiology
-    name: 环境微生物学
-    keywords:
-      - environmental microbiology
-      - metagenomics
-      - microbial ecology
-      - antibiotic resistance
-      - biofilm
-      - microbiome
-      - bacterial community
-      - archaea
-      - virome
-    # Human-clinical contexts that drag PubMed/Europe PMC noise into this
-    # topic via the generic "microbiome" keyword. Wildlife and livestock
-    # disease ecology should still pass — these terms are specifically
-    # clinical/human.
+      - mycorrhizal
+      - rhizobium
+      - bacillus subtilis
+      - pseudomonas
+      - bradyrhizobium
+      - frankia
+      - nitrogen-fixing
+      - plant growth-promoting
+      - biocontrol
+      - bacterial inoculation
+      - microbial inoculant
+      - paddy soil
+      - forest soil
+      - grassland soil
+      - cropland soil
+      - agricultural soil
+      - permafrost
+      - peatland
+      - wetland soil
+      - soil organic carbon
+      - soil respiration
     excludes:
+      - gut microbiome
+      - gut microbiota
+      - oral microbiome
+      - skin microbiome
+      - vaginal microbiome
+      - lung microbiome
+      - airway microbiome
+      - host microbiome
+      - human microbiome
+      - mouse microbiome
+      - rat microbiome
+      - infant microbiome
+      - maternal microbiome
+      - patient
+      - clinical trial
+      - tumor
+      - cancer
       - diabetes
       - oncology
-      - chemotherapy
-      - inflammatory bowel disease
-      - crohn
-      - ulcerative colitis
-      - irritable bowel
-      - breast cancer
-      - colorectal cancer
-      - pancreatic cancer
-      - prostate cancer
-      - lung cancer
-      - allergic rhinitis
-      - atopic dermatitis
-      - asthma
-      - pediatric
-      - neonatal
-      - pregnancy
-      - gestational
-      - antiretroviral
-      - sars-cov-2
-      - covid-19
-      - periodontitis
-      - dental caries
-      - drug delivery
-      - microneedle
-      - hydrogel
-      - maternal microbiome
-      - hispanic community
-      - health benefits
-      - irritable
-      - obesity
-  - id: methods_models_tools
-    name: 方法、模型与数据工具
+
+  - id: aquatic_microbiology
+    name: 水体与水源微生物
     keywords:
-      - remote sensing
-      - machine learning
-      - ecological model
-      - species distribution model
-      - benchmark dataset
-      - pipeline
-      - database
-      - phylogenetic
+      - marine microbi
+      - ocean microbi
+      - seawater microbi
+      - freshwater microbi
+      - lake microbi
+      - river microbi
+      - estuary microbi
+      - estuarine microbi
+      - sediment microbi
+      - groundwater microbi
+      - drinking water microbi
+      - wastewater microbi
+      - aquatic microbial community
+      - phytoplankton
+      - cyanobacteria
+      - cyanobacterial bloom
+      - algal bloom
+      - aquaculture microbi
     excludes:
+      - gut microbiome
+      - gut microbiota
+      - oral microbiome
+      - skin microbiome
+      - host microbiome
+      - human microbiome
+      - patient
       - clinical trial
+      - tumor
+      - cancer
+
+  - id: atmospheric_microbiology
+    name: 大气与气溶胶微生物
+    keywords:
+      - bioaerosol
+      - airborne microbi
+      - airborne bacteria
+      - airborne fungi
+      - atmospheric microbi
+      - air microbial
+      - aeromicrobiology
+    excludes:
+      - patient
+      - clinical trial
+
+  - id: microbial_biogeochemistry
+    name: 微生物驱动生物地球化学
+    keywords:
+      - microbial biogeochemistry
+      - biogeochemical cycling
+      - microbial carbon cycling
+      - microbial nitrogen cycling
+      - methane oxidation
+      - methanogen
+      - methanotroph
+      - sulfur cycling
+      - sulfate reduction
+      - nitrification
+      - denitrification
+      - nitrogen fixation
+      - anammox
+      - iron reduction
+      - environmental antibiotic resistance
+      - environmental resistome
+      - heavy metal contamination
+      - bioremediation
+    excludes:
+      - gut microbiome
+      - human gut
+      - patient
+      - clinical trial
+      - tumor
+
+  - id: env_micro_methods
+    name: 环境微生物方法与工具
+    keywords:
+      - environmental metagenomics
+      - soil metagenomics
+      - marine metagenomics
+      - amplicon sequencing
+      - 16s rrna
+      - shotgun metagenomics
+      - long-read metagenomics
+      - hi-c metagenomic
+      - mag recovery
+      - metagenome-assembled genome
+      - microbial community ecology
+      - microbial ecology
+      - microbial dark matter
+    excludes:
+      - gut microbiome
+      - gut microbiota
+      - human microbiome
       - patient outcome
-      - chemotherapy
-      - tumor prediction
+      - clinical trial
+      - tumor
+      - cancer
