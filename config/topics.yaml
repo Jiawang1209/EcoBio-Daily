@@ -8,6 +8,9 @@ topics:
       - ecosystem services
       - protected area
       - extinction
+      - habitat
+      - functional trait
+      - community assembly
   - id: soil_microbiome_biogeochemistry
     name: 土壤微生物与生物地球化学
     keywords:
@@ -17,6 +20,8 @@ topics:
       - carbon cycling
       - nitrogen cycling
       - rhizosphere
+      - mycorrhiza
+      - decomposition
   - id: global_change_ecology
     name: 全球变化生态学
     keywords:
@@ -26,6 +31,8 @@ topics:
       - precipitation
       - land use
       - disturbance
+      - elevated co2
+      - phenology
   - id: environmental_microbiology
     name: 环境微生物学
     keywords:
@@ -33,14 +40,61 @@ topics:
       - metagenomics
       - microbial ecology
       - antibiotic resistance
-      - pathogen
       - biofilm
+      - microbiome
+      - bacterial community
+      - archaea
+      - virome
+    # Human-clinical contexts that drag PubMed/Europe PMC noise into this
+    # topic via the generic "microbiome" keyword. Wildlife and livestock
+    # disease ecology should still pass — these terms are specifically
+    # clinical/human.
+    excludes:
+      - diabetes
+      - oncology
+      - chemotherapy
+      - inflammatory bowel disease
+      - crohn
+      - ulcerative colitis
+      - irritable bowel
+      - breast cancer
+      - colorectal cancer
+      - pancreatic cancer
+      - prostate cancer
+      - lung cancer
+      - allergic rhinitis
+      - atopic dermatitis
+      - asthma
+      - pediatric
+      - neonatal
+      - pregnancy
+      - gestational
+      - antiretroviral
+      - sars-cov-2
+      - covid-19
+      - periodontitis
+      - dental caries
+      - drug delivery
+      - microneedle
+      - hydrogel
+      - maternal microbiome
+      - hispanic community
+      - health benefits
+      - irritable
+      - obesity
   - id: methods_models_tools
     name: 方法、模型与数据工具
     keywords:
       - remote sensing
       - machine learning
-      - model
-      - dataset
+      - ecological model
+      - species distribution model
+      - benchmark dataset
       - pipeline
       - database
+      - phylogenetic
+    excludes:
+      - clinical trial
+      - patient outcome
+      - chemotherapy
+      - tumor prediction
