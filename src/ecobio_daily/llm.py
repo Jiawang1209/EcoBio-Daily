@@ -8,6 +8,7 @@ from typing import Any
 import httpx
 
 from ecobio_daily.config import LLMConfig, LLMProfile
+from ecobio_daily.llm_cache import cache_key, read_cache, write_cache
 
 
 class LLMError(RuntimeError):
@@ -41,10 +42,12 @@ class LLMClient:
         config: LLMConfig,
         http_client: httpx.Client | None = None,
         env: Mapping[str, str] | None = None,
+        cache_dir: Path | None = None,
     ):
         self.config = config
         self._http_client = http_client
         self._env: Mapping[str, str] = env if env is not None else os.environ
+        self._cache_dir = cache_dir
 
     def resolve_profile(
         self,
@@ -73,6 +76,18 @@ class LLMClient:
                 f"missing API key: env var {profile.api_key_env} is not set"
             )
 
+        key: str | None = None
+        if self._cache_dir is not None:
+            key = cache_key(
+                model=profile.model,
+                messages=messages,
+                response_format=response_format,
+                temperature=profile.temperature,
+            )
+            cached = read_cache(self._cache_dir, key)
+            if cached is not None:
+                return cached
+
         payload: dict[str, Any] = {
             "model": profile.model,
             "messages": messages,
@@ -100,4 +115,9 @@ class LLMClient:
             )
 
         data = response.json()
-        return data["choices"][0]["message"]["content"]
+        content = data["choices"][0]["message"]["content"]
+
+        if self._cache_dir is not None and key is not None:
+            write_cache(self._cache_dir, key, content, profile.model)
+
+        return content

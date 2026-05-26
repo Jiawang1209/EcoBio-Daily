@@ -43,11 +43,18 @@ class LLMProfile(BaseModel):
     timeout_seconds: int = 60
 
 
+class LLMBudget(BaseModel):
+    max_items_per_run: int = 12
+    cache_llm_outputs: bool = False
+    cache_dir: str = "data/cache/llm"
+
+
 class LLMConfig(BaseModel):
     enabled: bool = False
     active_profile: str
     profiles: dict[str, LLMProfile]
     routing: dict[str, str | None] = Field(default_factory=dict)
+    budget: LLMBudget = Field(default_factory=LLMBudget)
 
 
 def _load_yaml(path: Path) -> dict:

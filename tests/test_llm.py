@@ -319,3 +319,145 @@ def test_chat_raises_on_http_error(tmp_path: Path):
         client.chat(messages=[{"role": "user", "content": "hi"}])
 
     assert "500" in str(excinfo.value)
+
+
+# ---------- LLMClient cache ----------
+
+
+def _counting_transport(counter: dict, text: str = "reply", status: int = 200):
+    counter["count"] = 0
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        counter["count"] += 1
+        if status >= 400:
+            return httpx.Response(status, json={"error": "boom"})
+        return httpx.Response(
+            200,
+            json={
+                "id": "x",
+                "object": "chat.completion",
+                "model": "m",
+                "choices": [
+                    {
+                        "index": 0,
+                        "message": {"role": "assistant", "content": text},
+                        "finish_reason": "stop",
+                    }
+                ],
+                "usage": {
+                    "prompt_tokens": 1,
+                    "completion_tokens": 1,
+                    "total_tokens": 2,
+                },
+            },
+        )
+
+    return httpx.MockTransport(handler)
+
+
+def test_chat_cache_hit_skips_http_call(tmp_path: Path):
+    cfg = _make_config(tmp_path)
+    counter: dict = {}
+    http_client = httpx.Client(transport=_counting_transport(counter, "cached"))
+    client = LLMClient(
+        config=cfg,
+        http_client=http_client,
+        env={"CSTCLOUD_API_KEY": "sk-test"},
+        cache_dir=tmp_path / "cache",
+    )
+    messages = [{"role": "user", "content": "hello"}]
+
+    out1 = client.chat(messages=messages)
+    out2 = client.chat(messages=messages)
+
+    assert out1 == "cached"
+    assert out2 == "cached"
+    assert counter["count"] == 1
+
+
+def test_chat_cache_invalidates_on_temperature_change(tmp_path: Path):
+    path = tmp_path / "llm.yaml"
+    path.write_text(
+        """
+llm:
+  enabled: true
+  active_profile: low
+  profiles:
+    low:
+      provider: openai_compatible
+      base_url: https://example.com/v1
+      model: m
+      api_key_env: K
+      temperature: 0.2
+      max_tokens: 200
+      timeout_seconds: 30
+    high:
+      provider: openai_compatible
+      base_url: https://example.com/v1
+      model: m
+      api_key_env: K
+      temperature: 0.8
+      max_tokens: 200
+      timeout_seconds: 30
+  routing:
+    relevance_scoring: low
+""".strip(),
+        encoding="utf-8",
+    )
+    from ecobio_daily.config import load_llm_config as _load
+
+    cfg = _load(path)
+    counter: dict = {}
+    http_client = httpx.Client(transport=_counting_transport(counter))
+    client = LLMClient(
+        config=cfg,
+        http_client=http_client,
+        env={"K": "sk"},
+        cache_dir=tmp_path / "cache",
+    )
+    messages = [{"role": "user", "content": "hi"}]
+
+    client.chat(messages=messages, profile=cfg.profiles["low"])
+    client.chat(messages=messages, profile=cfg.profiles["high"])
+
+    assert counter["count"] == 2
+
+
+def test_chat_without_cache_dir_does_not_persist(tmp_path: Path):
+    cfg = _make_config(tmp_path)
+    counter: dict = {}
+    http_client = httpx.Client(transport=_counting_transport(counter))
+    client = LLMClient(
+        config=cfg,
+        http_client=http_client,
+        env={"CSTCLOUD_API_KEY": "sk-test"},
+    )
+    messages = [{"role": "user", "content": "hi"}]
+
+    client.chat(messages=messages)
+    client.chat(messages=messages)
+
+    assert counter["count"] == 2
+
+
+def test_chat_http_error_does_not_write_cache(tmp_path: Path):
+    cfg = _make_config(tmp_path)
+    counter: dict = {}
+    http_client = httpx.Client(transport=_counting_transport(counter, status=500))
+    cache_dir = tmp_path / "cache"
+    client = LLMClient(
+        config=cfg,
+        http_client=http_client,
+        env={"CSTCLOUD_API_KEY": "sk-test"},
+        cache_dir=cache_dir,
+    )
+    messages = [{"role": "user", "content": "hi"}]
+
+    with pytest.raises(LLMRequestError):
+        client.chat(messages=messages)
+    with pytest.raises(LLMRequestError):
+        client.chat(messages=messages)
+
+    assert counter["count"] == 2
+    if cache_dir.exists():
+        assert list(cache_dir.iterdir()) == []

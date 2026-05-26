@@ -39,7 +39,10 @@ def _maybe_build_llm_client(llm_config_path: Path, dotenv_path: Path) -> LLMClie
     if not llm_config.enabled:
         return None
     env = {**os.environ, **load_dotenv(dotenv_path)}
-    return LLMClient(config=llm_config, env=env)
+    cache_dir: Path | None = None
+    if llm_config.budget.cache_llm_outputs:
+        cache_dir = Path(llm_config.budget.cache_dir)
+    return LLMClient(config=llm_config, env=env, cache_dir=cache_dir)
 
 
 def main() -> None:
