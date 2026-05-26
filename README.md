@@ -47,6 +47,8 @@ sources:
 - `europe_pmc`
 - `pubmed`
 - `biorxiv_api`
+- `crossref`（支持 `query` 或按 `issn` 订阅期刊）
+- `semantic_scholar`
 
 Web of Science 适合作为后续增强来源，但通常需要 Clarivate API key 和机构权限，因此不作为默认运行依赖。
 

@@ -11,6 +11,18 @@ sources:
     name: Nature Ecology & Evolution
     type: rss
     url: https://www.nature.com/natecolevol.rss
+  - id: nature_isme
+    name: ISME Journal
+    type: rss
+    url: https://www.nature.com/ismej.rss
+  - id: nature_microbiology
+    name: Nature Microbiology
+    type: rss
+    url: https://www.nature.com/nmicrobiol.rss
+  - id: nature_communications
+    name: Nature Communications
+    type: rss
+    url: https://www.nature.com/ncomms.rss
   - id: openalex_ecobio
     name: OpenAlex EcoBio
     type: openalex
@@ -25,4 +37,34 @@ sources:
     name: PubMed EcoBio
     type: pubmed
     query: '("microbiome"[Title/Abstract] OR "microbial ecology"[Title/Abstract] OR metagenomics[Title/Abstract])'
+    max_results: 50
+  - id: crossref_ecology_letters
+    name: Crossref Ecology Letters
+    type: crossref
+    issn: 1461-0248
+    max_results: 30
+  - id: crossref_global_change_biology
+    name: Crossref Global Change Biology
+    type: crossref
+    issn: 1354-1013
+    max_results: 30
+  - id: crossref_microbiome
+    name: Crossref Microbiome
+    type: crossref
+    issn: 2049-2618
+    max_results: 30
+  - id: crossref_trends_microbiology
+    name: Crossref Trends in Microbiology
+    type: crossref
+    issn: 0966-842X
+    max_results: 20
+  - id: crossref_trends_ecology_evolution
+    name: Crossref Trends in Ecology & Evolution
+    type: crossref
+    issn: 0169-5347
+    max_results: 20
+  - id: semantic_scholar_ecobio
+    name: Semantic Scholar EcoBio
+    type: semantic_scholar
+    query: microbial ecology OR microbiome OR metagenomics OR global change ecology
     max_results: 50
