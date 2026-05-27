@@ -4,58 +4,38 @@
 
 ## Highlights
 
-- **雌性灌木通过真菌残体增强土壤碳固存**：在退化高寒草地的长期恢复序列中，雌雄异株灌木的雌性植株显著增加了土壤有机碳库。研究发现，这种碳固存提升主要归因于真菌残体碳的贡献增加，而非植物凋落物直接输入。研究揭示了植物性别通过调控微生物残体途径影响生态系统碳循环的新机制。 来源：Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage。
-- **豌豆根瘤菌基因组揭示质粒融合与可塑性**：本研究通过混合测序策略，完成了豌豆根瘤菌株Xianghu001的高质量基因组组装，揭示了其染色体外存在一个由质粒融合形成的大质粒和四个附属质粒。该菌株在缺氮条件下能显著促进豌豆生长，并表现出耐碱、耐盐和产IAA的特性。对同种不同菌株的比较基因组分析显示，尽管地理来源相近，但基因组存在广泛差异。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports。
-- **水稻根际工程中的微生物干预策略**：这篇综述系统评述了通过合成微生物菌群（SynComs）等策略干预水稻根际微生物组，以提升养分利用效率和抗逆性的研究进展。文章整合了根系分泌物介导的微生物招募、群体感应及多组学阐明的功能通路等机制理解。同时，也指出了合成菌群在田间应用中面临的稳定性、环境异质性以及与土著微生物竞争等关键挑战。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology。
+- **水稻根际工程中的微生物干预策略**：本文综述了通过合成微生物菌群（SynComs）调控水稻根际微生物组以提升作物生产力和抗逆性的研究进展。文章综合了根系分泌物介导的微生物招募、群体感应及多组学解析的功能通路等机制，并探讨了其在养分利用效率和胁迫耐受性方面的潜力。同时，文章也指出了田间应用时面临的微生物竞争、环境异质性和菌群稳定性等关键限制。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology。
+- **豌豆耐碱根瘤菌的完整基因组解析**：本研究完成了豌豆根瘤中分离的固氮共生菌Rhizobium anhuiense Xianghu001的完整基因组测序与功能表征。基因组分析揭示了物种特异性质粒融合形成大质粒的现象，以及通过水平基因转移获得的菌株特异性质粒。表型实验表明，该菌株在缺氮条件下能显著促进豌豆生长，并具有合成IAA、耐受轻度盐分和碱性pH的能力。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports。
 
-## 雌性灌木真菌残体促碳固存
-
-**本节要点：**
-
-- 雌雄异株灌木雌株提升真菌残体积累
-- 真菌残体驱动退化草地恢复期碳固存
-- 长期恢复序列揭示性别差异生态功能
-
-### 雌性灌木通过真菌残体增强土壤碳固存
-
-在退化高寒草地的长期恢复序列中，雌雄异株灌木的雌性植株显著增加了土壤有机碳库。研究发现，这种碳固存提升主要归因于真菌残体碳的贡献增加，而非植物凋落物直接输入。研究揭示了植物性别通过调控微生物残体途径影响生态系统碳循环的新机制。
-
-- **为什么值得关注**：为理解植物功能性状（如性别）如何通过微生物途径调控退化生态系统恢复的碳汇功能提供了直接证据。
-- **证据类型**：实验
-- **限制**：研究基于空间代替时间的恢复序列，未直接进行长期原位监测。
-
-- 来源：Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage
-- 链接：https://doi.org/10.1016/j.jenvman.2026.130022
-- 相关性评分：8 | LLM 评分：8
-## 农田微生物基因组与根际工程
+## 农田微生物调控与基因组解析
 
 **本节要点：**
 
-- 根瘤菌基因组揭示质粒融合与可塑性
-- 合成菌群工程面临田间稳定性挑战
-- 微生物干预提升作物养分利用与抗逆
+- 合成菌群提升水稻抗逆与养分利用
+- 根瘤菌基因组揭示物种特异性质粒融合
+- 微生物干预需平衡田间稳定性与生态安全
 
-### 豌豆根瘤菌基因组揭示质粒融合与可塑性
-
-本研究通过混合测序策略，完成了豌豆根瘤菌株Xianghu001的高质量基因组组装，揭示了其染色体外存在一个由质粒融合形成的大质粒和四个附属质粒。该菌株在缺氮条件下能显著促进豌豆生长，并表现出耐碱、耐盐和产IAA的特性。对同种不同菌株的比较基因组分析显示，尽管地理来源相近，但基因组存在广泛差异。
-
-- **为什么值得关注**：为理解根瘤菌基因组进化及其作为生物肥料的应用潜力提供了详细的基因组和功能框架。
-- **证据类型**：实验
-- **限制**：研究基于实验室分离菌株和盆栽实验，田间应用效果需进一步验证。
-
-- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports
-- 链接：https://doi.org/10.1111/1758-2229.70366
-- 相关性评分：3 | LLM 评分：6
 ### 水稻根际工程中的微生物干预策略
 
-这篇综述系统评述了通过合成微生物菌群（SynComs）等策略干预水稻根际微生物组，以提升养分利用效率和抗逆性的研究进展。文章整合了根系分泌物介导的微生物招募、群体感应及多组学阐明的功能通路等机制理解。同时，也指出了合成菌群在田间应用中面临的稳定性、环境异质性以及与土著微生物竞争等关键挑战。
+本文综述了通过合成微生物菌群（SynComs）调控水稻根际微生物组以提升作物生产力和抗逆性的研究进展。文章综合了根系分泌物介导的微生物招募、群体感应及多组学解析的功能通路等机制，并探讨了其在养分利用效率和胁迫耐受性方面的潜力。同时，文章也指出了田间应用时面临的微生物竞争、环境异质性和菌群稳定性等关键限制。
 
-- **为什么值得关注**：为连接微生物组工程从分子机制到田间应用的机遇与挑战提供了平衡的视角。
+- **为什么值得关注**：为通过微生物工程实现气候适应型可持续水稻生产提供了分子机制与田间应用挑战的平衡视角。
 - **证据类型**：综述
-- **限制**：综述中引用的合成菌群效果多在受控环境下获得，田间效果不一致。
+- **限制**：合成菌群的效果多在受控环境下获得，田间重现性不一致。
 
 - 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology
 - 链接：https://doi.org/10.3389/finmi.2026.1832866
+- 相关性评分：3 | LLM 评分：7
+### 豌豆耐碱根瘤菌的完整基因组解析
+
+本研究完成了豌豆根瘤中分离的固氮共生菌Rhizobium anhuiense Xianghu001的完整基因组测序与功能表征。基因组分析揭示了物种特异性质粒融合形成大质粒的现象，以及通过水平基因转移获得的菌株特异性质粒。表型实验表明，该菌株在缺氮条件下能显著促进豌豆生长，并具有合成IAA、耐受轻度盐分和碱性pH的能力。
+
+- **为什么值得关注**：为开发耐碱、促生的豌豆根瘤菌生物肥料提供了全面的基因组与功能框架。
+- **证据类型**：实验
+- **限制**：研究基于实验室分离菌株，其田间应用效果有待验证。
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports
+- 链接：https://doi.org/10.1111/1758-2229.70366
 - 相关性评分：3 | LLM 评分：6
 ## Looking Forward
 
@@ -63,6 +43,5 @@
 
 ## References
 
-- **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.** — [Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage](https://doi.org/10.1016/j.jenvman.2026.130022)
-- **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
 - **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology](https://doi.org/10.3389/finmi.2026.1832866)
+- **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
