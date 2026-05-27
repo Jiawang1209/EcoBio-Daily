@@ -221,3 +221,52 @@ def test_parse_publication_date_falls_back_to_now_on_garbage():
     # Should NOT raise even when given garbage input.
     result = _parse_publication_date("this is not a date")
     assert result.year >= 2026
+
+
+def test_parse_pubmed_extracts_doi_from_articleids():
+    payload = {
+        "result": {
+            "uids": ["40345678"],
+            "40345678": {
+                "uid": "40345678",
+                "title": "Soil microbiome under drought",
+                "fulljournalname": "Journal of environmental management",
+                "pubdate": "2026 May",
+                "authors": [],
+                "sorttitle": "abstract...",
+                "articleids": [
+                    {"idtype": "pubmed", "value": "40345678"},
+                    {"idtype": "doi", "value": "10.1016/j.jenvman.2026.130022"},
+                ],
+            },
+        }
+    }
+
+    items = parse_pubmed(payload, source_id="pubmed", source_name="PubMed")
+
+    assert len(items) == 1
+    # id holds the DOI so cross-source dedup can match
+    assert items[0].id == "10.1016/j.jenvman.2026.130022"
+    # URL still points to PubMed for human navigation
+    assert items[0].url == "https://pubmed.ncbi.nlm.nih.gov/40345678/"
+
+
+def test_parse_pubmed_falls_back_to_uid_when_no_doi():
+    payload = {
+        "result": {
+            "uids": ["40345679"],
+            "40345679": {
+                "uid": "40345679",
+                "title": "Paper without DOI",
+                "fulljournalname": "Some Journal",
+                "pubdate": "2026 Jun",
+                "authors": [],
+                "sorttitle": "abstract...",
+                "articleids": [{"idtype": "pubmed", "value": "40345679"}],
+            },
+        }
+    }
+
+    items = parse_pubmed(payload, source_id="pubmed", source_name="PubMed")
+
+    assert items[0].id == "40345679"

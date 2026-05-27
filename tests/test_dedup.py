@@ -4,13 +4,14 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 from ecobio_daily.dedup import (
+    deduplicate_by_doi,
     extract_doi,
     filter_seen,
     load_seen_dois,
     save_seen_dois,
     update_seen,
 )
-from ecobio_daily.models import SourceItem
+from ecobio_daily.models import SourceItem  # noqa: F401  (used in tests)
 
 
 def _item(item_id: str, url: str, source: str = "test") -> SourceItem:
@@ -134,3 +135,37 @@ def test_save_then_load_roundtrip(tmp_path: Path):
     loaded = load_seen_dois(path)
 
     assert loaded == {"10.1234/aaa": "2026-05-26", "10.1234/bbb": "2026-05-27"}
+
+
+# ---------- deduplicate_by_doi ----------
+
+
+def test_deduplicate_by_doi_keeps_first_occurrence():
+    items = [
+        _item("first-pubmed", "https://pubmed.ncbi.nlm.nih.gov/12345/"),
+        _item("second-europepmc", "https://doi.org/10.1234/aaa"),
+    ]
+    # Manually set first item's id to a DOI so both reference the same paper
+    items[0] = SourceItem(
+        id="10.1234/aaa",
+        title="t",
+        url="https://pubmed.ncbi.nlm.nih.gov/12345/",
+        source="pubmed",
+        published_at=items[0].published_at,
+        summary="",
+    )
+
+    kept = deduplicate_by_doi(items)
+
+    assert [it.url for it in kept] == ["https://pubmed.ncbi.nlm.nih.gov/12345/"]
+
+
+def test_deduplicate_by_doi_preserves_items_without_doi():
+    items = [
+        _item("blog-1", "https://example.org/blog/x"),
+        _item("blog-2", "https://example.org/blog/y"),
+    ]
+
+    kept = deduplicate_by_doi(items)
+
+    assert len(kept) == 2

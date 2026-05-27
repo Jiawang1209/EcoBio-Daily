@@ -29,6 +29,21 @@ def extract_doi(item: SourceItem) -> str | None:
     return None
 
 
+def deduplicate_by_doi(items: list[SourceItem]) -> list[SourceItem]:
+    seen_dois: set[str] = set()
+    kept: list[SourceItem] = []
+    for item in items:
+        doi = extract_doi(item)
+        if doi is None:
+            kept.append(item)
+            continue
+        if doi in seen_dois:
+            continue
+        seen_dois.add(doi)
+        kept.append(item)
+    return kept
+
+
 def filter_seen(
     items: list[SourceItem],
     seen: dict[str, str],

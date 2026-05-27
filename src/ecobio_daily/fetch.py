@@ -226,14 +226,24 @@ def parse_semantic_scholar(payload: dict, source_id: str, source_name: str) -> l
     return items
 
 
+def _pubmed_doi(record: dict) -> str | None:
+    for entry in record.get("articleids") or []:
+        if entry.get("idtype") == "doi":
+            value = (entry.get("value") or "").strip()
+            if value:
+                return value
+    return None
+
+
 def parse_pubmed(payload: dict, source_id: str, source_name: str) -> list[SourceItem]:
     result = payload.get("result", {})
     items: list[SourceItem] = []
     for uid in result.get("uids", []):
         record = result.get(uid, {})
         authors = [author.get("name", "") for author in record.get("authors", [])]
+        doi = _pubmed_doi(record)
         item = SourceItem(
-            id=record.get("uid") or uid,
+            id=doi or record.get("uid") or uid,
             title=(record.get("title") or "").strip().rstrip("."),
             url=f"https://pubmed.ncbi.nlm.nih.gov/{uid}/",
             source=_source_with_journal(source_name, record.get("fulljournalname")),

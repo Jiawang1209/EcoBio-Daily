@@ -6,6 +6,7 @@ import sys
 
 from ecobio_daily.config import DigestConfig, SourceConfig, TopicConfig
 from ecobio_daily.dedup import (
+    deduplicate_by_doi,
     filter_seen,
     load_seen_dois,
     save_seen_dois,
@@ -123,6 +124,7 @@ def run_pipeline_from_items(
         lookback_days=digest_config.lookback_days,
     )
     unique_items = deduplicate_items(windowed_items)
+    unique_items = deduplicate_by_doi(unique_items)
     seen_path = _seen_dois_path(output_root)
     seen = load_seen_dois(seen_path)
     unique_items = filter_seen(unique_items, seen, today=digest_date)
