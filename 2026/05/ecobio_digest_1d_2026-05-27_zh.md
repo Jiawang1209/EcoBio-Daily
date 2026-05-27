@@ -4,58 +4,58 @@
 
 ## Highlights
 
-- **雌雄异株灌木通过真菌残体增强土壤固碳**：研究基于高寒荒漠化草地恢复的时间序列，发现雌雄异株灌木（尤其是雌株）的定植促进了土壤真菌残体的积累。真菌残体对土壤有机碳库的贡献随恢复年限增加而显著提升，成为关键的稳定碳组分。该过程与土壤微生物群落结构和胞外酶活性的变化密切相关。 来源：PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management。
-- **雌雄异株灌木通过真菌残体增强土壤固碳**：该研究探讨了在沙漠化高寒草地恢复过程中，雌雄异株灌木（特别是雌性个体）的定植如何通过促进真菌残体的形成与积累来增强土壤有机碳固存。研究沿恢复时间梯度展开，分析了土壤碳组分、微生物残体贡献及相关的微生物学过程。 来源：Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage。
-- **豌豆根瘤菌完整基因组揭示质粒融合与可塑性**：本研究通过混合测序策略，完成了豌豆根瘤菌Rhizobium anhuiense Xianghu001的完整基因组组装，揭示其包含一个染色体、一个由质粒融合形成的大质粒和四个附属质粒。基因组比较显示，尽管菌株地理来源相近，但存在广泛的基因组多样性。功能实验表明，该菌株能在缺氮条件下促进豌豆生长，并具有合成IAA、耐受盐分和碱性环境的能力。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports。
+- **雌性灌木通过真菌残体增强土壤碳固存**：在退化高寒草地的长期恢复序列中，雌雄异株灌木的雌性植株显著增加了土壤有机碳库。研究发现，这种碳固存提升主要归因于真菌残体碳的贡献增加，而非植物凋落物直接输入。研究揭示了植物性别通过调控微生物残体途径影响生态系统碳循环的新机制。 来源：Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage。
+- **豌豆根瘤菌基因组揭示质粒融合与可塑性**：本研究通过混合测序策略，完成了豌豆根瘤菌株Xianghu001的高质量基因组组装，揭示了其染色体外存在一个由质粒融合形成的大质粒和四个附属质粒。该菌株在缺氮条件下能显著促进豌豆生长，并表现出耐碱、耐盐和产IAA的特性。对同种不同菌株的比较基因组分析显示，尽管地理来源相近，但基因组存在广泛差异。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports。
+- **水稻根际工程中的微生物干预策略**：这篇综述系统评述了通过合成微生物菌群（SynComs）等策略干预水稻根际微生物组，以提升养分利用效率和抗逆性的研究进展。文章整合了根系分泌物介导的微生物招募、群体感应及多组学阐明的功能通路等机制理解。同时，也指出了合成菌群在田间应用中面临的稳定性、环境异质性以及与土著微生物竞争等关键挑战。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology。
 
-## 真菌残体与土壤固碳
+## 雌性灌木真菌残体促碳固存
 
 **本节要点：**
 
-- 雌雄异株灌木促进真菌残体积累
-- 真菌残体驱动高寒草地土壤固碳
-- 恢复时间序列揭示固碳机制
+- 雌雄异株灌木雌株提升真菌残体积累
+- 真菌残体驱动退化草地恢复期碳固存
+- 长期恢复序列揭示性别差异生态功能
 
-### 雌雄异株灌木通过真菌残体增强土壤固碳
+### 雌性灌木通过真菌残体增强土壤碳固存
 
-研究基于高寒荒漠化草地恢复的时间序列，发现雌雄异株灌木（尤其是雌株）的定植促进了土壤真菌残体的积累。真菌残体对土壤有机碳库的贡献随恢复年限增加而显著提升，成为关键的稳定碳组分。该过程与土壤微生物群落结构和胞外酶活性的变化密切相关。
+在退化高寒草地的长期恢复序列中，雌雄异株灌木的雌性植株显著增加了土壤有机碳库。研究发现，这种碳固存提升主要归因于真菌残体碳的贡献增加，而非植物凋落物直接输入。研究揭示了植物性别通过调控微生物残体途径影响生态系统碳循环的新机制。
 
-- **为什么值得关注**：揭示了高寒生态系统恢复中，特定植物功能性状通过调控微生物残体途径影响土壤碳固定的机制。
+- **为什么值得关注**：为理解植物功能性状（如性别）如何通过微生物途径调控退化生态系统恢复的碳汇功能提供了直接证据。
 - **证据类型**：实验
-- **限制**：研究基于相关性和时间序列推断，需进一步控制实验验证因果机制。
-
-- 来源：PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management
-- 链接：https://pubmed.ncbi.nlm.nih.gov/42184767/
-- 相关性评分：8 | LLM 评分：9
-### 雌雄异株灌木通过真菌残体增强土壤固碳
-
-该研究探讨了在沙漠化高寒草地恢复过程中，雌雄异株灌木（特别是雌性个体）的定植如何通过促进真菌残体的形成与积累来增强土壤有机碳固存。研究沿恢复时间梯度展开，分析了土壤碳组分、微生物残体贡献及相关的微生物学过程。
-
-- **为什么值得关注**：强调了植物性别与微生物残体途径在脆弱生态系统土壤碳循环中的潜在重要作用。
-- **证据类型**：实验
-- **限制**：论文摘要信息有限，具体实验设计与统计细节需查阅全文。
+- **限制**：研究基于空间代替时间的恢复序列，未直接进行长期原位监测。
 
 - 来源：Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage
 - 链接：https://doi.org/10.1016/j.jenvman.2026.130022
 - 相关性评分：8 | LLM 评分：8
-## 根瘤菌基因组与功能解析
+## 农田微生物基因组与根际工程
 
 **本节要点：**
 
-- 豌豆根瘤菌完整基因组揭示质粒融合
-- 菌株基因组多样性高且具碱性耐受性
-- 菌株促进缺氮条件下豌豆生长
+- 根瘤菌基因组揭示质粒融合与可塑性
+- 合成菌群工程面临田间稳定性挑战
+- 微生物干预提升作物养分利用与抗逆
 
-### 豌豆根瘤菌完整基因组揭示质粒融合与可塑性
+### 豌豆根瘤菌基因组揭示质粒融合与可塑性
 
-本研究通过混合测序策略，完成了豌豆根瘤菌Rhizobium anhuiense Xianghu001的完整基因组组装，揭示其包含一个染色体、一个由质粒融合形成的大质粒和四个附属质粒。基因组比较显示，尽管菌株地理来源相近，但存在广泛的基因组多样性。功能实验表明，该菌株能在缺氮条件下促进豌豆生长，并具有合成IAA、耐受盐分和碱性环境的能力。
+本研究通过混合测序策略，完成了豌豆根瘤菌株Xianghu001的高质量基因组组装，揭示了其染色体外存在一个由质粒融合形成的大质粒和四个附属质粒。该菌株在缺氮条件下能显著促进豌豆生长，并表现出耐碱、耐盐和产IAA的特性。对同种不同菌株的比较基因组分析显示，尽管地理来源相近，但基因组存在广泛差异。
 
-- **为什么值得关注**：该研究为理解根瘤菌基因组可塑性及其作为生物肥料的应用潜力提供了基因组和功能基础。
+- **为什么值得关注**：为理解根瘤菌基因组进化及其作为生物肥料的应用潜力提供了详细的基因组和功能框架。
 - **证据类型**：实验
-- **限制**：研究为单菌株的深入解析，其田间应用效果需进一步验证。
+- **限制**：研究基于实验室分离菌株和盆栽实验，田间应用效果需进一步验证。
 
 - 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports
 - 链接：https://doi.org/10.1111/1758-2229.70366
+- 相关性评分：3 | LLM 评分：6
+### 水稻根际工程中的微生物干预策略
+
+这篇综述系统评述了通过合成微生物菌群（SynComs）等策略干预水稻根际微生物组，以提升养分利用效率和抗逆性的研究进展。文章整合了根系分泌物介导的微生物招募、群体感应及多组学阐明的功能通路等机制理解。同时，也指出了合成菌群在田间应用中面临的稳定性、环境异质性以及与土著微生物竞争等关键挑战。
+
+- **为什么值得关注**：为连接微生物组工程从分子机制到田间应用的机遇与挑战提供了平衡的视角。
+- **证据类型**：综述
+- **限制**：综述中引用的合成菌群效果多在受控环境下获得，田间效果不一致。
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology
+- 链接：https://doi.org/10.3389/finmi.2026.1832866
 - 相关性评分：3 | LLM 评分：6
 ## Looking Forward
 
@@ -63,6 +63,6 @@
 
 ## References
 
-- **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration** — [PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management](https://pubmed.ncbi.nlm.nih.gov/42184767/)
 - **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.** — [Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage](https://doi.org/10.1016/j.jenvman.2026.130022)
 - **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
+- **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology](https://doi.org/10.3389/finmi.2026.1832866)
