@@ -67,6 +67,25 @@ def _scored_item(title: str, topic_id: str, topic_name: str, score: int) -> Scor
     )
 
 
+def test_build_digest_sorts_highlights_by_llm_score_when_available():
+    a = _scored_item("Paper A", "soil", "土壤微生物", score=2)
+    a.llm_score = 9
+    b = _scored_item("Paper B", "soil", "土壤微生物", score=8)
+    b.llm_score = 7
+
+    digest = build_digest(
+        digest_date=date(2026, 4, 28),
+        title="EcoBio Daily",
+        scored_items=[a, b],
+        min_relevance_score=2,
+        max_items=10,
+        highlight_count=2,
+    )
+
+    # A's higher llm_score (9) wins over B's higher keyword score (8).
+    assert [item.item.title for item in digest.highlights] == ["Paper A", "Paper B"]
+
+
 def test_build_digest_groups_items_and_selects_highlights():
     items = [
         _scored_item("A soil microbiome paper", "soil", "土壤微生物", 4),

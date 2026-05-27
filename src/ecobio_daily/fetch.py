@@ -23,17 +23,27 @@ def _parse_datetime(value: str | None) -> datetime:
     return parsed
 
 
+_MONTH_RANGE_RE = re.compile(r"^(\d{4})\s+(\w+)-\w+(.*)$")
+
+
 def _parse_publication_date(value: str | None) -> datetime:
     if not value:
         return datetime.now(timezone.utc)
     cleaned = value.strip().rstrip(".")
+    # PubMed bimonthly format "YYYY MMM-MMM[ DD]" → take the first month.
+    range_match = _MONTH_RANGE_RE.match(cleaned)
+    if range_match:
+        cleaned = f"{range_match.group(1)} {range_match.group(2)}{range_match.group(3)}"
     for fmt in ("%Y-%m-%d", "%Y %b %d", "%Y %b", "%Y"):
         try:
             parsed = datetime.strptime(cleaned, fmt)
             return parsed.replace(tzinfo=timezone.utc)
         except ValueError:
             continue
-    return _parse_datetime(cleaned)
+    try:
+        return _parse_datetime(cleaned)
+    except (ValueError, TypeError):
+        return datetime.now(timezone.utc)
 
 
 def _doi_url(doi: str | None) -> str:

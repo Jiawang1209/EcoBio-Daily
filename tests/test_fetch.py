@@ -2,6 +2,7 @@ from pathlib import Path
 from datetime import date
 
 from ecobio_daily.fetch import (
+    _parse_publication_date,
     parse_crossref,
     parse_europe_pmc,
     parse_openalex,
@@ -198,3 +199,25 @@ def test_parse_semantic_scholar_maps_paper_to_source_item():
     assert items[0].authors == ["Ada Lovelace", "Grace Hopper"]
     assert items[0].published_date == date(2026, 5, 17)
     assert items[0].tags == ["semantic_scholar_eco"]
+
+
+# ---------- _parse_publication_date ----------
+
+
+def test_parse_publication_date_handles_month_range():
+    # PubMed often returns "YYYY MMM-MMM" for bimonthly journals.
+    result = _parse_publication_date("2026 May-Jun")
+    assert result.year == 2026
+    assert result.month == 5
+    assert result.day == 1
+
+
+def test_parse_publication_date_handles_month_range_with_day():
+    result = _parse_publication_date("2026 Jul-Aug 15")
+    assert (result.year, result.month, result.day) == (2026, 7, 15)
+
+
+def test_parse_publication_date_falls_back_to_now_on_garbage():
+    # Should NOT raise even when given garbage input.
+    result = _parse_publication_date("this is not a date")
+    assert result.year >= 2026

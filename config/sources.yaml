@@ -88,8 +88,5 @@ sources:
     type: crossref
     issn: 0169-5347
     max_results: 20
-  - id: semantic_scholar_soil_micro
-    name: Semantic Scholar Soil Microbiology
-    type: semantic_scholar
-    query: soil microbiome OR soil microbial community OR rhizosphere OR mycorrhiza OR forest soil microbi OR grassland soil microbi OR agricultural soil microbi OR soil carbon cycling OR soil nitrogen cycling OR methanogen OR methanotroph OR nitrification OR denitrification
-    max_results: 50
+  # Semantic Scholar removed 2026-05-27: free tier 429s consistently.
+  # Re-add with API key configured if needed; see doc/current-work-tasks.md.
