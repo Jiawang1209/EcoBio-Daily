@@ -57,6 +57,25 @@
 - 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology
 - 链接：https://doi.org/10.3389/finmi.2026.1832866
 - 相关性评分：3 | LLM 评分：6
+## 土壤微生物方法与工具
+
+**本节要点：**
+
+- 长期火干扰降低真菌多样性
+- 火管理改变真菌群落结构
+- 公开数据与代码促进可重复性
+
+### 长期生长季火烧降低长叶松稀树草原真菌多样性
+
+研究比较了美国长叶松生态系统不同火烧制度（年度生长季火烧与常规维护火烧）对土壤真菌、细菌及植物群落的影响。分析显示，长期年度生长季火烧降低了植物多样性，并使土壤真菌群落趋于同质化。研究提供了完整的原始数据、处理脚本和分析代码，数据已存入NCBI序列读取档案库。
+
+- **为什么值得关注**：该研究为火干扰生态学提供了可重复的分析范例，其完整的数据与代码公开策略对方法学有重要参考价值。
+- **证据类型**：实验
+- **限制**：研究结果基于特定生态系统（长叶松稀树草原），其普适性需在其他生态系统中验证。
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- 链接：https://doi.org/10.5281/zenodo.20379381
+- 相关性评分：3 | LLM 评分：8
 ## Looking Forward
 
 今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
@@ -66,3 +85,4 @@
 - **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.** — [Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage](https://doi.org/10.1016/j.jenvman.2026.130022)
 - **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
 - **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology](https://doi.org/10.3389/finmi.2026.1832866)
+- **Long-term annual growing-season fire reduces plant diversity and homogenizes soil fungal communities in a longleaf pine savanna** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.20379381)

@@ -36,6 +36,16 @@ Microbial interventions in the rice rhizosphere are emerging as a promising stra
 - Link: https://doi.org/10.3389/finmi.2026.1832866
 - Keyword score: 3 | LLM score: 6
 - Matched keywords: plant growth-promoting, rhizosphere
+## 土壤微生物方法与工具
+
+### Long-term annual growing-season fire reduces plant diversity and homogenizes soil fungal communities in a longleaf pine savanna
+
+This repository contains raw and processed data, metadata, and R scripts associated with a study examining how prescribed fire regimes influence fungal, bacterial, and plant communities in a longleaf pine ecosystem. The study was conducted across three sites (DL, FOJ, TOA) at the Jones Center at Ichauway, Georgia, USA, and compared annual growing-season burns with maintenance fire regimes (1-2 year fire return interval). Vegetation and soil samples were collected from 60 plots across the three field sites. Amplicon sequencing targeted fungal ITS2 and bacterial 16S rRNA gene regions. Fungal ITS2 sequences were generated using primers fITS7/ITS4 and bacterial 16S rRNA gene sequences targeted the V4 region using primers 515F/806R. Sequence data were processed using DADA2 within QIIME2 (version 2022.11), and taxonomy was assigned using the UNITE and SILVA reference databases. Sequence processing and downstream analyses were conducted in R and included alpha diversity, beta diversity, indicator species analyses, functional guild analyses, and community composition analyses. Repository contents README.txt file Raw and/or processed community data tables Metadata Taxonomic assignment tables R scripts used for statistical analyses and figure generation Supplementary code/figures associated with the manuscript Raw sequencing reads are available through the NCBI Sequence Read Archive (SRA) under accession number: PRJNA1469031.
+
+- Source: OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- Link: https://doi.org/10.5281/zenodo.20379381
+- Keyword score: 3 | LLM score: 8
+- Matched keywords: amplicon sequencing, dada2, qiime
 ## Looking Forward
 
 Today's candidates reflect ongoing progress in soil microbial ecology and microbially-driven biogeochemistry. Items to keep tracking: cross-scale observations, long-term experiments, mechanistic interpretations, and reusable analytical workflows.
@@ -45,3 +55,4 @@ Today's candidates reflect ongoing progress in soil microbial ecology and microb
 - **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.** — [Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage](https://doi.org/10.1016/j.jenvman.2026.130022)
 - **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
 - **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology](https://doi.org/10.3389/finmi.2026.1832866)
+- **Long-term annual growing-season fire reduces plant diversity and homogenizes soil fungal communities in a longleaf pine savanna** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.20379381)
