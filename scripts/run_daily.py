@@ -17,6 +17,7 @@ from ecobio_daily.config import (
 )
 from ecobio_daily.llm import LLMClient, load_dotenv
 from ecobio_daily.pipeline import run_pipeline
+from ecobio_daily.run_metrics import RunMetrics
 
 
 def parse_args() -> argparse.Namespace:
@@ -53,15 +54,19 @@ def main() -> None:
         print("LLM relevance scoring enabled.")
     else:
         print("LLM relevance scoring disabled (no config or llm.enabled=false).")
+    metrics = RunMetrics(digest_date=digest_date)
+    output_root = Path(args.output_root)
     output_path = run_pipeline(
         sources=load_sources(Path(args.sources)),
         topics=load_topics(Path(args.topics)),
         digest_config=load_digest_config(Path(args.digest)),
         digest_date=digest_date,
         template_path=Path(args.template),
-        output_root=Path(args.output_root),
+        output_root=output_root,
         llm_client=llm_client,
+        metrics=metrics,
     )
+    metrics.save(output_root / "data" / "runs" / f"{digest_date.isoformat()}.json")
     print(f"Wrote digest: {output_path}")
 
 

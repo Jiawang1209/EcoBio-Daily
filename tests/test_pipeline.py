@@ -488,6 +488,34 @@ def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
     assert "LLM-土壤微生物" in text
 
 
+def test_pipeline_populates_metrics_for_each_stage(tmp_path: Path):
+    from ecobio_daily.run_metrics import RunMetrics
+
+    metrics = RunMetrics(digest_date=date(2026, 4, 28))
+
+    run_pipeline_from_items(
+        items=[_soil_item("p1"), _soil_item("p2")],
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+        metrics=metrics,
+    )
+
+    for stage in (
+        "date_window",
+        "url_dedup",
+        "intra_day_doi_dedup",
+        "cross_day_doi_dedup",
+        "keyword_score",
+        "build_digest",
+        "output",
+    ):
+        assert stage in metrics.stages, f"missing stage: {stage}"
+
+
 def test_pipeline_attaches_llm_grounding_verdict(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
