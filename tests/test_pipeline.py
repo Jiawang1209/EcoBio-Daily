@@ -531,6 +531,76 @@ def test_pipeline_writes_only_zh_when_llm_disabled(tmp_path: Path):
     assert not en.exists(), "en file should NOT be written when LLM is disabled"
 
 
+def test_pipeline_drops_items_seen_on_prior_day(tmp_path: Path):
+    import json
+
+    state_dir = tmp_path / "data" / "state"
+    state_dir.mkdir(parents=True)
+    (state_dir / "seen_dois.json").write_text(
+        json.dumps({"10.1234/yesterday": "2026-04-27"}),
+        encoding="utf-8",
+    )
+
+    yesterday_item = SourceItem(
+        id="seen-on-prior-day",
+        title="Soil microbiome yesterday paper",
+        url="https://doi.org/10.1234/yesterday",
+        source="example",
+        published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+        summary="Soil microbial communities drive carbon cycling.",
+    )
+    new_item = SourceItem(
+        id="brand-new",
+        title="Soil microbiome new paper",
+        url="https://doi.org/10.1234/new",
+        source="example",
+        published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+        summary="Soil microbial communities drive carbon cycling.",
+    )
+
+    output_path = run_pipeline_from_items(
+        items=[yesterday_item, new_item],
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    assert "Soil microbiome new paper" in text
+    assert "Soil microbiome yesterday paper" not in text
+
+
+def test_pipeline_persists_dois_after_successful_run(tmp_path: Path):
+    import json
+
+    new_item = SourceItem(
+        id="x",
+        title="Soil microbiome paper",
+        url="https://doi.org/10.1234/freshly-published",
+        source="example",
+        published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+        summary="Soil microbial communities drive carbon cycling.",
+    )
+
+    run_pipeline_from_items(
+        items=[new_item],
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    seen = json.loads(
+        (tmp_path / "data" / "state" / "seen_dois.json").read_text(encoding="utf-8")
+    )
+    assert seen == {"10.1234/freshly-published": "2026-04-28"}
+
+
 def test_pipeline_falls_back_per_section_when_brief_is_none(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])

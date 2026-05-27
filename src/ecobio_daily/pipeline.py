@@ -5,6 +5,12 @@ from pathlib import Path
 import sys
 
 from ecobio_daily.config import DigestConfig, SourceConfig, TopicConfig
+from ecobio_daily.dedup import (
+    filter_seen,
+    load_seen_dois,
+    save_seen_dois,
+    update_seen,
+)
 from ecobio_daily.digest import build_digest
 from ecobio_daily.fetch import fetch_source
 from ecobio_daily.llm import LLMClient
@@ -53,6 +59,10 @@ def _raw_items_path(output_root: Path, digest_date: date) -> Path:
 
 def _scored_items_path(output_root: Path, digest_date: date) -> Path:
     return output_root / "data" / "processed" / f"{digest_date.isoformat()}-scored.json"
+
+
+def _seen_dois_path(output_root: Path) -> Path:
+    return output_root / "data" / "state" / "seen_dois.json"
 
 
 def _attach_llm_briefs(digest: Digest, llm_client: LLMClient) -> None:
@@ -113,6 +123,9 @@ def run_pipeline_from_items(
         lookback_days=digest_config.lookback_days,
     )
     unique_items = deduplicate_items(windowed_items)
+    seen_path = _seen_dois_path(output_root)
+    seen = load_seen_dois(seen_path)
+    unique_items = filter_seen(unique_items, seen, today=digest_date)
     scored_items = [score_item(item, topics) for item in unique_items]
     if llm_client is not None:
         scored_items = _apply_llm_scoring(
@@ -148,6 +161,9 @@ def run_pipeline_from_items(
             output_root, digest_config.output_pattern, digest_date, lang="en"
         )
         en_path.write_text(markdown_en, encoding="utf-8")
+
+    update_seen(seen, unique_items, today=digest_date)
+    save_seen_dois(seen_path, seen)
 
     return zh_path
 
