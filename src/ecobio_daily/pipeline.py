@@ -16,6 +16,7 @@ from ecobio_daily.digest import build_digest
 from ecobio_daily.fetch import fetch_source
 from ecobio_daily.llm import LLMClient
 from ecobio_daily.llm_digest import generate_section
+from ecobio_daily.llm_grounding import check_groundedness
 from ecobio_daily.llm_scoring import batch_score
 from ecobio_daily.models import Digest, ScoredItem, SourceItem
 from ecobio_daily.render import render_digest
@@ -69,6 +70,8 @@ def _seen_dois_path(output_root: Path) -> Path:
 def _attach_llm_briefs(digest: Digest, llm_client: LLMClient) -> None:
     ok = 0
     failed = 0
+    grounded = 0
+    ungrounded = 0
     for section in digest.sections:
         brief = generate_section(section.title, section.items, llm_client)
         section.llm_brief = brief
@@ -80,7 +83,21 @@ def _attach_llm_briefs(digest: Digest, llm_client: LLMClient) -> None:
         for i, scored in enumerate(section.items):
             if i < len(brief_items) and isinstance(brief_items[i], dict):
                 scored.llm_brief_item = brief_items[i]
+                verdict = check_groundedness(
+                    scored.item.summary, brief_items[i], llm_client
+                )
+                scored.llm_grounding = verdict
+                if verdict is None:
+                    continue
+                if verdict.get("grounded") and int(verdict.get("score", 0)) >= 7:
+                    grounded += 1
+                else:
+                    ungrounded += 1
     print(f"LLM brief: {ok} ok, {failed} failed", file=sys.stderr)
+    print(
+        f"LLM grounding: {grounded} passed, {ungrounded} failed",
+        file=sys.stderr,
+    )
 
 
 def _apply_llm_scoring(
@@ -136,7 +153,6 @@ def run_pipeline_from_items(
             min_keyword_score=digest_config.min_relevance_score,
             top_n=llm_max_items,
         )
-    write_json_records(_scored_items_path(output_root, digest_date), scored_items)
     digest = build_digest(
         digest_date=digest_date,
         title=digest_config.title,
@@ -147,6 +163,7 @@ def run_pipeline_from_items(
     )
     if llm_client is not None:
         _attach_llm_briefs(digest, llm_client)
+    write_json_records(_scored_items_path(output_root, digest_date), scored_items)
     markdown_zh = render_digest(digest, template_path)
     zh_path = _output_path(
         output_root, digest_config.output_pattern, digest_date, lang="zh"

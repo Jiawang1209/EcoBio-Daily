@@ -201,6 +201,51 @@ def test_render_zh_uses_title_zh_when_present():
     assert "Forest nitrogen paper" in refs
 
 
+def test_render_zh_shows_warning_when_grounding_fails():
+    scored = _scored_for_render("Suspect paper")
+    scored.llm_brief_item = {
+        "title": "Suspect paper",
+        "title_zh": "可疑论文",
+        "summary_zh": "包含未验证数字的中文摘要。",
+        "why_it_matters": "X",
+        "evidence_type": "实验",
+        "caveat": None,
+        "source_url": "https://example.org/Suspect-paper",
+    }
+    scored.llm_grounding = {
+        "grounded": False,
+        "score": 3,
+        "reason": "数字与英文摘要不对应",
+    }
+    digest = Digest(
+        date=date(2026, 5, 27),
+        title="EcoBio Daily",
+        highlights=[scored],
+        sections=[
+            DigestSection(
+                title="土壤微生物",
+                items=[scored],
+                llm_brief={
+                    "section_title": "土壤微生物",
+                    "highlights": ["a", "b", "c"],
+                    "items": [scored.llm_brief_item],
+                },
+            )
+        ],
+        references=[scored.item],
+    )
+
+    output = render_digest(digest, Path("templates/digest_zh.md.j2"))
+
+    body = output.split("## 土壤微生物", 1)[1].split("## References", 1)[0]
+    assert "⚠️" in body
+    assert "未通过事实核查" in body
+    assert "数字与英文摘要不对应" in body
+    # Falls back to original English abstract; suppresses Chinese fields
+    assert "Original English summary about soil microbes" in body
+    assert "包含未验证数字的中文摘要" not in body
+
+
 def test_render_en_uses_original_english():
     scored = _scored_for_render("Forest nitrogen paper")
     scored.llm_brief_item = {

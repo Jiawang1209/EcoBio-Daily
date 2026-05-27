@@ -33,7 +33,8 @@
 ### {{ scored.item.title }}
 {% endif %}
 
-{% if brief %}
+{% set grounding_failed = scored.llm_grounding and (not scored.llm_grounding.get("grounded") or scored.llm_grounding.get("score", 0) < 7) %}
+{% if brief and not grounding_failed %}
 {{ brief.summary_zh }}
 
 - **为什么值得关注**：{{ brief.why_it_matters }}
@@ -41,6 +42,10 @@
 {% if brief.caveat %}
 - **限制**：{{ brief.caveat }}
 {% endif %}
+{% elif grounding_failed %}
+> ⚠️ 中文摘要未通过事实核查（理由：{{ scored.llm_grounding.get("reason", "未说明") }}）。请以下方英文版为准。
+
+{{ scored.item.summary | default("暂无摘要。", true) }}
 {% else %}
 {{ scored.item.summary | default("暂无摘要。", true) }}
 {% endif %}

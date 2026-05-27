@@ -1,0 +1,20 @@
+你是一名事实核查员。判断下面"中文摘要"是否完全基于给定的"英文 abstract"——不能引入 abstract 没有的具体数字、物种名、方法名、地点、时间尺度，也不能把"相关性"改写成"因果"。
+
+英文 abstract：
+{{ abstract if abstract else "(无 abstract)" }}
+
+中文摘要（summary_zh）：
+{{ brief["summary_zh"] if brief and brief["summary_zh"] else "(无)" }}
+
+为什么值得关注（why_it_matters）：
+{{ brief["why_it_matters"] if brief and brief["why_it_matters"] else "(无)" }}
+
+判断规则：
+- `grounded=true`：所有具体声明都能在 abstract 找到对应（同义改写允许，新增事实不允许）。`why_it_matters` 可做合理的领域意义阐释，但不能脱离 abstract 的核心发现。
+- `grounded=false`：出现 abstract 没有的具体数字 / 物种 / 方法 / 地点；或把"关联 / 相关"改写成"因果 / 导致"；或核心发现被夸大。
+- `score`：0-10 整数，反映扎实程度。`grounded=true` 通常 ≥ 7，`grounded=false` 通常 ≤ 6。
+
+输出严格 JSON，不要 markdown 包装：
+```
+{"grounded": <true|false>, "score": <0-10 整数>, "reason": "<不超过 30 字的中文理由>"}
+```

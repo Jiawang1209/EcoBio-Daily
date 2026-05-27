@@ -468,6 +468,10 @@ def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1"), _soil_item("p2")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.check_groundedness",
+        lambda abstract, brief_item, client: None,
+    )
 
     output_path = run_pipeline_from_items(
         items=items,
@@ -484,10 +488,49 @@ def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
     assert "LLM-土壤微生物" in text
 
 
+def test_pipeline_attaches_llm_grounding_verdict(tmp_path: Path, monkeypatch):
+    items = [_soil_item("p1")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.check_groundedness",
+        lambda abstract, brief_item, client: {
+            "grounded": True,
+            "score": 9,
+            "reason": "ok",
+        },
+    )
+
+    run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    scored = json.loads(
+        (tmp_path / "data" / "processed" / "2026-04-28-scored.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert scored[0]["llm_grounding"] == {
+        "grounded": True,
+        "score": 9,
+        "reason": "ok",
+    }
+
+
 def test_pipeline_attaches_llm_brief_item_for_highlights(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1"), _soil_item("p2")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.check_groundedness",
+        lambda abstract, brief_item, client: None,
+    )
 
     output_path = run_pipeline_from_items(
         items=items,
@@ -508,6 +551,10 @@ def test_pipeline_writes_both_zh_and_en_when_llm_enabled(tmp_path: Path, monkeyp
     items = [_soil_item("p1")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.check_groundedness",
+        lambda abstract, brief_item, client: None,
+    )
 
     run_pipeline_from_items(
         items=items,

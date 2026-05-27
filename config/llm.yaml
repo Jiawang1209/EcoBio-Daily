@@ -53,6 +53,9 @@ llm:
     # Strong Chinese synthesis model for the actual digest prose.
     digest_generation: cstcloud_v32
 
+    # Cheap grounding check; runs once per LLM-written item.
+    grounding_check: cstcloud_flash
+
     # Optional final pass. Set to null to skip later in code.
     final_polish: null
 
