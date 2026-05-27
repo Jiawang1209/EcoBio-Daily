@@ -4,9 +4,20 @@
 
 ## Highlights
 
+- **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.**:  Source: Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage.
 - **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability**: Microbial interventions in the rice rhizosphere are emerging as a promising strategy to enhance crop productivity and resilience under increasing climatic stress. The rhizosphere is a dynamic... Source: OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology.
 - **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity**: ABSTRACT The rhizosphere microbiome is crucial for plant growth and stress resilience in sustainable horticulture. Here, we report the complete genome assembly and functional characterisation of... Source: OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports.
 
+## 土壤微生物驱动生物地球化学
+
+### The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.
+
+Abstract not available.
+
+- Source: Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage
+- Link: https://doi.org/10.1016/j.jenvman.2026.130022
+- Keyword score: 8 | LLM score: 9
+- Matched keywords: soil organic carbon, soil organic, carbon sequestration
 ## 农田土壤微生物
 
 ### Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability
@@ -31,5 +42,6 @@ Today's candidates reflect ongoing progress in soil microbial ecology and microb
 
 ## References
 
+- **The rising power of females: Dioecious shrub enhances soil organic carbon sequestration via fungal necromass in chronosequence of desertified alpine grassland restoration.** — [Europe PMC Soil Microbiology & Biogeochemistry: J Environ Manage](https://doi.org/10.1016/j.jenvman.2026.130022)
 - **Microbial interventions in rice rhizosphere engineering: from soil microbiome manipulation to yield stability** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Industrial Microbiology](https://doi.org/10.3389/finmi.2026.1832866)
 - **Complete Genome of an Alkali‐Resistant <i>Rhizobium anhuiense</i> Symbiont of Pea Reveals Species‐Specific Plasmid Fusion and Genomic Plasticity** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Microbiology Reports](https://doi.org/10.1111/1758-2229.70366)
