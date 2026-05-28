@@ -64,3 +64,14 @@ def test_daily_workflow_validates_digest_before_commit():
 
     assert validate_index < commit_index
     assert "scripts/validate_daily.py" in validate_step["run"]
+
+
+def test_ci_workflow_runs_pytest_on_push_and_pull_request():
+    workflow = yaml.safe_load(Path(".github/workflows/ci.yml").read_text())
+
+    assert "push" in workflow[True]
+    assert "pull_request" in workflow[True]
+    steps = workflow["jobs"]["tests"]["steps"]
+    assert any(step.get("uses") == "actions/setup-python@v5" for step in steps)
+    assert any("python -m pip install -e \".[dev]\"" in step.get("run", "") for step in steps)
+    assert any("python -m pytest -q" in step.get("run", "") for step in steps)
