@@ -30,16 +30,41 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--template", default="templates/digest_zh.md.j2")
     parser.add_argument("--llm-config", default="config/llm.yaml")
     parser.add_argument("--dotenv", default=".env")
+    parser.add_argument(
+        "--require-llm",
+        action="store_true",
+        help="Fail if LLM is disabled or the configured API key is unavailable.",
+    )
     return parser.parse_args()
 
 
-def _maybe_build_llm_client(llm_config_path: Path, dotenv_path: Path) -> LLMClient | None:
+def _maybe_build_llm_client(
+    llm_config_path: Path,
+    dotenv_path: Path,
+    require_llm: bool = False,
+) -> LLMClient | None:
     if not llm_config_path.exists():
+        if require_llm:
+            raise RuntimeError(f"LLM config not found: {llm_config_path}")
         return None
     llm_config = load_llm_config(llm_config_path)
     if not llm_config.enabled:
+        if require_llm:
+            raise RuntimeError(f"LLM is disabled in {llm_config_path}")
         return None
     env = {**os.environ, **load_dotenv(dotenv_path)}
+    missing_keys = sorted(
+        {
+            profile.api_key_env
+            for profile in llm_config.profiles.values()
+            if not env.get(profile.api_key_env)
+        }
+    )
+    if require_llm and missing_keys:
+        raise RuntimeError(
+            "Missing required LLM API key environment variable(s): "
+            + ", ".join(missing_keys)
+        )
     cache_dir: Path | None = None
     if llm_config.budget.cache_llm_outputs:
         cache_dir = Path(llm_config.budget.cache_dir)
@@ -56,7 +81,11 @@ def _llm_max_items(llm_config_path: Path) -> int:
 def main() -> None:
     args = parse_args()
     digest_date = date.fromisoformat(args.date)
-    llm_client = _maybe_build_llm_client(Path(args.llm_config), Path(args.dotenv))
+    llm_client = _maybe_build_llm_client(
+        Path(args.llm_config),
+        Path(args.dotenv),
+        require_llm=args.require_llm,
+    )
     if llm_client is not None:
         print("LLM relevance scoring enabled.")
     else:

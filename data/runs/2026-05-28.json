@@ -1,11 +1,11 @@
 {
   "date": "2026-05-28",
-  "started_at": "2026-05-28T03:40:19.296020+00:00",
-  "completed_at": "2026-05-28T03:44:47.145452+00:00",
-  "duration_seconds": 267.839,
+  "started_at": "2026-05-28T03:52:52.624091+00:00",
+  "completed_at": "2026-05-28T03:53:54.847597+00:00",
+  "duration_seconds": 62.223,
   "stages": {
     "fetch_total": {
-      "total": 488,
+      "total": 518,
       "sources": [
         {
           "id": "bioarxiv_ecology",
@@ -73,8 +73,7 @@
         },
         {
           "id": "crossref_microbiome",
-          "count": 0,
-          "error": "[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)"
+          "count": 30
         },
         {
           "id": "crossref_trends_microbiology",
@@ -87,24 +86,24 @@
       ]
     },
     "date_window": {
-      "in_count": 488,
-      "out_count": 135
+      "in_count": 518,
+      "out_count": 136
     },
     "url_dedup": {
-      "in_count": 135,
-      "out_count": 131
+      "in_count": 136,
+      "out_count": 132
     },
     "intra_day_doi_dedup": {
-      "in_count": 131,
-      "out_count": 125
+      "in_count": 132,
+      "out_count": 126
     },
     "cross_day_doi_dedup": {
-      "in_count": 125,
-      "out_count": 104,
+      "in_count": 126,
+      "out_count": 105,
       "prior_seen_count": 159
     },
     "keyword_score": {
-      "in_count": 104,
+      "in_count": 105,
       "above_threshold": 33
     },
     "llm_relevance": {

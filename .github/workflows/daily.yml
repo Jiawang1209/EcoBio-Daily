@@ -28,7 +28,7 @@ jobs:
         env:
           TZ: Asia/Shanghai
           CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
-        run: python scripts/run_daily.py --date "$(date +%F)"
+        run: python scripts/run_daily.py --date "$(date +%F)" --require-llm
 
       - name: Commit generated files
         env:

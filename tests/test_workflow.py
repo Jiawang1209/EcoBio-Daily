@@ -19,3 +19,13 @@ def test_daily_workflow_documents_cstcloud_secret():
     workflow_text = Path(".github/workflows/daily.yml").read_text()
 
     assert "CSTCLOUD_API_KEY" in workflow_text
+
+
+def test_daily_workflow_requires_llm_secret_for_ci_quality():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    generate_step = next(
+        step for step in workflow["jobs"]["generate"]["steps"]
+        if step["name"] == "Generate digest"
+    )
+
+    assert "--require-llm" in generate_step["run"]
