@@ -46,7 +46,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 ## 2026-05-28 接管维护进展
 
 - GitHub Actions 已补齐 `CSTCLOUD_API_KEY` secret 注入。
-- GitHub Actions 使用 `--require-llm`，缺少 `CSTCLOUD_API_KEY` 时会失败并停止提交，避免降级日报进入仓库。
+- GitHub Actions 先执行 `Validate LLM secret`，随后使用 `--require-llm`；缺少 `CSTCLOUD_API_KEY` 时会在生成日报前失败并停止提交，避免降级日报进入仓库。
 - GitHub Actions 已改为提交日报、`data/runs` 和 `data/state`。
 - 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
 - `config/digest.yaml` 已设置：

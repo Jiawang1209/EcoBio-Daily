@@ -24,6 +24,15 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -e ".[dev]"
 
+      - name: Validate LLM secret
+        env:
+          CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
+        run: |
+          if [ -z "$CSTCLOUD_API_KEY" ]; then
+            echo "CSTCLOUD_API_KEY secret is not configured. Add it in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
       - name: Generate digest
         env:
           TZ: Asia/Shanghai

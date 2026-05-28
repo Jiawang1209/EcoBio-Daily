@@ -69,7 +69,7 @@ GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时�
 CSTCLOUD_API_KEY
 ```
 
-工作流使用 `--require-llm` 运行。若该 secret 缺失，GitHub Actions 会失败并停止提交，避免把未经过 LLM 筛选与中文简报生成的降级日报写入仓库。
+工作流会先执行 `Validate LLM secret`。若该 secret 缺失，GitHub Actions 会在生成日报前失败并停止提交。随后生成步骤也使用 `--require-llm`，避免把未经过 LLM 筛选与中文简报生成的降级日报写入仓库。
 
 工作流会提交：
 
