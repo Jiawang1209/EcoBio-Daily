@@ -55,6 +55,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - Daily workflow 在提交前会 `git pull --rebase --autostash origin main`，避免 LLM 生成期间远端 `main` 更新导致最后 `git push` 被拒绝。
 - `docs/operations.md` 已添加日常运维手册，覆盖 secret 配置、手动触发、validator、常见失败与排查入口。
 - `scripts/summarize_runs.py` 已添加，用于查看 `data/runs` 历史并验证某日期后的连续运行是否都满足 5-8 条和 grounding 要求。
+- `scripts/check_ops.py` 已添加，用于本地一键检查 daily workflow guard、secret 文档、指定日期产物和 run history；它不能替代 GitHub UI/认证 `gh` 对仓库 secret 与 Actions 真实状态的外部确认。
 - 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
 - `data/state/seen_dois.json` 现在只记录最终入选日报的 DOI，不再把候选池全部标记为 seen，避免次日候选被误杀。
 - LLM grounding 未通过的单条中文简报会自动回退到来源摘要，并在 metrics 里记录 `grounding_repaired`；validator 仍要求 `grounding_failed=0`、`grounding_errored=0`。

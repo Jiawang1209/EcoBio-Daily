@@ -21,6 +21,7 @@ mamba activate ecobio-daily
 ```bash
 python scripts/run_daily.py --date YYYY-MM-DD --require-llm
 python scripts/validate_daily.py --date YYYY-MM-DD
+python scripts/check_ops.py --date YYYY-MM-DD --since YYYY-MM-DD
 ```
 
 LLM 默认启用。需要在本地 `.env` 或 shell 环境中配置：
@@ -125,6 +126,7 @@ data/state/seen_dois.json
    ```bash
    python scripts/validate_daily.py --date YYYY-MM-DD
    python scripts/summarize_runs.py --since YYYY-MM-DD
+   python scripts/check_ops.py --date YYYY-MM-DD --since YYYY-MM-DD
    ```
 
 3. 快速复核生成的中英文 Markdown 和 `data/runs/YYYY-MM-DD.json`。

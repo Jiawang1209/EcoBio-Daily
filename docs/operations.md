@@ -79,7 +79,10 @@ Run the same checks locally:
 /Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/run_daily.py --date YYYY-MM-DD --require-llm
 /Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/validate_daily.py --date YYYY-MM-DD
 /Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/summarize_runs.py --since YYYY-MM-DD
+/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/check_ops.py --date YYYY-MM-DD --since YYYY-MM-DD
 ```
+
+`scripts/check_ops.py` is a local operational readiness check. It verifies the daily workflow guards, secret documentation, the selected date's generated artifacts, and run history. It cannot confirm GitHub repository secrets or remote Actions status; use the GitHub UI or an authenticated `gh` session for that final external check.
 
 Expected validator behavior:
 
