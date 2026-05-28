@@ -27,6 +27,7 @@ from ecobio_daily.storage import write_json_records
 
 
 LLM_SCORE_THRESHOLD = 6
+LLM_BACKFILL_SCORE_THRESHOLD = 4
 
 
 def _output_path(
@@ -121,10 +122,15 @@ def _apply_llm_scoring(
     llm_client: LLMClient,
     min_keyword_score: int,
     top_n: int,
+    target_min_items: int,
     metrics: RunMetrics | None = None,
 ) -> list[ScoredItem]:
     candidates = sorted(
-        (s for s in scored_items if s.relevance_score >= min_keyword_score),
+        (
+            s
+            for s in scored_items
+            if s.relevance_score >= min_keyword_score and s.item.summary.strip()
+        ),
         key=lambda s: s.relevance_score,
         reverse=True,
     )[:top_n]
@@ -152,11 +158,25 @@ def _apply_llm_scoring(
     kept = [
         c for c in candidates if c.llm_score is not None and c.llm_score >= LLM_SCORE_THRESHOLD
     ]
+    backfilled = 0
+    if len(kept) < target_min_items:
+        kept_ids = {id(item) for item in kept}
+        backfill_candidates = [
+            c
+            for c in sorted(candidates, key=lambda item: item.llm_score or -1, reverse=True)
+            if id(c) not in kept_ids
+            and c.llm_score is not None
+            and c.llm_score >= LLM_BACKFILL_SCORE_THRESHOLD
+        ]
+        needed = target_min_items - len(kept)
+        kept.extend(backfill_candidates[:needed])
+        backfilled = min(needed, len(backfill_candidates))
     if metrics is not None:
         metrics.record(
             "llm_relevance",
             candidates=len(candidates),
             kept=len(kept),
+            backfilled=backfilled,
             fallback_used=False,
         )
     return kept
@@ -225,6 +245,7 @@ def run_pipeline_from_items(
             llm_client=llm_client,
             min_keyword_score=digest_config.min_relevance_score,
             top_n=llm_max_items,
+            target_min_items=digest_config.target_items_min,
             metrics=metrics,
         )
     digest = build_digest(

@@ -103,7 +103,7 @@ llm:
         dimensions: 1024
 
   budget:
-    max_items_per_run: 12
+    max_items_per_run: 24
     max_retry_attempts: 2
     cache_llm_outputs: true
     cache_dir: data/cache/llm

@@ -58,6 +58,11 @@ def test_extract_doi_strips_trailing_punctuation():
     assert extract_doi(item) == "10.1016/j.foo.2026.000123"
 
 
+def test_extract_doi_normalizes_dataset_version_suffix():
+    item = _item("x", "https://doi.org/10.17632/3rydxx5m7x.1")
+    assert extract_doi(item) == "10.17632/3rydxx5m7x"
+
+
 # ---------- filter_seen ----------
 
 
@@ -158,6 +163,17 @@ def test_deduplicate_by_doi_keeps_first_occurrence():
     kept = deduplicate_by_doi(items)
 
     assert [it.url for it in kept] == ["https://pubmed.ncbi.nlm.nih.gov/12345/"]
+
+
+def test_deduplicate_by_doi_collapses_dataset_versions():
+    items = [
+        _item("dataset", "https://doi.org/10.17632/3rydxx5m7x"),
+        _item("dataset-v1", "https://doi.org/10.17632/3rydxx5m7x.1"),
+    ]
+
+    kept = deduplicate_by_doi(items)
+
+    assert [it.id for it in kept] == ["dataset"]
 
 
 def test_deduplicate_by_doi_preserves_items_without_doi():

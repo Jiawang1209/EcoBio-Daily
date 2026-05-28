@@ -62,6 +62,30 @@ digest:
 
     assert config.title == "EcoBio Daily"
     assert config.highlights == 3
+    assert config.target_items_min == 5
+
+
+def test_load_digest_config_accepts_target_item_count(tmp_path: Path):
+    path = tmp_path / "digest.yaml"
+    path.write_text(
+        """
+digest:
+  title: EcoBio Daily
+  language: zh
+  output_pattern: "{year}/{month}/ecobio_digest_1d_{date}_{lang}.md"
+  max_items: 8
+  highlights: 3
+  min_relevance_score: 1
+  lookback_days: 2
+  target_items_min: 5
+""".strip(),
+        encoding="utf-8",
+    )
+
+    config = load_digest_config(path)
+
+    assert config.max_items == 8
+    assert config.target_items_min == 5
 
 
 def test_load_query_based_source_from_yaml(tmp_path: Path):

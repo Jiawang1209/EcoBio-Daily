@@ -1,6 +1,6 @@
 # EcoBio Daily 当前工作任务记录
 
-记录日期：2026-05-27
+记录日期：2026-05-28
 
 ## 项目研究方向（scope 已锁定）
 
@@ -15,12 +15,12 @@
 
 未来加 source、改 query、扩 keyword 时都要锚在这个 scope 上，不要扩散。
 
-## 当前管线（P1 LLM 集成已完成 2026-05-27）
+## 当前管线（P1 自动化与质量闭环推进中）
 
 ```
 fetch（15+ sources）
   ├── RSS：bioRxiv ×2，Nature 系 ×4
-  ├── API：OpenAlex / Europe PMC / PubMed / Semantic Scholar（已收紧到 soil/terrestrial bgc）
+  ├── API：OpenAlex / Europe PMC / PubMed（已收紧到 soil/terrestrial bgc）
   └── Crossref by ISSN（10 个期刊）
       ↓
 日期窗口过滤（lookback_days=2）
@@ -29,17 +29,31 @@ fetch（15+ sources）
   ↓
 关键词打分（标题 ×2 + 摘要 ×1，topic 级 excludes）
   ↓
-LLM 相关性评分（deepseek-v4-flash，threshold >= 6）  ← 命中缓存不重花 token
+LLM 相关性评分（deepseek-v4-flash，threshold >= 6；不足 5 条时用 >=4 的条目回补）  ← 命中缓存不重花 token
   ↓
-build_digest（按 topic 分组，按相关性排序，取 max_items）
+build_digest（按 topic 分组，按 LLM 评分排序，目标 5-8 条）
   ↓
 LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 命中缓存
   ↓
-渲染全中文 Markdown 日报
+渲染中英文 Markdown 日报
   Highlights / 本节要点 / 每条 (summary_zh + why_it_matters + evidence_type + caveat)
+  ↓
+保存 data/runs/YYYY-MM-DD.json 与 data/state/seen_dois.json
 ```
 
-测试：77 passed。
+测试：当前期望 `118+` passed；每次改动后以本机 pytest 输出为准。
+
+## 2026-05-28 接管维护进展
+
+- GitHub Actions 已补齐 `CSTCLOUD_API_KEY` secret 注入。
+- GitHub Actions 已改为提交日报、`data/runs` 和 `data/state`。
+- 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
+- `config/digest.yaml` 已设置：
+  - `target_items_min: 5`
+  - `max_items: 8`
+- `config/llm.yaml` 已将 `budget.max_items_per_run` 调到 `24`，让 LLM 有更大的候选池。
+- LLM 筛选策略：先保留 `llm_score >= 6`，如果少于 5 条，则用 `llm_score >= 4` 的候选按分数回补。
+- README 已补充 GitHub Secret、自动运行和提交文件说明。
 
 ## P1 LLM 集成产出（2026-05-27 收尾）
 
@@ -74,17 +88,17 @@ config/llm.yaml                       ← CSTCloud uni-api，已 enabled
 
 ## 当前已知问题
 
-- **PubMed 偶发日期解析失败**：`"2026 May-Jun"` 格式 RSS 时间戳，`fetch.py` 现有 per-source try/except 会跳过该源（不影响整体）
-- **Semantic Scholar 无 key 时常被 429**：同样靠 per-source try/except 自动 skip
+- **Semantic Scholar 无 key 时常被 429**：已从默认 sources 中移除；后续有 API key 再恢复。
 - **本机 HTTP 代理可能干扰 TLS**：`HTTP_PROXY=http://127.0.0.1:7897`。本地手跑遇到 TLS 错先 unset 代理。CI 不受影响
+- **LLM 产出数量仍需观察**：目标改为 5-8 条，但需要连续几天运行 metrics 证明稳定。
 
-## 可选的下一阶段（P2 候选）
+## 下一阶段（P2 候选）
 
-- **GitHub Actions CI 加 CSTCLOUD_API_KEY secret**：让每日定时跑也走 LLM
+- **连续运行观察**：检查 `data/runs/*.json` 中 `llm_relevance.kept` 是否稳定在 5-8。
 - **embedding 去重**：当前只按 URL 去重，跨源同篇论文不同 URL 不会合并。`config/llm.yaml.embeddings` 配置已就绪（bge-large-zh / qwen3-embedding）
 - **rerank**：candidate 量大时按 `qwen3-reranker` / `bge-reranker-v2-m3` 重排
 - **更多源**：FEMS / Microbiome / ISME J 之类的 Crossref ISSN
-- **跨日 dedup**：今天的论文跟昨天的重叠时合并而不是各自一篇
+- **Web of Science**：具备 Clarivate API key 与机构权限后作为增强来源。
 
 ## 常用命令
 
@@ -93,7 +107,7 @@ config/llm.yaml                       ← CSTCloud uni-api，已 enabled
 /Users/liuyue/miniforge3/envs/ecobio-daily/bin/python -m pytest -q
 
 # 跑日报
-/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/run_daily.py --date 2026-05-27
+/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/run_daily.py --date 2026-05-28
 
 # 看 git 状态
 git status --short

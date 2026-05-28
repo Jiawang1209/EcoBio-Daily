@@ -16,6 +16,10 @@ def _normalize(doi: str) -> str:
     result = doi.lower()
     while result and result[-1] in _TRAILING_PUNCT:
         result = result[:-1]
+    if result.startswith("10.17632/"):
+        result = re.sub(r"\.\d+$", "", result)
+    if result.startswith("10.6084/m9.figshare."):
+        result = re.sub(r"\.v\d+$", "", result)
     return result
 
 

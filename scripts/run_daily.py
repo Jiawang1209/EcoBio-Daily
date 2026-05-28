@@ -46,6 +46,13 @@ def _maybe_build_llm_client(llm_config_path: Path, dotenv_path: Path) -> LLMClie
     return LLMClient(config=llm_config, env=env, cache_dir=cache_dir)
 
 
+def _llm_max_items(llm_config_path: Path) -> int:
+    if not llm_config_path.exists():
+        return 12
+    llm_config = load_llm_config(llm_config_path)
+    return llm_config.budget.max_items_per_run
+
+
 def main() -> None:
     args = parse_args()
     digest_date = date.fromisoformat(args.date)
@@ -56,6 +63,7 @@ def main() -> None:
         print("LLM relevance scoring disabled (no config or llm.enabled=false).")
     metrics = RunMetrics(digest_date=digest_date)
     output_root = Path(args.output_root)
+    llm_config_path = Path(args.llm_config)
     output_path = run_pipeline(
         sources=load_sources(Path(args.sources)),
         topics=load_topics(Path(args.topics)),
@@ -64,6 +72,7 @@ def main() -> None:
         template_path=Path(args.template),
         output_root=output_root,
         llm_client=llm_client,
+        llm_max_items=_llm_max_items(llm_config_path),
         metrics=metrics,
     )
     metrics.save(output_root / "data" / "runs" / f"{digest_date.isoformat()}.json")

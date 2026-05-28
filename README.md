@@ -2,12 +2,13 @@
 
 EcoBio Daily 是一个本地优先的生态学与微生物学研究进展日报生成系统。
 
-## 第一版能力
+## 当前能力
 
-- 从配置的数据源抓取最新研究条目，支持 RSS、OpenAlex、Europe PMC、PubMed 和 bioRxiv API。
-- 按生态学和微生物学主题进行关键词筛选。
-- 选择高相关内容生成中文 Markdown 日报。
-- 将日报保存到 `YYYY/MM/` 目录。
+- 从配置的数据源抓取最新研究条目，支持 RSS、OpenAlex、Europe PMC、PubMed、bioRxiv API、Crossref 和 Semantic Scholar。
+- 聚焦森林、农田、草地土壤微生物，以及微生物驱动的生物地球化学循环。
+- 通过关键词、排除词、跨源 DOI 去重、跨日 DOI 去重和 LLM 相关性评分筛选候选文献。
+- 使用 LLM 生成中文研究简报，并进行 grounding check；未通过事实核查的条目会在日报中标注。
+- 将中英文日报保存到 `YYYY/MM/`，并将运行指标保存到 `data/runs/`，跨日 DOI 状态保存到 `data/state/`。
 
 ## 环境
 
@@ -19,6 +20,12 @@ mamba activate ecobio-daily
 
 ```bash
 python scripts/run_daily.py --date 2026-04-28
+```
+
+LLM 默认启用。需要在本地 `.env` 或 shell 环境中配置：
+
+```bash
+CSTCLOUD_API_KEY=...
 ```
 
 ## 文献来源配置
@@ -51,6 +58,24 @@ sources:
 - `semantic_scholar`
 
 Web of Science 适合作为后续增强来源，但通常需要 Clarivate API key 和机构权限，因此不作为默认运行依赖。
+
+## 自动运行
+
+GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时间每天 08:00 运行，也支持手动触发。
+
+要让定时任务生成 LLM 中文简报，需要在 GitHub 仓库设置中添加 secret：
+
+```text
+CSTCLOUD_API_KEY
+```
+
+工作流会提交：
+
+- `YYYY/MM/` 下的中英文日报。
+- `data/runs/YYYY-MM-DD.json` 运行指标。
+- `data/state/seen_dois.json` 跨日 DOI 去重状态。
+
+当前默认目标是每天生成 5-8 条高质量文献条目：`config/digest.yaml` 中 `target_items_min: 5`，`max_items: 8`。
 
 ## 输出文件
 

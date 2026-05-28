@@ -31,6 +31,7 @@ class DigestConfig(BaseModel):
     highlights: int
     min_relevance_score: int
     lookback_days: int
+    target_items_min: int = 5
 
 
 class LLMProfile(BaseModel):

@@ -27,10 +27,11 @@ def _digest_config() -> DigestConfig:
         title="EcoBio Daily",
         language="zh",
         output_pattern="{year}/{month}/ecobio_digest_1d_{date}_{lang}.md",
-        max_items=12,
+        max_items=8,
         highlights=3,
         min_relevance_score=2,
         lookback_days=2,
+        target_items_min=5,
     )
 
 
@@ -389,6 +390,76 @@ def test_pipeline_drops_items_with_low_llm_score(tmp_path: Path, monkeypatch):
     assert "Soil microbiome good2" in text
     assert "Soil microbiome bad" not in text
     assert len(captured["titles"]) == 3
+
+
+def test_pipeline_backfills_to_target_min_with_acceptable_llm_scores(
+    tmp_path: Path, monkeypatch
+):
+    items = [_soil_item(f"p{i}") for i in range(6)]
+
+    def fake_batch_score(items_arg, client):
+        return [9, 7, 5, 5, 4, 3]
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section", lambda *a, **kw: None
+    )
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+        llm_max_items=6,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    for slug in ("p0", "p1", "p2", "p3", "p4"):
+        assert f"Soil microbiome {slug}" in text
+    assert "Soil microbiome p5" not in text
+
+
+def test_pipeline_excludes_summaryless_items_from_llm_selection(
+    tmp_path: Path, monkeypatch
+):
+    with_summary = _soil_item("with-summary")
+    no_summary = SourceItem(
+        id="no-summary",
+        title="Soil microbiome no-summary",
+        url="https://example.org/no-summary",
+        source="example",
+        published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+        summary="",
+    )
+
+    captured: dict = {}
+
+    def fake_batch_score(items_arg, client):
+        captured["titles"] = [it.title for it in items_arg]
+        return [9] * len(items_arg)
+
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", fake_batch_score)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.generate_section", lambda *a, **kw: None
+    )
+
+    output_path = run_pipeline_from_items(
+        items=[with_summary, no_summary],
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+    )
+
+    assert captured["titles"] == [with_summary.title]
+    text = output_path.read_text(encoding="utf-8")
+    assert "Soil microbiome with-summary" in text
+    assert "Soil microbiome no-summary" not in text
 
 
 def test_pipeline_falls_back_when_llm_returns_all_minus_one(tmp_path: Path, monkeypatch):
