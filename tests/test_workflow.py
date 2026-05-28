@@ -95,6 +95,13 @@ def test_daily_workflow_resolves_digest_date_once_before_generation():
     assert "DIGEST_DATE" in resolve_step["run"]
 
 
+def test_daily_workflow_serializes_runs_to_protect_state_files():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+
+    assert workflow["concurrency"]["group"] == "ecobio-daily"
+    assert workflow["concurrency"]["cancel-in-progress"] is False
+
+
 def test_ci_workflow_runs_pytest_on_push_and_pull_request():
     workflow = yaml.safe_load(Path(".github/workflows/ci.yml").read_text())
 

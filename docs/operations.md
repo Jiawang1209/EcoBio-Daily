@@ -48,6 +48,8 @@ Runs daily at 08:00 Asia/Shanghai and can also be started manually with `workflo
 
 Manual runs accept an optional `digest_date` input in `YYYY-MM-DD` format. Leave it blank to generate today's digest in Asia/Shanghai, or set it to a specific date to backfill or re-run that day.
 
+Daily runs are serialized with the `ecobio-daily` concurrency group. If a scheduled run and a manual backfill overlap, GitHub queues the later run instead of cancelling or running both at once. This protects `data/state/seen_dois.json` from concurrent writes.
+
 The daily workflow:
 
 1. Installs Python dependencies.
