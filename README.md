@@ -65,6 +65,8 @@ GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时�
 
 `.github/workflows/ci.yml` 会在 push 和 pull request 时运行测试，确保代码改动不会破坏日报管线。
 
+日常运维步骤见 `docs/operations.md`。
+
 要让定时任务生成 LLM 中文简报，需要在 GitHub 仓库设置中添加 secret：
 
 ```text

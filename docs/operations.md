@@ -1,0 +1,117 @@
+# EcoBio Daily Operations
+
+This runbook covers the production path for the daily automated digest.
+
+## GitHub Secret
+
+The daily workflow requires one repository secret:
+
+```text
+CSTCLOUD_API_KEY
+```
+
+Configure it in GitHub:
+
+```text
+Settings -> Secrets and variables -> Actions -> New repository secret
+```
+
+Use exactly `CSTCLOUD_API_KEY` as the secret name. The value should be the CSTCloud uni-api key used by `config/llm.yaml`.
+
+The workflow intentionally fails before generation if this secret is missing. This prevents a downgraded non-LLM digest from being committed.
+
+## Workflows
+
+### CI
+
+File:
+
+```text
+.github/workflows/ci.yml
+```
+
+Runs on push and pull request. It installs the package with dev dependencies and runs:
+
+```bash
+python -m pytest -q
+```
+
+### Daily Digest
+
+File:
+
+```text
+.github/workflows/daily.yml
+```
+
+Runs daily at 08:00 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
+
+The daily workflow:
+
+1. Installs Python dependencies.
+2. Validates that `CSTCLOUD_API_KEY` is configured.
+3. Runs `scripts/run_daily.py --require-llm`.
+4. Runs `scripts/validate_daily.py`.
+5. Commits the generated digest, `data/runs`, and `data/state`.
+
+## Manual Validation
+
+Run the same checks locally:
+
+```bash
+/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python -m pytest -q
+/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/run_daily.py --date YYYY-MM-DD --require-llm
+/Users/liuyue/miniforge3/envs/ecobio-daily/bin/python scripts/validate_daily.py --date YYYY-MM-DD
+```
+
+Expected validator behavior:
+
+- Fails if the digest has fewer than 5 or more than 8 items.
+- Fails if LLM grounding has failed or errored items.
+- Fails if either the Chinese or English digest file is missing.
+
+## Expected Outputs
+
+For date `YYYY-MM-DD`, the daily run should produce:
+
+```text
+YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_zh.md
+YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_en.md
+data/runs/YYYY-MM-DD.json
+data/state/seen_dois.json
+```
+
+`data/runs/YYYY-MM-DD.json` is the first place to inspect when something looks wrong. The most useful stages are:
+
+- `fetch_total`: source availability and candidate volume.
+- `keyword_score`: how many candidates match topic filters.
+- `llm_relevance`: how many candidates were scored and kept.
+- `build_digest`: final section, item, and highlight counts.
+- `llm_grounding`: factual grounding pass/fail counts.
+
+## Common Failures
+
+### Missing Secret
+
+Symptom:
+
+```text
+CSTCLOUD_API_KEY secret is not configured
+```
+
+Fix: add or update the GitHub Actions repository secret.
+
+### Source Fetch Failures
+
+Some external sources occasionally fail because of TLS, rate limits, or service outages. The pipeline records source-level errors and continues if enough candidates remain. Inspect `data/runs/YYYY-MM-DD.json` under `fetch_total.sources`.
+
+### Validator Failure
+
+If `scripts/validate_daily.py` fails, do not manually commit the generated digest. Inspect:
+
+```text
+data/runs/YYYY-MM-DD.json
+YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_zh.md
+```
+
+Then adjust source availability, scoring thresholds, or LLM prompts only after understanding the failure stage.
