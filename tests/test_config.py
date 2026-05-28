@@ -129,3 +129,27 @@ sources:
     assert sources[0].type == "crossref"
     assert sources[0].issn == "1461-0248"
     assert sources[0].query is None
+
+
+def test_load_wos_source_with_api_key_env_and_database(tmp_path: Path):
+    path = tmp_path / "sources.yaml"
+    path.write_text(
+        """
+sources:
+  - id: wos_soil_micro
+    name: Web of Science Soil Microbiology
+    type: wos_starter
+    query: TS=("soil microbiome" OR rhizosphere)
+    database: WOS
+    api_key_env: WOS_API_KEY
+    max_results: 25
+""".strip(),
+        encoding="utf-8",
+    )
+
+    sources = load_sources(path)
+
+    assert sources[0].type == "wos_starter"
+    assert sources[0].query == 'TS=("soil microbiome" OR rhizosphere)'
+    assert sources[0].database == "WOS"
+    assert sources[0].api_key_env == "WOS_API_KEY"

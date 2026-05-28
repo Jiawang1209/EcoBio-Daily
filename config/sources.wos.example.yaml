@@ -1,0 +1,8 @@
+sources:
+  - id: wos_soil_micro
+    name: Web of Science Soil Microbiology & Biogeochemistry
+    type: wos_starter
+    query: 'TS=("soil microbiome" OR "soil microbial community" OR "soil fungal community" OR rhizosphere OR mycorrhiza OR "soil carbon cycling" OR "soil nitrogen cycling" OR nitrification OR denitrification)'
+    database: WOS
+    api_key_env: WOS_API_KEY
+    max_results: 25

@@ -4,7 +4,7 @@ EcoBio Daily 是一个本地优先的生态学与微生物学研究进展日报�
 
 ## 当前能力
 
-- 从配置的数据源抓取最新研究条目，支持 RSS、OpenAlex、Europe PMC、PubMed、bioRxiv API、Crossref 和 Semantic Scholar。
+- 从配置的数据源抓取最新研究条目，支持 RSS、OpenAlex、Europe PMC、PubMed、bioRxiv API、Crossref、Semantic Scholar 和可选 Web of Science Starter API。
 - 聚焦森林、农田、草地土壤微生物，以及微生物驱动的生物地球化学循环。
 - 通过关键词、排除词、跨源 DOI 去重、跨日 DOI 去重和 LLM 相关性评分筛选候选文献。
 - 使用 LLM 生成中文研究简报，并进行 grounding check；未通过事实核查的条目会在日报中标注。
@@ -45,6 +45,14 @@ sources:
     type: pubmed
     query: '("microbiome"[Title/Abstract] OR "microbial ecology"[Title/Abstract])'
     max_results: 50
+
+  - id: wos_soil_micro
+    name: Web of Science Soil Microbiology
+    type: wos_starter
+    query: 'TS=("soil microbiome" OR "soil microbial community" OR rhizosphere)'
+    database: WOS
+    api_key_env: WOS_API_KEY
+    max_results: 25
 ```
 
 当前支持的 `type`：
@@ -56,8 +64,9 @@ sources:
 - `biorxiv_api`
 - `crossref`（支持 `query` 或按 `issn` 订阅期刊）
 - `semantic_scholar`
+- `wos_starter`（可选增强源，需要 Clarivate Web of Science Starter API key）
 
-Web of Science 适合作为后续增强来源，但通常需要 Clarivate API key 和机构权限，因此不作为默认运行依赖。
+Web of Science 通常需要 Clarivate API key 和机构权限，因此不作为默认运行依赖。拿到 key 后，可参考 `config/sources.wos.example.yaml` 把 `wos_starter` source 合并进 `config/sources.yaml`，并在本地或 GitHub Actions secret 中配置 `WOS_API_KEY`。
 
 ## 自动运行
 
@@ -74,6 +83,14 @@ CSTCLOUD_API_KEY
 ```
 
 工作流会先执行 `Validate LLM secret`。若该 secret 缺失，GitHub Actions 会在生成日报前失败并停止提交。随后生成步骤也使用 `--require-llm`，避免把未经过 LLM 筛选与中文简报生成的降级日报写入仓库。
+
+如果启用 Web of Science source，还需要额外添加：
+
+```text
+WOS_API_KEY
+```
+
+默认 `config/sources.yaml` 不启用 WoS，所以缺少 `WOS_API_KEY` 不会影响当前自动日报。
 
 生成后还会运行 `scripts/validate_daily.py`，确认日报条目数在 5-8 条之间、LLM grounding 没有失败，并且中英文输出文件存在；不满足条件时不会提交。
 

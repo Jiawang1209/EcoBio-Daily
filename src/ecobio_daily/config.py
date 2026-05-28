@@ -13,6 +13,8 @@ class SourceConfig(BaseModel):
     url: HttpUrl | None = None
     query: str | None = None
     issn: str | None = None
+    database: str = "WOS"
+    api_key_env: str | None = None
     max_results: int = 50
 
 

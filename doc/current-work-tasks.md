@@ -56,6 +56,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - `docs/operations.md` 已添加日常运维手册，覆盖 secret 配置、手动触发、validator、常见失败与排查入口。
 - `scripts/summarize_runs.py` 已添加，用于查看 `data/runs` 历史并验证某日期后的连续运行是否都满足 5-8 条和 grounding 要求。
 - 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
+- 已实现可选 `wos_starter` 来源类型，使用 Clarivate Web of Science Starter API `/documents`，通过 `WOS_API_KEY` header 鉴权；示例配置在 `config/sources.wos.example.yaml`，默认 sources 不启用，避免缺 key 影响自动日报。
 - `config/digest.yaml` 已设置：
   - `target_items_min: 5`
   - `max_items: 8`
@@ -106,7 +107,7 @@ config/llm.yaml                       ← CSTCloud uni-api，已 enabled
 - **embedding 去重**：当前只按 URL 去重，跨源同篇论文不同 URL 不会合并。`config/llm.yaml.embeddings` 配置已就绪（bge-large-zh / qwen3-embedding）
 - **rerank**：candidate 量大时按 `qwen3-reranker` / `bge-reranker-v2-m3` 重排
 - **更多源**：FEMS / Microbiome / ISME J 之类的 Crossref ISSN
-- **Web of Science**：具备 Clarivate API key 与机构权限后作为增强来源。
+- **Web of Science**：后端已具备；拿到 Clarivate API key 与机构权限后，把 `config/sources.wos.example.yaml` 合并进 `config/sources.yaml`，并在 GitHub Actions 添加 `WOS_API_KEY`。
 
 ## 常用命令
 

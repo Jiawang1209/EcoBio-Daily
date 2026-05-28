@@ -1,14 +1,20 @@
 from pathlib import Path
 from datetime import date
 
+import httpx
+import pytest
+
+from ecobio_daily.config import SourceConfig
 from ecobio_daily.fetch import (
     _parse_publication_date,
+    fetch_source,
     parse_crossref,
     parse_europe_pmc,
     parse_openalex,
     parse_pubmed,
     parse_rss,
     parse_semantic_scholar,
+    parse_wos_starter,
 )
 
 
@@ -199,6 +205,108 @@ def test_parse_semantic_scholar_maps_paper_to_source_item():
     assert items[0].authors == ["Ada Lovelace", "Grace Hopper"]
     assert items[0].published_date == date(2026, 5, 17)
     assert items[0].tags == ["semantic_scholar_eco"]
+
+
+def test_parse_wos_starter_maps_document_to_source_item():
+    payload = {
+        "hits": [
+            {
+                "uid": "WOS:001234567800001",
+                "title": "Soil microbiome controls nitrogen cycling",
+                "source": {
+                    "sourceTitle": "Soil Biology and Biochemistry",
+                    "publishYear": 2026,
+                    "publishMonth": "MAY",
+                },
+                "identifiers": {"doi": "10.1111/wos-example"},
+                "names": {
+                    "authors": [
+                        {"displayName": "Lovelace, Ada"},
+                        {"displayName": "Hopper, Grace"},
+                    ]
+                },
+                "keywords": {"authorKeywords": ["soil microbiome", "nitrogen cycling"]},
+                "links": {"record": "https://www.webofscience.com/wos/woscc/full-record/WOS:001234567800001"},
+            }
+        ]
+    }
+
+    items = parse_wos_starter(payload, source_id="wos_soil_micro", source_name="Web of Science")
+
+    assert len(items) == 1
+    assert items[0].id == "10.1111/wos-example"
+    assert items[0].url == "https://doi.org/10.1111/wos-example"
+    assert items[0].title == "Soil microbiome controls nitrogen cycling"
+    assert items[0].summary == "soil microbiome; nitrogen cycling"
+    assert items[0].source == "Web of Science: Soil Biology and Biochemistry"
+    assert items[0].authors == ["Lovelace, Ada", "Hopper, Grace"]
+    assert items[0].published_date == date(2026, 5, 1)
+    assert items[0].tags == ["wos_soil_micro"]
+
+
+def test_fetch_wos_starter_uses_api_key_header(monkeypatch):
+    captured = {}
+
+    def fake_get(url, params, headers, timeout, follow_redirects):
+        captured["url"] = url
+        captured["params"] = params
+        captured["headers"] = headers
+        return httpx.Response(
+            200,
+            request=httpx.Request("GET", url),
+            json={
+                "hits": [
+                    {
+                        "uid": "WOS:1",
+                        "title": "Rhizosphere microbiome paper",
+                        "source": {"publishYear": 2026},
+                        "links": {"record": "https://example.org/wos/1"},
+                    }
+                ]
+            },
+        )
+
+    monkeypatch.setenv("WOS_API_KEY", "wos-test-key")
+    monkeypatch.setattr("ecobio_daily.fetch.httpx.get", fake_get)
+
+    items = fetch_source(
+        SourceConfig(
+            id="wos_soil_micro",
+            name="Web of Science",
+            type="wos_starter",
+            query='TS=("soil microbiome")',
+            api_key_env="WOS_API_KEY",
+            database="WOS",
+            max_results=25,
+        )
+    )
+
+    assert captured["url"] == "https://api.clarivate.com/apis/wos-starter/v1/documents"
+    assert captured["params"] == {
+        "q": 'TS=("soil microbiome")',
+        "db": "WOS",
+        "limit": 25,
+        "page": 1,
+        "sortField": "LD+D",
+    }
+    assert captured["headers"]["X-ApiKey"] == "wos-test-key"
+    assert items[0].title == "Rhizosphere microbiome paper"
+    assert items[0].summary == "Rhizosphere microbiome paper"
+
+
+def test_fetch_wos_starter_requires_configured_api_key(monkeypatch):
+    monkeypatch.delenv("WOS_API_KEY", raising=False)
+
+    with pytest.raises(RuntimeError, match="WOS_API_KEY"):
+        fetch_source(
+            SourceConfig(
+                id="wos_soil_micro",
+                name="Web of Science",
+                type="wos_starter",
+                query='TS=("soil microbiome")',
+                api_key_env="WOS_API_KEY",
+            )
+        )
 
 
 # ---------- _parse_publication_date ----------

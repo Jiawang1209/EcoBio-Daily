@@ -20,6 +20,14 @@ Use exactly `CSTCLOUD_API_KEY` as the secret name. The value should be the CSTCl
 
 The workflow intentionally fails before generation if this secret is missing. This prevents a downgraded non-LLM digest from being committed.
 
+Optional source secret:
+
+```text
+WOS_API_KEY
+```
+
+Only configure `WOS_API_KEY` if a `wos_starter` source from `config/sources.wos.example.yaml` has been enabled in `config/sources.yaml`. The default source list does not require it.
+
 ## Workflows
 
 ### CI
@@ -121,6 +129,8 @@ Fix: add or update the GitHub Actions repository secret.
 ### Source Fetch Failures
 
 Some external sources occasionally fail because of TLS, rate limits, or service outages. The pipeline records source-level errors and continues if enough candidates remain. Inspect `data/runs/YYYY-MM-DD.json` under `fetch_total.sources`.
+
+If a Web of Science source fails with a missing `WOS_API_KEY` message, either add the Clarivate API key as a GitHub Actions secret or remove the `wos_starter` source from `config/sources.yaml`.
 
 ### Validator Failure
 

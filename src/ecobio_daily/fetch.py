@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
+import os
 import re
 
 import feedparser
@@ -226,6 +227,89 @@ def parse_semantic_scholar(payload: dict, source_id: str, source_name: str) -> l
     return items
 
 
+_WOS_MONTHS = {
+    "JAN": 1,
+    "FEB": 2,
+    "MAR": 3,
+    "APR": 4,
+    "MAY": 5,
+    "JUN": 6,
+    "JUL": 7,
+    "AUG": 8,
+    "SEP": 9,
+    "OCT": 10,
+    "NOV": 11,
+    "DEC": 12,
+}
+
+
+def _first_present(mapping: dict, *keys: str):
+    for key in keys:
+        if key in mapping and mapping[key] is not None:
+            return mapping[key]
+    return None
+
+
+def _wos_publication_date(source: dict) -> datetime:
+    year = _first_present(source, "publishYear", "publish_year")
+    month = _first_present(source, "publishMonth", "publish_month")
+    try:
+        parsed_year = int(year)
+    except (TypeError, ValueError):
+        return datetime.now(timezone.utc)
+    parsed_month = 1
+    if isinstance(month, int):
+        parsed_month = month
+    elif isinstance(month, str):
+        parsed_month = _WOS_MONTHS.get(month.strip().upper()[:3], 1)
+    return datetime(parsed_year, parsed_month, 1, tzinfo=timezone.utc)
+
+
+def _wos_author_names(names: dict) -> list[str]:
+    authors = names.get("authors") or []
+    return [
+        _first_present(author, "displayName", "display_name", "wosStandard", "wos_standard")
+        for author in authors
+        if isinstance(author, dict)
+        and _first_present(author, "displayName", "display_name", "wosStandard", "wos_standard")
+    ]
+
+
+def parse_wos_starter(payload: dict, source_id: str, source_name: str) -> list[SourceItem]:
+    items: list[SourceItem] = []
+    for document in payload.get("hits", []):
+        source = document.get("source") or {}
+        identifiers = document.get("identifiers") or {}
+        names = document.get("names") or {}
+        keywords = document.get("keywords") or {}
+        links = document.get("links") or {}
+        doi = identifiers.get("doi")
+        title = (document.get("title") or "").strip()
+        url = (
+            _doi_url(doi)
+            or _first_present(links, "record", "webOfScience", "web_of_science")
+            or ""
+        )
+        author_keywords = _first_present(keywords, "authorKeywords", "author_keywords") or []
+        summary = "; ".join(str(keyword) for keyword in author_keywords) or title
+        item = SourceItem(
+            id=doi or document.get("uid") or url or title,
+            title=title,
+            url=url,
+            source=_source_with_journal(
+                source_name,
+                _first_present(source, "sourceTitle", "source_title"),
+            ),
+            published_at=_wos_publication_date(source),
+            summary=summary,
+            authors=_wos_author_names(names),
+            tags=[source_id],
+        )
+        if item.title and item.url:
+            items.append(item)
+    return items
+
+
 def _pubmed_doi(record: dict) -> str | None:
     for entry in record.get("articleids") or []:
         if entry.get("idtype") == "doi":
@@ -372,6 +456,30 @@ def _fetch_semantic_scholar(source: SourceConfig, timeout_seconds: float) -> lis
     return parse_semantic_scholar(response.json(), source_id=source.id, source_name=source.name)
 
 
+def _fetch_wos_starter(source: SourceConfig, timeout_seconds: float) -> list[SourceItem]:
+    if not source.query:
+        raise ValueError(f"Web of Science source requires query: {source.id}")
+    api_key_env = source.api_key_env or "WOS_API_KEY"
+    api_key = os.environ.get(api_key_env)
+    if not api_key:
+        raise RuntimeError(f"{api_key_env} is required for Web of Science source: {source.id}")
+    response = httpx.get(
+        "https://api.clarivate.com/apis/wos-starter/v1/documents",
+        params={
+            "q": source.query,
+            "db": source.database,
+            "limit": min(source.max_results, 50),
+            "page": 1,
+            "sortField": "LD+D",
+        },
+        headers={"X-ApiKey": api_key, "Accept": "application/json"},
+        timeout=timeout_seconds,
+        follow_redirects=True,
+    )
+    response.raise_for_status()
+    return parse_wos_starter(response.json(), source_id=source.id, source_name=source.name)
+
+
 def _fetch_biorxiv_api(source: SourceConfig, timeout_seconds: float) -> list[SourceItem]:
     if not source.query:
         raise ValueError(f"bioRxiv API source requires query: {source.id}")
@@ -415,6 +523,7 @@ def fetch_source(source: SourceConfig, timeout_seconds: float = 20.0) -> list[So
         "biorxiv_api": _fetch_biorxiv_api,
         "crossref": _fetch_crossref,
         "semantic_scholar": _fetch_semantic_scholar,
+        "wos_starter": _fetch_wos_starter,
     }
     fetcher = fetchers.get(source.type)
     if fetcher is None:
