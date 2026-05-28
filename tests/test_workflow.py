@@ -79,6 +79,31 @@ def test_daily_workflow_validates_digest_before_commit():
     assert "$DIGEST_DATE" in validate_step["run"]
 
 
+def test_daily_workflow_writes_github_step_summary_after_validation():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    steps = workflow["jobs"]["generate"]["steps"]
+    validate_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Validate generated digest"
+    )
+    summary_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Write run summary"
+    )
+    commit_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Commit generated files"
+    )
+    summary_step = steps[summary_index]
+
+    assert validate_index < summary_index < commit_index
+    assert "GITHUB_STEP_SUMMARY" in summary_step["run"]
+    assert "data/runs/" in summary_step["run"]
+    assert "DIGEST_DATE" in summary_step["run"]
+    assert "build_digest" in summary_step["run"]
+    assert "llm_grounding" in summary_step["run"]
+
+
 def test_daily_workflow_supports_manual_digest_date_input():
     workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
 

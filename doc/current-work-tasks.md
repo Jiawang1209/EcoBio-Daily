@@ -53,6 +53,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - Daily workflow 的 `workflow_dispatch` 已支持可选 `digest_date`，补跑/重跑时生成、校验、提交会使用同一个日期变量。
 - Daily workflow 已设置 `concurrency.group: ecobio-daily`，定时运行和手动补跑会排队串行，避免同时写 `data/state`。
 - Daily workflow 在提交前会 `git pull --rebase --autostash origin main`，避免 LLM 生成期间远端 `main` 更新导致最后 `git push` 被拒绝。
+- Daily workflow 在 validator 之后写入 GitHub Actions step summary，展示 digest item 数、LLM kept、grounding 状态和输出路径，便于远端运行页面快速排查。
 - `docs/operations.md` 已添加日常运维手册，覆盖 secret 配置、手动触发、validator、常见失败与排查入口。
 - `scripts/summarize_runs.py` 已添加，用于查看 `data/runs` 历史并验证某日期后的连续运行是否都满足 5-8 条和 grounding 要求。
 - `scripts/check_ops.py` 已添加，用于本地一键检查 daily workflow guard、secret 文档、指定日期产物和 run history；它不能替代 GitHub UI/认证 `gh` 对仓库 secret 与 Actions 真实状态的外部确认。

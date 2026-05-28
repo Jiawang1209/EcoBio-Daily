@@ -65,6 +65,36 @@ jobs:
           TZ: Asia/Shanghai
         run: python scripts/validate_daily.py --date "$DIGEST_DATE"
 
+      - name: Write run summary
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          import os
+          from pathlib import Path
+
+          digest_date = os.environ["DIGEST_DATE"]
+          metrics = json.loads(Path(f"data/runs/{digest_date}.json").read_text())
+          stages = metrics["stages"]
+          build_digest = stages["build_digest"]
+          llm_relevance = stages.get("llm_relevance", {})
+          llm_grounding = stages["llm_grounding"]
+          output = stages["output"]
+
+          print(f"## EcoBio Daily {digest_date}")
+          print()
+          print("| Metric | Value |")
+          print("| --- | --- |")
+          print(f"| Digest items | {build_digest.get('items')} |")
+          print(f"| LLM kept | {llm_relevance.get('kept', 0)} |")
+          print(f"| Grounding failed | {llm_grounding.get('failed', 0)} |")
+          print(f"| Grounding errored | {llm_grounding.get('errored', 0)} |")
+          print(f"| Grounding repaired | {llm_grounding.get('repaired', 0)} |")
+          print(f"| Chinese digest | `{output.get('zh')}` |")
+          print(f"| English digest | `{output.get('en')}` |")
+          PY
+
       - name: Commit generated files
         env:
           TZ: Asia/Shanghai

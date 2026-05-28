@@ -67,8 +67,9 @@ The daily workflow:
 3. Resolves one `DIGEST_DATE` for generation, validation, and commit.
 4. Runs `scripts/run_daily.py --require-llm`.
 5. Runs `scripts/validate_daily.py`.
-6. Rebases onto the latest `origin/main`.
-7. Commits the generated digest, `data/runs`, and `data/state`.
+6. Writes a GitHub Actions step summary with digest item counts, grounding status, and output paths.
+7. Rebases onto the latest `origin/main`.
+8. Commits the generated digest, `data/runs`, and `data/state`.
 
 ## Manual Validation
 
