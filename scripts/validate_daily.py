@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +16,26 @@ def _stage(metrics: dict[str, Any], name: str) -> dict[str, Any]:
     if not isinstance(stage, dict):
         _fail(f"missing metrics stage: {name}")
     return stage
+
+
+_REFERENCE_LINE_RE = re.compile(r"^- \*\*.+\*\* .+\(.+\)", re.MULTILINE)
+
+
+def _validate_markdown(path: Path, expected_items: int) -> None:
+    text = path.read_text(encoding="utf-8")
+    if not text.strip():
+        _fail(f"empty output file: {path}")
+    for heading in ("# ", "## Highlights", "## References"):
+        if heading not in text:
+            if heading == "## References":
+                _fail(f"missing References section: {path}")
+            _fail(f"missing required markdown heading {heading!r}: {path}")
+    references = text.split("## References", 1)[1]
+    reference_count = len(_REFERENCE_LINE_RE.findall(references))
+    if reference_count < expected_items:
+        _fail(
+            f"expected at least {expected_items} references in {path}, got {reference_count}"
+        )
 
 
 def validate_daily(
@@ -50,6 +71,7 @@ def validate_daily(
         path = output_root / relative
         if not path.exists():
             _fail(f"missing output file: {path}")
+        _validate_markdown(path, expected_items=items)
 
     state_path = output_root / "data" / "state" / "seen_dois.json"
     if not state_path.exists():

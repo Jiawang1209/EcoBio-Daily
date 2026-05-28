@@ -87,6 +87,7 @@ Expected validator behavior:
 - Fails if LLM grounding has failed or errored items.
 - Allows `grounding_repaired` items. These are LLM-written item summaries that failed grounding and were automatically replaced with the source summary before rendering.
 - Fails if either the Chinese or English digest file is missing.
+- Fails if a digest Markdown file is empty, lacks `Highlights` or `References`, or has fewer reference entries than the metrics item count.
 - Fails if `data/state/seen_dois.json` is missing or is not valid JSON.
 
 ## Expected Outputs
