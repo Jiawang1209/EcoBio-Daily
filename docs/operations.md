@@ -50,6 +50,8 @@ Manual runs accept an optional `digest_date` input in `YYYY-MM-DD` format. Leave
 
 Daily runs are serialized with the `ecobio-daily` concurrency group. If a scheduled run and a manual backfill overlap, GitHub queues the later run instead of cancelling or running both at once. This protects `data/state/seen_dois.json` from concurrent writes.
 
+Before committing generated files, the workflow rebases onto the latest `origin/main`. This prevents a long LLM generation run from failing at `git push` just because `main` advanced while the digest was being prepared.
+
 The daily workflow:
 
 1. Installs Python dependencies.
@@ -57,7 +59,8 @@ The daily workflow:
 3. Resolves one `DIGEST_DATE` for generation, validation, and commit.
 4. Runs `scripts/run_daily.py --require-llm`.
 5. Runs `scripts/validate_daily.py`.
-6. Commits the generated digest, `data/runs`, and `data/state`.
+6. Rebases onto the latest `origin/main`.
+7. Commits the generated digest, `data/runs`, and `data/state`.
 
 ## Manual Validation
 

@@ -102,6 +102,18 @@ def test_daily_workflow_serializes_runs_to_protect_state_files():
     assert workflow["concurrency"]["cancel-in-progress"] is False
 
 
+def test_daily_workflow_rebases_before_push_to_avoid_stale_checkout():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    commit_step = next(
+        step for step in workflow["jobs"]["generate"]["steps"]
+        if step["name"] == "Commit generated files"
+    )
+    run = commit_step["run"]
+
+    assert "git pull --rebase --autostash origin main" in run
+    assert run.index("git pull --rebase --autostash origin main") < run.index("git push")
+
+
 def test_ci_workflow_runs_pytest_on_push_and_pull_request():
     workflow = yaml.safe_load(Path(".github/workflows/ci.yml").read_text())
 

@@ -72,5 +72,12 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${DIGEST_DATE:0:4}"
           git add -f data/runs data/state
-          git diff --cached --quiet || git commit -m "Add EcoBio daily report: $DIGEST_DATE"
-          git push
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git pull --rebase --autostash origin main
+            git add "${DIGEST_DATE:0:4}"
+            git add -f data/runs data/state
+            git diff --cached --quiet || git commit -m "Add EcoBio daily report: $DIGEST_DATE"
+            git push
+          fi
