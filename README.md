@@ -92,7 +92,7 @@ WOS_API_KEY
 
 默认 `config/sources.yaml` 不启用 WoS，所以缺少 `WOS_API_KEY` 不会影响当前自动日报。
 
-生成后还会运行 `scripts/validate_daily.py`，确认日报条目数在 5-8 条之间、LLM grounding 没有失败，并且中英文输出文件存在；不满足条件时不会提交。
+生成后还会运行 `scripts/validate_daily.py`，确认日报条目数在 5-8 条之间、LLM grounding 没有失败、中英文输出文件结构完整、References 数量足够，并且 `data/state/seen_dois.json` 存在且可解析；不满足条件时不会提交。
 
 工作流会提交：
 
@@ -105,7 +105,10 @@ WOS_API_KEY
 ## 输出文件
 
 ```text
-2026/04/ecobio_digest_1d_2026-04-28_zh.md
+YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_zh.md
+YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_en.md
+data/runs/YYYY-MM-DD.json
+data/state/seen_dois.json
 ```
 
 ## 人工发布流程
@@ -113,14 +116,23 @@ WOS_API_KEY
 1. 运行生成器：
 
    ```bash
-   python scripts/run_daily.py --date YYYY-MM-DD
+   python scripts/run_daily.py --date YYYY-MM-DD --require-llm
    ```
 
-2. 根据 `docs/digest-quality-checklist.md` 复核生成的 Markdown。
+2. 运行提交前校验：
 
-3. 提交日报：
+   ```bash
+   python scripts/validate_daily.py --date YYYY-MM-DD
+   python scripts/summarize_runs.py --since YYYY-MM-DD
+   ```
+
+3. 快速复核生成的中英文 Markdown 和 `data/runs/YYYY-MM-DD.json`。
+
+4. 提交日报与运行状态：
 
    ```bash
    git add YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_zh.md
+   git add YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_en.md
+   git add -f data/runs/YYYY-MM-DD.json data/state/seen_dois.json
    git commit -m "Add EcoBio daily report: YYYY-MM-DD"
    ```
