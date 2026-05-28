@@ -71,6 +71,8 @@ The daily workflow:
 7. Rebases onto the latest `origin/main`.
 8. Commits the generated digest, `data/runs`, and `data/state`.
 
+The workflow uses Node 24-compatible official actions (`actions/checkout@v6` and `actions/setup-python@v6`) to avoid GitHub-hosted runner deprecation warnings for older Node 20 action runtimes.
+
 ## Manual Validation
 
 Run the same checks locally:

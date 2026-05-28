@@ -25,6 +25,12 @@ concurrency:
 jobs:
   generate:
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
       - name: Validate LLM secret
         env:
           CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
@@ -124,6 +130,23 @@ def test_check_operations_rejects_workflow_without_required_llm(tmp_path: Path):
     results = check_operations(tmp_path, digest_date="2026-05-28", since="2026-05-28")
 
     assert any(not result.ok and "--require-llm" in result.detail for result in results)
+
+
+def test_check_operations_rejects_node20_action_versions(tmp_path: Path):
+    _write_workflow(tmp_path)
+    _write_docs(tmp_path)
+    _write_valid_artifacts(tmp_path)
+    workflow = tmp_path / ".github" / "workflows" / "daily.yml"
+    workflow.write_text(
+        workflow.read_text(encoding="utf-8")
+        .replace("actions/checkout@v6", "actions/checkout@v4")
+        .replace("actions/setup-python@v6", "actions/setup-python@v5"),
+        encoding="utf-8",
+    )
+
+    results = check_operations(tmp_path, digest_date="2026-05-28", since="2026-05-28")
+
+    assert any(not result.ok and "Node 24 compatible" in result.detail for result in results)
 
 
 def test_check_operations_rejects_bad_daily_artifacts(tmp_path: Path):

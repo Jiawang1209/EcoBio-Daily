@@ -155,6 +155,24 @@ def test_ci_workflow_runs_pytest_on_push_and_pull_request():
     assert "push" in workflow[True]
     assert "pull_request" in workflow[True]
     steps = workflow["jobs"]["tests"]["steps"]
-    assert any(step.get("uses") == "actions/setup-python@v5" for step in steps)
+    assert any(step.get("uses") == "actions/setup-python@v6" for step in steps)
     assert any("python -m pip install -e \".[dev]\"" in step.get("run", "") for step in steps)
     assert any("python -m pytest -q" in step.get("run", "") for step in steps)
+
+
+def test_workflows_use_node24_compatible_official_actions():
+    workflow_paths = [
+        Path(".github/workflows/ci.yml"),
+        Path(".github/workflows/daily.yml"),
+    ]
+
+    for path in workflow_paths:
+        workflow = yaml.safe_load(path.read_text())
+        for job in workflow["jobs"].values():
+            for step in job["steps"]:
+                assert step.get("uses") != "actions/checkout@v4", path
+                assert step.get("uses") != "actions/setup-python@v5", path
+                if step.get("name") == "Check out repository":
+                    assert step["uses"] == "actions/checkout@v6"
+                if step.get("name") == "Set up Python":
+                    assert step["uses"] == "actions/setup-python@v6"

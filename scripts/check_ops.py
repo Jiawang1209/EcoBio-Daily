@@ -50,6 +50,19 @@ def _daily_workflow_check(root: Path) -> CheckResult:
     if missing:
         return _result("daily workflow", False, "missing step(s): " + ", ".join(missing))
 
+    deprecated_actions = [
+        step.get("uses", "")
+        for step in steps
+        if isinstance(step, dict)
+        and step.get("uses") in {"actions/checkout@v4", "actions/setup-python@v5"}
+    ]
+    if deprecated_actions:
+        return _result(
+            "daily workflow",
+            False,
+            "actions must be Node 24 compatible: " + ", ".join(deprecated_actions),
+        )
+
     generate = by_name["Generate digest"]
     validate = by_name["Validate generated digest"]
     commit = by_name["Commit generated files"]
