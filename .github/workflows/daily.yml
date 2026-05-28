@@ -39,6 +39,11 @@ jobs:
           CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
         run: python scripts/run_daily.py --date "$(date +%F)" --require-llm
 
+      - name: Validate generated digest
+        env:
+          TZ: Asia/Shanghai
+        run: python scripts/validate_daily.py --date "$(date +%F)"
+
       - name: Commit generated files
         env:
           TZ: Asia/Shanghai

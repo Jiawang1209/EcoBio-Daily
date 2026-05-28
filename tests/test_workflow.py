@@ -47,3 +47,20 @@ def test_daily_workflow_validates_cstcloud_secret_before_generation():
     assert validate_index < generate_index
     assert "CSTCLOUD_API_KEY" in validate_step["env"]
     assert "CSTCLOUD_API_KEY secret is not configured" in validate_step["run"]
+
+
+def test_daily_workflow_validates_digest_before_commit():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    steps = workflow["jobs"]["generate"]["steps"]
+    validate_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Validate generated digest"
+    )
+    commit_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Commit generated files"
+    )
+    validate_step = steps[validate_index]
+
+    assert validate_index < commit_index
+    assert "scripts/validate_daily.py" in validate_step["run"]

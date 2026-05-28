@@ -71,6 +71,8 @@ CSTCLOUD_API_KEY
 
 工作流会先执行 `Validate LLM secret`。若该 secret 缺失，GitHub Actions 会在生成日报前失败并停止提交。随后生成步骤也使用 `--require-llm`，避免把未经过 LLM 筛选与中文简报生成的降级日报写入仓库。
 
+生成后还会运行 `scripts/validate_daily.py`，确认日报条目数在 5-8 条之间、LLM grounding 没有失败，并且中英文输出文件存在；不满足条件时不会提交。
+
 工作流会提交：
 
 - `YYYY/MM/` 下的中英文日报。
