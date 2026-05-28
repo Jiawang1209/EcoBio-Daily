@@ -535,13 +535,17 @@ def _fake_brief(topic_name: str, items_arg, client):
     }
 
 
+def _grounded(*_args, **_kwargs):
+    return {"grounded": True, "score": 9, "reason": "ok"}
+
+
 def test_pipeline_attaches_llm_brief_to_sections(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1"), _soil_item("p2")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
     monkeypatch.setattr(
         "ecobio_daily.pipeline.check_groundedness",
-        lambda abstract, brief_item, client: None,
+        _grounded,
     )
 
     output_path = run_pipeline_from_items(
@@ -622,13 +626,60 @@ def test_pipeline_attaches_llm_grounding_verdict(tmp_path: Path, monkeypatch):
     }
 
 
+def test_pipeline_falls_back_when_llm_brief_item_is_not_grounded(
+    tmp_path: Path, monkeypatch
+):
+    from ecobio_daily.run_metrics import RunMetrics
+
+    metrics = RunMetrics(digest_date=date(2026, 4, 28))
+    items = [_soil_item("p1")]
+    monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9])
+    monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
+    monkeypatch.setattr(
+        "ecobio_daily.pipeline.check_groundedness",
+        lambda abstract, brief_item, client: {
+            "grounded": False,
+            "score": 6,
+            "reason": "introduced unsupported number",
+        },
+    )
+
+    output_path = run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=_FAKE_CLIENT,
+        metrics=metrics,
+    )
+
+    text = output_path.read_text(encoding="utf-8")
+    scored = json.loads(
+        (tmp_path / "data" / "processed" / "2026-04-28-scored.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    assert "中文摘要-Soil microbiome p1" not in text
+    assert "Soil microbial communities drive carbon cycling" in text
+    assert scored[0]["llm_brief_item"] is None
+    assert metrics.stages["llm_grounding"] == {
+        "passed": 0,
+        "failed": 0,
+        "errored": 0,
+        "repaired": 1,
+    }
+
+
 def test_pipeline_attaches_llm_brief_item_for_highlights(tmp_path: Path, monkeypatch):
     items = [_soil_item("p1"), _soil_item("p2")]
     monkeypatch.setattr("ecobio_daily.pipeline.batch_score", lambda its, c: [9, 9])
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
     monkeypatch.setattr(
         "ecobio_daily.pipeline.check_groundedness",
-        lambda abstract, brief_item, client: None,
+        _grounded,
     )
 
     output_path = run_pipeline_from_items(
@@ -652,7 +703,7 @@ def test_pipeline_writes_both_zh_and_en_when_llm_enabled(tmp_path: Path, monkeyp
     monkeypatch.setattr("ecobio_daily.pipeline.generate_section", _fake_brief)
     monkeypatch.setattr(
         "ecobio_daily.pipeline.check_groundedness",
-        lambda abstract, brief_item, client: None,
+        _grounded,
     )
 
     run_pipeline_from_items(
@@ -764,6 +815,37 @@ def test_pipeline_persists_dois_after_successful_run(tmp_path: Path):
         (tmp_path / "data" / "state" / "seen_dois.json").read_text(encoding="utf-8")
     )
     assert seen == {"10.1234/freshly-published": "2026-04-28"}
+
+
+def test_pipeline_persists_only_selected_digest_dois(tmp_path: Path):
+    items = [
+        SourceItem(
+            id=f"paper-{index}",
+            title=f"Soil microbiome selected paper {index}",
+            url=f"https://doi.org/10.1234/selected-{index}",
+            source="example",
+            published_at=datetime(2026, 4, 28, tzinfo=timezone.utc),
+            summary="Soil microbial communities drive carbon cycling.",
+        )
+        for index in range(1, 10)
+    ]
+
+    run_pipeline_from_items(
+        items=items,
+        topics=_soil_topics(),
+        digest_config=_digest_config(),
+        digest_date=date(2026, 4, 28),
+        template_path=Path("templates/digest_zh.md.j2"),
+        output_root=tmp_path,
+        llm_client=None,
+    )
+
+    seen = json.loads(
+        (tmp_path / "data" / "state" / "seen_dois.json").read_text(encoding="utf-8")
+    )
+
+    assert len(seen) == 8
+    assert "10.1234/selected-9" not in seen
 
 
 def test_pipeline_falls_back_per_section_when_brief_is_none(tmp_path: Path, monkeypatch):

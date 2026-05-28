@@ -85,6 +85,7 @@ Expected validator behavior:
 
 - Fails if the digest has fewer than 5 or more than 8 items.
 - Fails if LLM grounding has failed or errored items.
+- Allows `grounding_repaired` items. These are LLM-written item summaries that failed grounding and were automatically replaced with the source summary before rendering.
 - Fails if either the Chinese or English digest file is missing.
 
 ## Expected Outputs
@@ -105,6 +106,7 @@ data/state/seen_dois.json
 - `llm_relevance`: how many candidates were scored and kept.
 - `build_digest`: final section, item, and highlight counts.
 - `llm_grounding`: factual grounding pass/fail counts.
+  - `repaired` means the item stayed in the digest, but its ungrounded LLM-written summary was discarded and the source summary was rendered instead.
 
 To inspect recent stability across multiple days, run:
 

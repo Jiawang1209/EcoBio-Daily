@@ -63,6 +63,14 @@ def _scored_for_render(title: str = "Soil paper") -> ScoredItem:
 
 def test_render_uses_llm_brief_when_section_has_it():
     scored = _scored_for_render("Forest nitrogen paper")
+    scored.llm_brief_item = {
+        "title": "Forest nitrogen paper",
+        "summary_zh": "中文凝练的摘要内容。",
+        "why_it_matters": "对氮循环有意义。",
+        "evidence_type": "实验",
+        "caveat": "样本有限。",
+        "source_url": "https://example.org/Forest-nitrogen-paper",
+    }
     digest = Digest(
         date=date(2026, 5, 27),
         title="EcoBio Daily",

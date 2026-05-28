@@ -80,6 +80,7 @@ def _attach_llm_briefs(
     grounded = 0
     ungrounded = 0
     errored = 0
+    repaired = 0
     for section in digest.sections:
         brief = generate_section(section.title, section.items, llm_client)
         section.llm_brief = brief
@@ -97,14 +98,17 @@ def _attach_llm_briefs(
                 scored.llm_grounding = verdict
                 if verdict is None:
                     errored += 1
+                    scored.llm_brief_item = None
+                    repaired += 1
                     continue
                 if verdict.get("grounded") and int(verdict.get("score", 0)) >= 7:
                     grounded += 1
                 else:
-                    ungrounded += 1
+                    scored.llm_brief_item = None
+                    repaired += 1
     print(f"LLM brief: {ok} ok, {failed} failed", file=sys.stderr)
     print(
-        f"LLM grounding: {grounded} passed, {ungrounded} failed",
+        f"LLM grounding: {grounded} passed, {ungrounded} failed, {repaired} repaired",
         file=sys.stderr,
     )
     if metrics is not None:
@@ -114,6 +118,7 @@ def _attach_llm_briefs(
             passed=grounded,
             failed=ungrounded,
             errored=errored,
+            repaired=repaired,
         )
 
 
@@ -283,7 +288,7 @@ def run_pipeline_from_items(
         )
         en_path.write_text(markdown_en, encoding="utf-8")
 
-    update_seen(seen, unique_items, today=digest_date)
+    update_seen(seen, digest.references, today=digest_date)
     save_seen_dois(seen_path, seen)
 
     if metrics is not None:

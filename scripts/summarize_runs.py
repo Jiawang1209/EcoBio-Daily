@@ -42,6 +42,7 @@ def load_run_summaries(output_root: Path) -> list[dict[str, Any]]:
                 "backfilled": _int(relevance.get("backfilled"), 0),
                 "grounding_failed": _int(grounding.get("failed"), 0),
                 "grounding_errored": _int(grounding.get("errored"), 0),
+                "grounding_repaired": _int(grounding.get("repaired"), 0),
                 "keyword_above_threshold": _int(keyword.get("above_threshold"), 0),
                 "fetched": _int(fetch.get("total"), 0),
                 "duration_seconds": metrics.get("duration_seconds"),
@@ -90,6 +91,7 @@ def _print_table(rows: list[dict[str, Any]]) -> None:
         "backfilled",
         "grounding_failed",
         "grounding_errored",
+        "grounding_repaired",
         "fetched",
         "keyword_above_threshold",
     ]

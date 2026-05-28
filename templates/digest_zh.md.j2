@@ -24,9 +24,8 @@
 {% endfor %}
 
 {% endif %}
-{% set brief_items = section.llm_brief["items"] if section.llm_brief and section.llm_brief["items"] else [] %}
 {% for scored in section.items %}
-{% set brief = brief_items[loop.index0] if loop.index0 < (brief_items | length) else None %}
+{% set brief = scored.llm_brief_item %}
 {% if brief and brief.get("title_zh") -%}
 ### {{ brief["title_zh"] }}
 {% else -%}
