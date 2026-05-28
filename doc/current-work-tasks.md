@@ -48,7 +48,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - GitHub Actions 已补齐 `CSTCLOUD_API_KEY` secret 注入。
 - GitHub Actions 先执行 `Validate LLM secret`，随后使用 `--require-llm`；缺少 `CSTCLOUD_API_KEY` 时会在生成日报前失败并停止提交，避免降级日报进入仓库。
 - GitHub Actions 已改为提交日报、`data/runs` 和 `data/state`。
-- GitHub Actions 在提交前运行 `scripts/validate_daily.py`，检查 5-8 条目标、grounding 失败数和中英文输出文件。
+- GitHub Actions 在提交前运行 `scripts/validate_daily.py`，检查 5-8 条目标、grounding 失败数、中英文输出文件和 `data/state/seen_dois.json`。
 - `.github/workflows/ci.yml` 已添加 push / pull request 测试工作流，持续验证 pytest 全绿。
 - Daily workflow 的 `workflow_dispatch` 已支持可选 `digest_date`，补跑/重跑时生成、校验、提交会使用同一个日期变量。
 - Daily workflow 已设置 `concurrency.group: ecobio-daily`，定时运行和手动补跑会排队串行，避免同时写 `data/state`。

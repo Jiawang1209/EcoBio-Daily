@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 import pytest
 
@@ -33,6 +34,12 @@ def _write_metrics(
     zh.parent.mkdir(parents=True)
     zh.write_text("# zh\n\n## Highlights\n\n### A\n", encoding="utf-8")
     en.write_text("# en\n", encoding="utf-8")
+    state = root / "data" / "state" / "seen_dois.json"
+    state.parent.mkdir(parents=True)
+    state.write_text(
+        json.dumps({"10.1234/example": digest_date}, ensure_ascii=False),
+        encoding="utf-8",
+    )
 
 
 def test_validate_daily_accepts_good_metrics(tmp_path: Path):
@@ -60,4 +67,20 @@ def test_validate_daily_rejects_missing_output_file(tmp_path: Path):
     (tmp_path / "2026/05/ecobio_digest_1d_2026-05-28_en.md").unlink()
 
     with pytest.raises(SystemExit, match="missing output file"):
+        validate_daily(tmp_path, "2026-05-28")
+
+
+def test_validate_daily_rejects_missing_seen_state(tmp_path: Path):
+    _write_metrics(tmp_path)
+    (tmp_path / "data/state/seen_dois.json").unlink()
+
+    with pytest.raises(SystemExit, match="missing seen DOI state"):
+        validate_daily(tmp_path, "2026-05-28")
+
+
+def test_validate_daily_rejects_invalid_seen_state_json(tmp_path: Path):
+    _write_metrics(tmp_path)
+    (tmp_path / "data/state/seen_dois.json").write_text("{bad json", encoding="utf-8")
+
+    with pytest.raises(SystemExit, match="invalid seen DOI state JSON"):
         validate_daily(tmp_path, "2026-05-28")

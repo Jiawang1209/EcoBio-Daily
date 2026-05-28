@@ -87,6 +87,7 @@ Expected validator behavior:
 - Fails if LLM grounding has failed or errored items.
 - Allows `grounding_repaired` items. These are LLM-written item summaries that failed grounding and were automatically replaced with the source summary before rendering.
 - Fails if either the Chinese or English digest file is missing.
+- Fails if `data/state/seen_dois.json` is missing or is not valid JSON.
 
 ## Expected Outputs
 
@@ -140,6 +141,7 @@ If `scripts/validate_daily.py` fails, do not manually commit the generated diges
 
 ```text
 data/runs/YYYY-MM-DD.json
+data/state/seen_dois.json
 YYYY/MM/ecobio_digest_1d_YYYY-MM-DD_zh.md
 ```
 

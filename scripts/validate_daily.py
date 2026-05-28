@@ -51,6 +51,16 @@ def validate_daily(
         if not path.exists():
             _fail(f"missing output file: {path}")
 
+    state_path = output_root / "data" / "state" / "seen_dois.json"
+    if not state_path.exists():
+        _fail(f"missing seen DOI state: {state_path}")
+    try:
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        _fail(f"invalid seen DOI state JSON: {error}")
+    if not isinstance(state, dict):
+        _fail("invalid seen DOI state: expected JSON object")
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Validate generated EcoBio Daily artifacts.")
