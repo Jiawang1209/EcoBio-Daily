@@ -13,6 +13,7 @@ def test_daily_workflow_commits_run_metrics_and_seen_state():
     assert "data/runs" in commit_step["run"]
     assert "data/state" in commit_step["run"]
     assert "git add -f data/runs data/state" in commit_step["run"]
+    assert "$DIGEST_DATE" in commit_step["run"]
 
 
 def test_daily_workflow_documents_cstcloud_secret():
@@ -29,6 +30,7 @@ def test_daily_workflow_requires_llm_secret_for_ci_quality():
     )
 
     assert "--require-llm" in generate_step["run"]
+    assert "$DIGEST_DATE" in generate_step["run"]
 
 
 def test_daily_workflow_validates_cstcloud_secret_before_generation():
@@ -64,6 +66,33 @@ def test_daily_workflow_validates_digest_before_commit():
 
     assert validate_index < commit_index
     assert "scripts/validate_daily.py" in validate_step["run"]
+    assert "$DIGEST_DATE" in validate_step["run"]
+
+
+def test_daily_workflow_supports_manual_digest_date_input():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+
+    dispatch = workflow[True]["workflow_dispatch"]
+    assert "digest_date" in dispatch["inputs"]
+    assert dispatch["inputs"]["digest_date"]["required"] is False
+
+
+def test_daily_workflow_resolves_digest_date_once_before_generation():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    steps = workflow["jobs"]["generate"]["steps"]
+    resolve_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Resolve digest date"
+    )
+    generate_index = next(
+        index for index, step in enumerate(steps)
+        if step["name"] == "Generate digest"
+    )
+    resolve_step = steps[resolve_index]
+
+    assert resolve_index < generate_index
+    assert "GITHUB_ENV" in resolve_step["run"]
+    assert "DIGEST_DATE" in resolve_step["run"]
 
 
 def test_ci_workflow_runs_pytest_on_push_and_pull_request():

@@ -5,6 +5,11 @@ on:
     # 08:00 Asia/Shanghai. GitHub Actions cron uses UTC.
     - cron: "0 0 * * *"
   workflow_dispatch:
+    inputs:
+      digest_date:
+        description: "Digest date to generate, in YYYY-MM-DD. Leave blank for today in Asia/Shanghai."
+        required: false
+        type: string
 
 jobs:
   generate:
@@ -33,16 +38,27 @@ jobs:
             exit 1
           fi
 
+      - name: Resolve digest date
+        env:
+          TZ: Asia/Shanghai
+          INPUT_DIGEST_DATE: ${{ inputs.digest_date }}
+        run: |
+          if [ -n "$INPUT_DIGEST_DATE" ]; then
+            echo "DIGEST_DATE=$INPUT_DIGEST_DATE" >> "$GITHUB_ENV"
+          else
+            echo "DIGEST_DATE=$(date +%F)" >> "$GITHUB_ENV"
+          fi
+
       - name: Generate digest
         env:
           TZ: Asia/Shanghai
           CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
-        run: python scripts/run_daily.py --date "$(date +%F)" --require-llm
+        run: python scripts/run_daily.py --date "$DIGEST_DATE" --require-llm
 
       - name: Validate generated digest
         env:
           TZ: Asia/Shanghai
-        run: python scripts/validate_daily.py --date "$(date +%F)"
+        run: python scripts/validate_daily.py --date "$DIGEST_DATE"
 
       - name: Commit generated files
         env:
@@ -50,7 +66,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "$(date +%Y)"
+          git add "${DIGEST_DATE:0:4}"
           git add -f data/runs data/state
-          git diff --cached --quiet || git commit -m "Add EcoBio daily report: $(date +%F)"
+          git diff --cached --quiet || git commit -m "Add EcoBio daily report: $DIGEST_DATE"
           git push

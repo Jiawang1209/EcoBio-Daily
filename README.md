@@ -61,7 +61,7 @@ Web of Science 适合作为后续增强来源，但通常需要 Clarivate API ke
 
 ## 自动运行
 
-GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时间每天 08:00 运行，也支持手动触发。
+GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时间每天 08:00 运行，也支持手动触发。手动触发时可选填 `digest_date`，用于补跑或重跑指定日期。
 
 `.github/workflows/ci.yml` 会在 push 和 pull request 时运行测试，确保代码改动不会破坏日报管线。
 

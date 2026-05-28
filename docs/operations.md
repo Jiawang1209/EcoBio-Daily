@@ -46,13 +46,16 @@ File:
 
 Runs daily at 08:00 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
 
+Manual runs accept an optional `digest_date` input in `YYYY-MM-DD` format. Leave it blank to generate today's digest in Asia/Shanghai, or set it to a specific date to backfill or re-run that day.
+
 The daily workflow:
 
 1. Installs Python dependencies.
 2. Validates that `CSTCLOUD_API_KEY` is configured.
-3. Runs `scripts/run_daily.py --require-llm`.
-4. Runs `scripts/validate_daily.py`.
-5. Commits the generated digest, `data/runs`, and `data/state`.
+3. Resolves one `DIGEST_DATE` for generation, validation, and commit.
+4. Runs `scripts/run_daily.py --require-llm`.
+5. Runs `scripts/validate_daily.py`.
+6. Commits the generated digest, `data/runs`, and `data/state`.
 
 ## Manual Validation
 
