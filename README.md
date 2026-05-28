@@ -19,7 +19,8 @@ mamba activate ecobio-daily
 ## 运行方式
 
 ```bash
-python scripts/run_daily.py --date 2026-04-28
+python scripts/run_daily.py --date YYYY-MM-DD --require-llm
+python scripts/validate_daily.py --date YYYY-MM-DD
 ```
 
 LLM 默认启用。需要在本地 `.env` 或 shell 环境中配置：
