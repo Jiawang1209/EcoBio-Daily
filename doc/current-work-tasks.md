@@ -51,6 +51,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - GitHub Actions 在提交前运行 `scripts/validate_daily.py`，检查 5-8 条目标、grounding 失败数和中英文输出文件。
 - `.github/workflows/ci.yml` 已添加 push / pull request 测试工作流，持续验证 pytest 全绿。
 - `docs/operations.md` 已添加日常运维手册，覆盖 secret 配置、手动触发、validator、常见失败与排查入口。
+- `scripts/summarize_runs.py` 已添加，用于查看 `data/runs` 历史并验证某日期后的连续运行是否都满足 5-8 条和 grounding 要求。
 - 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
 - `config/digest.yaml` 已设置：
   - `target_items_min: 5`
