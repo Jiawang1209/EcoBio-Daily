@@ -57,6 +57,7 @@ jobs:
         env:
           TZ: Asia/Shanghai
           CSTCLOUD_API_KEY: ${{ secrets.CSTCLOUD_API_KEY }}
+          WOS_API_KEY: ${{ secrets.WOS_API_KEY }}
         run: python scripts/run_daily.py --date "$DIGEST_DATE" --require-llm
 
       - name: Validate generated digest

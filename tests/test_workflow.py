@@ -33,6 +33,16 @@ def test_daily_workflow_requires_llm_secret_for_ci_quality():
     assert "$DIGEST_DATE" in generate_step["run"]
 
 
+def test_daily_workflow_passes_optional_wos_secret_to_generation():
+    workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
+    generate_step = next(
+        step for step in workflow["jobs"]["generate"]["steps"]
+        if step["name"] == "Generate digest"
+    )
+
+    assert generate_step["env"]["WOS_API_KEY"] == "${{ secrets.WOS_API_KEY }}"
+
+
 def test_daily_workflow_validates_cstcloud_secret_before_generation():
     workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
     steps = workflow["jobs"]["generate"]["steps"]
