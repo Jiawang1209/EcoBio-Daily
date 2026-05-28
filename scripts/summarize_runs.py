@@ -50,13 +50,22 @@ def load_run_summaries(output_root: Path) -> list[dict[str, Any]]:
     return sorted(rows, key=lambda row: row["date"])
 
 
+def filter_run_summaries(
+    rows: list[dict[str, Any]],
+    since: str | None = None,
+) -> list[dict[str, Any]]:
+    if since is None:
+        return rows
+    return [row for row in rows if row["date"] >= since]
+
+
 def validate_run_history(
     output_root: Path,
     since: str,
     min_items: int = 5,
     max_items: int = 8,
 ) -> None:
-    rows = [row for row in load_run_summaries(output_root) if row["date"] >= since]
+    rows = filter_run_summaries(load_run_summaries(output_root), since=since)
     if not rows:
         raise SystemExit(f"no run metrics found since {since}")
     failures: list[str] = []
@@ -101,7 +110,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     output_root = Path(args.output_root)
-    rows = load_run_summaries(output_root)
+    rows = filter_run_summaries(load_run_summaries(output_root), since=args.since)
     _print_table(rows)
     if args.since:
         validate_run_history(

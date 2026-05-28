@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.summarize_runs import load_run_summaries, validate_run_history
+from scripts.summarize_runs import filter_run_summaries, load_run_summaries, validate_run_history
 
 
 def _write_run(
@@ -47,6 +47,15 @@ def test_validate_run_history_can_ignore_runs_before_start_date(tmp_path: Path):
     _write_run(tmp_path, "2026-05-28", items=8)
 
     validate_run_history(tmp_path, since="2026-05-28")
+
+
+def test_filter_run_summaries_returns_only_rows_on_or_after_start_date(tmp_path: Path):
+    _write_run(tmp_path, "2026-05-27", items=3, grounding_failed=1)
+    _write_run(tmp_path, "2026-05-28", items=8)
+
+    rows = filter_run_summaries(load_run_summaries(tmp_path), since="2026-05-28")
+
+    assert [row["date"] for row in rows] == ["2026-05-28"]
 
 
 def test_validate_run_history_rejects_bad_item_count_after_start_date(tmp_path: Path):
