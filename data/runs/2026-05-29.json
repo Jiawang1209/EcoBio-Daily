@@ -1,8 +1,8 @@
 {
   "date": "2026-05-29",
-  "started_at": "2026-05-29T01:23:44.216989+00:00",
-  "completed_at": "2026-05-29T01:25:26.536439+00:00",
-  "duration_seconds": 102.314,
+  "started_at": "2026-05-29T06:52:25.989871+00:00",
+  "completed_at": "2026-05-29T06:54:26.741982+00:00",
+  "duration_seconds": 120.751,
   "stages": {
     "fetch_total": {
       "total": 518,
@@ -87,24 +87,24 @@
     },
     "date_window": {
       "in_count": 518,
-      "out_count": 135
+      "out_count": 137
     },
     "url_dedup": {
-      "in_count": 135,
-      "out_count": 131
+      "in_count": 137,
+      "out_count": 133
     },
     "intra_day_doi_dedup": {
-      "in_count": 131,
-      "out_count": 116
+      "in_count": 133,
+      "out_count": 118
     },
     "cross_day_doi_dedup": {
-      "in_count": 116,
-      "out_count": 100,
-      "prior_seen_count": 167
+      "in_count": 118,
+      "out_count": 103,
+      "prior_seen_count": 168
     },
     "keyword_score": {
-      "in_count": 100,
-      "above_threshold": 33
+      "in_count": 103,
+      "above_threshold": 35
     },
     "llm_relevance": {
       "candidates": 19,
@@ -122,10 +122,10 @@
       "failed": 0
     },
     "llm_grounding": {
-      "passed": 7,
+      "passed": 8,
       "failed": 0,
-      "errored": 1,
-      "repaired": 1
+      "errored": 0,
+      "repaired": 0
     },
     "output": {
       "zh": "2026/05/ecobio_digest_1d_2026-05-29_zh.md",

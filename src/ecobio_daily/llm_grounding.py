@@ -41,21 +41,23 @@ def check_groundedness(
     client: LLMClient,
 ) -> dict | None:
     prompt = _render_prompt(abstract, brief_item)
-    try:
-        response = client.chat(
-            messages=[{"role": "user", "content": prompt}],
-            task="grounding_check",
-            response_format="json_object",
-        )
-    except LLMError:
-        return None
+    for _attempt in range(2):
+        try:
+            response = client.chat(
+                messages=[{"role": "user", "content": prompt}],
+                task="grounding_check",
+                response_format="json_object",
+            )
+        except LLMError:
+            continue
 
-    try:
-        result = json.loads(_strip_code_fence(response))
-    except json.JSONDecodeError:
-        return None
-    if not isinstance(result, dict):
-        return None
-    if "grounded" not in result or "score" not in result:
-        return None
-    return result
+        try:
+            result = json.loads(_strip_code_fence(response))
+        except json.JSONDecodeError:
+            continue
+        if not isinstance(result, dict):
+            continue
+        if "grounded" not in result or "score" not in result:
+            continue
+        return result
+    return None

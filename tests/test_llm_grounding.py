@@ -37,15 +37,20 @@ llm:
 def _capturing_client(
     tmp_path: Path,
     response_text: str | None = None,
+    response_texts: list[str | None] | None = None,
     status: int = 200,
 ) -> tuple[LLMClient, dict]:
-    captured: dict = {}
+    captured: dict = {"calls": 0}
 
     def handler(req: httpx.Request) -> httpx.Response:
         body = json.loads(req.content.decode("utf-8"))
         captured["messages"] = body["messages"]
+        captured["calls"] += 1
         if status != 200:
             return httpx.Response(status, json={"error": "boom"})
+        content = response_text
+        if response_texts is not None:
+            content = response_texts[min(captured["calls"] - 1, len(response_texts) - 1)]
         return httpx.Response(
             200,
             json={
@@ -55,7 +60,7 @@ def _capturing_client(
                 "choices": [
                     {
                         "index": 0,
-                        "message": {"role": "assistant", "content": response_text},
+                        "message": {"role": "assistant", "content": content},
                         "finish_reason": "stop",
                     }
                 ],
@@ -113,6 +118,21 @@ def test_check_groundedness_returns_none_on_invalid_json(tmp_path: Path):
     client, _ = _capturing_client(tmp_path, response_text="not json at all")
 
     assert check_groundedness("abstract", _BRIEF_ITEM, client) is None
+
+
+def test_check_groundedness_retries_once_after_invalid_json(tmp_path: Path):
+    client, captured = _capturing_client(
+        tmp_path,
+        response_texts=[
+            "not json at all",
+            '{"grounded": true, "score": 9, "reason": "retry ok"}',
+        ],
+    )
+
+    result = check_groundedness("abstract", _BRIEF_ITEM, client)
+
+    assert result == {"grounded": True, "score": 9, "reason": "retry ok"}
+    assert captured["calls"] == 2
 
 
 def test_check_groundedness_returns_none_on_http_error(tmp_path: Path):

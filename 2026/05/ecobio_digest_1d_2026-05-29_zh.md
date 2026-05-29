@@ -6,7 +6,7 @@
 
 - **泥炭地微生物的胞外电子传递机制**：研究通过宏基因组和宏转录组分析，在瑞典四个贫营养泥炭沼泽的深度剖面中，发现优势的酸杆菌门和疣微菌门微生物编码并表达了保守的多血红素细胞色素胞外电子传递（EET）基因簇。该机制在数米深的泥炭层中均有转录活性，与更广泛的厌氧呼吸途径共存，而甲烷循环过程则主要集中在上层。这为泥炭有机质作为替代电子受体提供了分子证据。 来源：bioRxiv Microbiology。
 - **根系对土壤碳分解与补充数据集**：该数据集通过提取2025年8月18日前发表的研究数据，汇总了关于根际激发效应（RPE）和根系来源土壤有机碳（SOC）形成的信息。数据集计算了根际激发效应（种植与未种植土壤呼吸之差）和根系诱导的土壤有机碳净变化（根系来源碳形成与激发效应之差），为相关荟萃分析提供了基础数据。 来源：OpenAlex Soil Microbiology & Biogeochemistry: Figshare。
-- **Sinorhizobium meliloti possesses a complete Embden-Meyerhoff-Parnas pathway that is indispensable for symbiotic nitrogen fixation**：Rhizobia are an agronomically valuable group of bacteria capable of entering into endosymbiotic relationships with leguminous plants, during which they fix atmospheric nitrogen... 来源：bioRxiv Microbiology。
+- **苜蓿根瘤菌EMP途径为固氮所必需**：研究发现，模式根瘤菌苜蓿中华根瘤菌编码一种焦磷酸依赖的磷酸果糖激酶，从而使其拥有完整的EMP途径。该途径的阻断导致菌株无法与苜蓿共生固氮。系统发育分析表明，这种焦磷酸依赖的磷酸果糖激酶在变形菌门中广泛存在。 来源：bioRxiv Microbiology。
 
 ## 土壤微生物与碳循环新机制
 
@@ -46,14 +46,17 @@
 - 堆肥微生物调控土壤健康
 - 抗生素施用影响土壤功能基因
 
-### Sinorhizobium meliloti possesses a complete Embden-Meyerhoff-Parnas pathway that is indispensable for symbiotic nitrogen fixation
+### 苜蓿根瘤菌EMP途径为固氮所必需
 
-Rhizobia are an agronomically valuable group of bacteria capable of entering into endosymbiotic relationships with leguminous plants, during which they fix atmospheric nitrogen using energy derived from the metabolism of plant-provided dicarboxylic acids. It is generally assumed that the gluconeogenic catabolism of dicarboxylic acids proceeds via the Embden-Meyerhoff-Parnas pathway in rhizobia. However, rhizobia are classically thought to lack the phosphofructokinase enzyme required for conversion of fructose-1,6-bisphosphate to fructore-6-phosphate as part of this pathway. Here, we demonstrate that a model rhizobium, Sinorhizobium meliloti, encodes a phosphofructokinase, completing the Embden-Meyerhoff-Parnas pathway of this organism. Biochemical characterization of the S. meliloti phosphofructokinase demonstrates that it can catalyze the reversible phosphorylation of fructose-6-phosphate under in vitro conditions in a pyrophosphate-dependent, rather than ATP-dependent, manner. We further show that S. meliloti also encodes a distinct fructose-1,6-bisphosphatase that can phenotypically complement the loss of the phosphofructokinase enzyme. Loss of both enzymes results in a block of the gluconeogenic pathway in S. meliloti and results in S. meliloti being unable to fix nitrogen in symbiosis with alfalfa (Medicago sativa). Phylogenetic analyses and complementation studies demonstrate that PPi-dependent phosphofructokinases are broadly distributed across the phylum Pseudomonadota (syn. Proteobacteria), including most rhizobial species of the class Alphaproteobacteria, suggesting both that PPi-dependent phosphofructokinases are likely more broadly distributed than is generally recognized, and that the catabolism of dicarboxylic acids in most rhizobia proceeds via a PPi-dependent phosphofructokinase.
+研究发现，模式根瘤菌苜蓿中华根瘤菌编码一种焦磷酸依赖的磷酸果糖激酶，从而使其拥有完整的EMP途径。该途径的阻断导致菌株无法与苜蓿共生固氮。系统发育分析表明，这种焦磷酸依赖的磷酸果糖激酶在变形菌门中广泛存在。
+
+- **为什么值得关注**：挑战了根瘤菌缺乏EMP途径的传统认知，揭示了共生固氮的关键代谢基础。
+- **证据类型**：实验
+- **限制**：研究基于模式菌株和实验室条件，田间生态位中的代谢灵活性有待验证。
 
 - 来源：bioRxiv Microbiology
 - 链接：https://www.biorxiv.org/content/10.64898/2026.05.26.727922v1?rss=1
 - 相关性评分：4 | LLM 评分：6
-- 命中关键词：rhizobium
 ### 堆肥微生物动态调控养分与土壤健康
 
 本综述分析了堆肥过程中微生物介导的氮磷转化及其对土壤健康的影响。通过接种功能菌群或添加生物炭等技术，可重塑微生物演替，减少氮气损失并促进磷的稳定化。成熟的堆肥施入土壤后，能驱动微生物群落向富营养型转变，增强功能冗余和网络稳定性，从而提升土壤对干旱等胁迫的抵抗力。
