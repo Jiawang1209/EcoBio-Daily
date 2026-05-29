@@ -137,12 +137,12 @@ def test_daily_workflow_serializes_runs_to_protect_state_files():
     assert workflow["concurrency"]["cancel-in-progress"] is False
 
 
-def test_daily_workflow_avoids_top_of_hour_schedule_drop_risk():
+def test_daily_workflow_runs_at_eight_am_shanghai_time():
     workflow = yaml.safe_load(Path(".github/workflows/daily.yml").read_text())
 
     schedules = workflow[True]["schedule"]
 
-    assert schedules == [{"cron": "17 0 * * *"}]
+    assert schedules == [{"cron": "0 0 * * *"}]
 
 
 def test_daily_workflow_rebases_before_push_to_avoid_stale_checkout():

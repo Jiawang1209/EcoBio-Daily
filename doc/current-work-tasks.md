@@ -51,7 +51,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - GitHub Actions 在提交前运行 `scripts/validate_daily.py`，检查 5-8 条目标、grounding 失败数、中英文输出文件结构、References 数量和 `data/state/seen_dois.json`。
 - `.github/workflows/ci.yml` 已添加 push / pull request 测试工作流，持续验证 pytest 全绿。
 - Daily workflow 的 `workflow_dispatch` 已支持可选 `digest_date`，补跑/重跑时生成、校验、提交会使用同一个日期变量。
-- Daily workflow 定时从北京时间 08:00 调整为 08:17，避开 GitHub Actions 整点高峰导致 schedule 延迟或被丢弃的风险。
+- Daily workflow 定时为北京时间每天 08:00，对应 GitHub Actions cron 的 `0 0 * * *`。
 - Daily workflow 已设置 `concurrency.group: ecobio-daily`，定时运行和手动补跑会排队串行，避免同时写 `data/state`。
 - Daily workflow 在提交前会 `git pull --rebase --autostash origin main`，避免 LLM 生成期间远端 `main` 更新导致最后 `git push` 被拒绝。
 - Daily workflow 在 validator 之后写入 GitHub Actions step summary，展示 digest item 数、LLM kept、grounding 状态和输出路径，便于远端运行页面快速排查。

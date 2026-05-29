@@ -52,9 +52,7 @@ File:
 .github/workflows/daily.yml
 ```
 
-Runs daily at 08:17 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
-
-The schedule intentionally avoids the top of the hour. GitHub Actions scheduled events can be delayed during high load, and queued jobs may be dropped if load is high enough; GitHub recommends scheduling at a different minute of the hour to reduce that risk.
+Runs daily at 08:00 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
 
 Manual runs accept an optional `digest_date` input in `YYYY-MM-DD` format. Leave it blank to generate today's digest in Asia/Shanghai, or set it to a specific date to backfill or re-run that day.
 
