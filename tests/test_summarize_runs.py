@@ -79,3 +79,9 @@ def test_validate_run_history_rejects_grounding_failures(tmp_path: Path):
 
     with pytest.raises(SystemExit, match="grounding failures"):
         validate_run_history(tmp_path, since="2026-05-28")
+
+
+def test_validate_run_history_accepts_grounding_errors_that_were_repaired(tmp_path: Path):
+    _write_run(tmp_path, "2026-05-28", items=8, grounding_errored=1, grounding_repaired=1)
+
+    validate_run_history(tmp_path, since="2026-05-28")

@@ -12,6 +12,7 @@ def _write_metrics(
     items: int = 8,
     grounding_failed: int = 0,
     grounding_errored: int = 0,
+    grounding_repaired: int = 0,
 ) -> None:
     path = root / "data" / "runs" / f"{digest_date}.json"
     path.parent.mkdir(parents=True)
@@ -20,7 +21,7 @@ def _write_metrics(
   "date": "{digest_date}",
   "stages": {{
     "build_digest": {{"items": {items}}},
-    "llm_grounding": {{"failed": {grounding_failed}, "errored": {grounding_errored}}},
+    "llm_grounding": {{"failed": {grounding_failed}, "errored": {grounding_errored}, "repaired": {grounding_repaired}}},
     "output": {{
       "zh": "2026/05/ecobio_digest_1d_{digest_date}_zh.md",
       "en": "2026/05/ecobio_digest_1d_{digest_date}_en.md"
@@ -67,6 +68,12 @@ def test_validate_daily_rejects_grounding_failures(tmp_path: Path):
 
     with pytest.raises(SystemExit, match="grounding check failed"):
         validate_daily(tmp_path, "2026-05-28")
+
+
+def test_validate_daily_accepts_grounding_errors_that_were_repaired(tmp_path: Path):
+    _write_metrics(tmp_path, grounding_errored=1, grounding_repaired=1)
+
+    validate_daily(tmp_path, "2026-05-28")
 
 
 def test_validate_daily_rejects_missing_output_file(tmp_path: Path):

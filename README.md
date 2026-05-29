@@ -72,7 +72,7 @@ Web of Science 通常需要 Clarivate API key 和机构权限，因此不作为�
 
 ## 自动运行
 
-GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时间每天 08:00 运行，也支持手动触发。手动触发时可选填 `digest_date`，用于补跑或重跑指定日期。
+GitHub Actions 工作流位于 `.github/workflows/daily.yml`，默认北京时间每天 08:17 运行，也支持手动触发。手动触发时可选填 `digest_date`，用于补跑或重跑指定日期。定时任务避开整点运行，以降低 GitHub Actions 高负载时 schedule 延迟或丢弃的概率。
 
 `.github/workflows/ci.yml` 会在 push 和 pull request 时运行测试，确保代码改动不会破坏日报管线。
 

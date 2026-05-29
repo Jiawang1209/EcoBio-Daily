@@ -51,6 +51,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - GitHub Actions 在提交前运行 `scripts/validate_daily.py`，检查 5-8 条目标、grounding 失败数、中英文输出文件结构、References 数量和 `data/state/seen_dois.json`。
 - `.github/workflows/ci.yml` 已添加 push / pull request 测试工作流，持续验证 pytest 全绿。
 - Daily workflow 的 `workflow_dispatch` 已支持可选 `digest_date`，补跑/重跑时生成、校验、提交会使用同一个日期变量。
+- Daily workflow 定时从北京时间 08:00 调整为 08:17，避开 GitHub Actions 整点高峰导致 schedule 延迟或被丢弃的风险。
 - Daily workflow 已设置 `concurrency.group: ecobio-daily`，定时运行和手动补跑会排队串行，避免同时写 `data/state`。
 - Daily workflow 在提交前会 `git pull --rebase --autostash origin main`，避免 LLM 生成期间远端 `main` 更新导致最后 `git push` 被拒绝。
 - Daily workflow 在 validator 之后写入 GitHub Actions step summary，展示 digest item 数、LLM kept、grounding 状态和输出路径，便于远端运行页面快速排查。
@@ -60,7 +61,7 @@ LLM 章节简报（deepseek-v3.2，per-section 失败降级，不阻断）  ← 
 - `scripts/check_ops.py` 已添加，用于本地一键检查 daily workflow guard、secret 文档、指定日期产物和 run history；它不能替代 GitHub UI/认证 `gh` 对仓库 secret 与 Actions 真实状态的外部确认。
 - 因 `data/runs/*` 和 `data/state/*` 被 `.gitignore` 忽略，workflow 使用 `git add -f data/runs data/state` 强制提交运行指标和跨日 DOI 状态。
 - `data/state/seen_dois.json` 现在只记录最终入选日报的 DOI，不再把候选池全部标记为 seen，避免次日候选被误杀。
-- LLM grounding 未通过的单条中文简报会自动回退到来源摘要，并在 metrics 里记录 `grounding_repaired`；validator 仍要求 `grounding_failed=0`、`grounding_errored=0`。
+- LLM grounding 未通过或检查出错的单条中文简报会自动回退到来源摘要，并在 metrics 里记录 `grounding_repaired`；validator 允许已 repair 的 grounding failed/errored 项，未 repair 的问题继续阻断提交。
 - 临时目录真实回放已验证 2026-05-27 和 2026-05-28 连续运行均为 8 条，grounding failed/errored 均为 0。
 - 已实现可选 `wos_starter` 来源类型，使用 Clarivate Web of Science Starter API `/documents`，通过 `WOS_API_KEY` header 鉴权；示例配置在 `config/sources.wos.example.yaml`，默认 sources 不启用，避免缺 key 影响自动日报。
 - `config/digest.yaml` 已设置：

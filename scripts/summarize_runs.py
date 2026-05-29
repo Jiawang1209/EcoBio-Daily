@@ -75,9 +75,13 @@ def validate_run_history(
             failures.append(
                 f"{row['date']}: expected {min_items}-{max_items} items, got {row['items']}"
             )
-        if row["grounding_failed"] or row["grounding_errored"]:
+        unrepaired_grounding = max(
+            (row["grounding_failed"] + row["grounding_errored"]) - row["grounding_repaired"],
+            0,
+        )
+        if unrepaired_grounding:
             failures.append(
-                f"{row['date']}: grounding failures failed={row['grounding_failed']} errored={row['grounding_errored']}"
+                f"{row['date']}: grounding failures failed={row['grounding_failed']} errored={row['grounding_errored']} repaired={row['grounding_repaired']}"
             )
     if failures:
         raise SystemExit("\n".join(failures))

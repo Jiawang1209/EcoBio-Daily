@@ -60,8 +60,12 @@ def validate_daily(
     grounding = _stage(metrics, "llm_grounding")
     failed = int(grounding.get("failed", 0))
     errored = int(grounding.get("errored", 0))
-    if failed or errored:
-        _fail(f"grounding check failed: failed={failed}, errored={errored}")
+    repaired = int(grounding.get("repaired", 0))
+    unrepaired = max((failed + errored) - repaired, 0)
+    if unrepaired:
+        _fail(
+            f"grounding check failed: failed={failed}, errored={errored}, repaired={repaired}"
+        )
 
     output = _stage(metrics, "output")
     for key in ("zh", "en"):

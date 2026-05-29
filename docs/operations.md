@@ -52,7 +52,9 @@ File:
 .github/workflows/daily.yml
 ```
 
-Runs daily at 08:00 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
+Runs daily at 08:17 Asia/Shanghai and can also be started manually with `workflow_dispatch`.
+
+The schedule intentionally avoids the top of the hour. GitHub Actions scheduled events can be delayed during high load, and queued jobs may be dropped if load is high enough; GitHub recommends scheduling at a different minute of the hour to reduce that risk.
 
 Manual runs accept an optional `digest_date` input in `YYYY-MM-DD` format. Leave it blank to generate today's digest in Asia/Shanghai, or set it to a specific date to backfill or re-run that day.
 
@@ -90,8 +92,8 @@ Run the same checks locally:
 Expected validator behavior:
 
 - Fails if the digest has fewer than 5 or more than 8 items.
-- Fails if LLM grounding has failed or errored items.
-- Allows `grounding_repaired` items. These are LLM-written item summaries that failed grounding and were automatically replaced with the source summary before rendering.
+- Fails if LLM grounding has failed or errored items that were not repaired.
+- Allows `grounding_repaired` items. These are LLM-written item summaries whose grounding check failed or errored and were automatically replaced with the source summary before rendering.
 - Fails if either the Chinese or English digest file is missing.
 - Fails if a digest Markdown file is empty, lacks `Highlights` or `References`, or has fewer reference entries than the metrics item count.
 - Fails if `data/state/seen_dois.json` is missing or is not valid JSON.
