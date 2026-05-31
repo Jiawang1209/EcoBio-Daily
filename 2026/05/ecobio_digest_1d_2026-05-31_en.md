@@ -1,0 +1,65 @@
+# EcoBio Daily - 2026-05-31 (EN)
+
+> Daily research digest covering soil microbiology and microbially-driven biogeochemistry. Items are scope-filtered and LLM-relevance-ranked; bodies preserve original English abstracts.
+
+## Highlights
+
+- **Temporal dynamics of soil physicochemical properties and bacterial community assembly during 12-year vegetation by planting Paspalum wettsteinii on degraded mountainous**: Background In the severely eroded red soil regions of southern China, characterized by significant ecological degradation, there is an urgent need for effective vegetation restoration techniques.... Source: OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Environmental Science.
+- **Microplastics reshape rhizosphere microbial communities and nutrient cycling in tomato agroecosystems**: microplastics reshape rhizosphere microbial communities and nutrient cycling in tomato agroecosystems Source: PubMed Soil Microbiology & Biogeochemistry: BMC biology.
+- **Interactions among Heavy Metals, Microplastics and Pesticides in Soil and Advances in Microbial Remediation**: With the rapid development of intensive agriculture and the extensive use of agricultural inputs, soil environments are increasingly exposed to complex composite pollution dominated by heavy... Source: OpenAlex Soil Microbiology & Biogeochemistry: Journal of innovation and development.
+
+## 土壤微生物驱动生物地球化学
+
+### Temporal dynamics of soil physicochemical properties and bacterial community assembly during 12-year vegetation by planting Paspalum wettsteinii on degraded mountainous
+
+Background In the severely eroded red soil regions of southern China, characterized by significant ecological degradation, there is an urgent need for effective vegetation restoration techniques. Method A space-for-time substitution approach was employed, wherein three 20 m × 20 m quadrats were established at each of the Paspalum wettsteinii restoration sites (1-, 6-, and 12-year-old) and a control bare land. Soil samples were collected for physicochemical characterization and 16S rDNA sequencing analysis. Results The result showed that soil structure improved rapidly within the first 6 years, followed by a 357% increase in soil organic matter in the later 6 years. Bacterial α-diversity initially rose and then declined, while the microbial network shifted from loose to tightly reconnected between 6 and 12 years, with Thaumarchaeota emerging as a key stability-indicating taxon. Total nitrogen (TN), organic matter (OM), and available potassium (AK) collectively explained &amp;gt;75% of the community variation, indicating that carbon-nitrogen synergy drives community assembly, with available potassium regulating the secondary axis. Conclusion Vegetation restoration using P. wettsteinii significantly improved soil physicochemical properties and drove bacterial diversity and functional succession, exhibiting a distinct "stage-specific synergistic recovery" pattern in which the 6–12 years period represents a stage for soil bacterial communities, shifting from structural restoration to functional stabilization.
+
+- Source: OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Environmental Science
+- Link: https://doi.org/10.3389/fenvs.2026.1808649
+- Keyword score: 2 | LLM score: 8
+- Matched keywords: soil organic matter, soil organic
+## 农田土壤微生物
+
+### Microplastics reshape rhizosphere microbial communities and nutrient cycling in tomato agroecosystems
+
+microplastics reshape rhizosphere microbial communities and nutrient cycling in tomato agroecosystems
+
+- Source: PubMed Soil Microbiology & Biogeochemistry: BMC biology
+- Link: https://pubmed.ncbi.nlm.nih.gov/42210268/
+- Keyword score: 4 | LLM score: 7
+- Matched keywords: agroecosystem, rhizosphere
+### Interactions among Heavy Metals, Microplastics and Pesticides in Soil and Advances in Microbial Remediation
+
+With the rapid development of intensive agriculture and the extensive use of agricultural inputs, soil environments are increasingly exposed to complex composite pollution dominated by heavy metals, microplastics (MPs), and pesticides. Microplastics, characterized by small particle size, large specific surface area, and strong hydrophobicity, can act as important carriers of various pollutants. Through adsorption–desorption processes, MPs significantly influence the migration, transformation, bioavailability, and ecological toxicity of heavy metals and pesticides in soil systems. Meanwhile, heavy metals and pesticides can also interact with each other, leading to synergistic, additive, or antagonistic effects that further complicate environmental behaviors and ecological risks. This review systematically summarizes the interaction mechanisms among heavy metals, microplastics, and pesticides in soil environments, focusing on adsorption–desorption behaviors, co-migration processes, and toxicity responses. The effects of physicochemical properties of MPs, pollutant characteristics, and environmental conditions on these interactions are discussed in detail. In addition, the current advances in microbial remediation technologies are reviewed, including microbial degradation of microplastics, microbial immobilization of heavy metals, and microbial degradation of pesticides. The roles of key functional enzymes, metabolic pathways, and microbial community interactions are also emphasized. Furthermore, the potential of microbial consortia and plant–microbe combined remediation strategies for treating composite pollution is highlighted, with particular attention to rhizosphere processes and synergistic mechanisms. Although significant progress has been made in understanding single or binary pollutant systems, studies on heavy metal–microplastic–pesticide composite pollution remain limited. Future research should focus on elucidating the synergistic mechanisms among multiple pollutants, improving the stability of microbial systems under complex stress conditions, and developing efficient, scalable remediation technologies. This review provides a theoretical basis for the risk assessment and remediation of composite pollution in agricultural soils.
+
+- Source: OpenAlex Soil Microbiology & Biogeochemistry: Journal of innovation and development
+- Link: https://doi.org/10.54097/8rp5cp38
+- Keyword score: 2 | LLM score: 6
+- Matched keywords: agricultural soil, rhizosphere
+### Biosynthesized selenium nanoparticles increase soybean resistance to root rot by recruiting beneficial microbes and reprogramming host metabolism
+
+Soybean root rot, primarily caused by Fusarium species, is a devastating soil-borne disease that severely threatens global soybean production. Conventional chemical controls are problematic due to their environmental impact and the risk of fostering pathogen resistance. There is therefore an urgent need to develop sustainable and eco-friendly alternative strategies. This study demonstrated that selenium nanoparticles (SeNPs) biosynthesized by Bacillus subtilis ZY56 significantly increased soybean resistance to F. oxysporum. Characterization confirmed that the obtained SeNPs were spherical (approximately 147 nm), consisting of amorphous-state elemental selenium (Se0) with a bioactive protein-polysaccharide coating. Treatment with 2.66 mg/L SeNPs significantly promoted seed germination, seedling growth, and antioxidant enzyme activity, while markedly reducing the root rot disease index. Multiomics analyses revealed that SeNPs reprogrammed host metabolism by increasing the levels of key defense-related metabolites (camalexin and isoflavonoids) and upregulating associated biosynthetic pathways. Crucially, SeNPs reshaped the rhizosphere microbiome, enriching beneficial genera (e.g., Bradyrhizobium, Lysobacter, and Nocardioides). Moreover, the analysis predicted enhanced microbial tyrosine metabolism. Integrated correlation analysis identified tyrosine metabolism as a core hub linking microbiome restructuring to host defense, supporting a “microbe‒plant metabolic division of labor” model in which microbes supply precursors (e.g., L-tyrosine) for the synthesis of antifungal compounds in the host. This finding was functionally validated, as the accumulated metabolites (camalexin and isoflavonoids) directly inhibited F. oxysporum growth in vitro. Our findings reveal a dual mechanism whereby SeNPs concurrently prime host defenses and modulate beneficial plant–microbe interactions, offering a sustainable nano-enabled strategy for managing soil-borne diseases.
+
+- Source: OpenAlex Soil Microbiology & Biogeochemistry: Microbiome
+- Link: https://doi.org/10.1186/s40168-026-02439-0
+- Keyword score: 4 | LLM score: 4
+- Matched keywords: rhizobium, bradyrhizobium, bacillus subtilis, rhizosphere
+### Specific monitoring of viable plant growth-promoting Bacillus velezensis PH-023 in the rhizosphere of tomato
+
+Plant growth-promoting bacteria (PGPB) must be able to successfully colonize the plant rhizosphere and remain viable after their release into the field to exert beneficial effects on crop production. Therefore, understanding the behavioral dynamics of PGPB in the rhizosphere is a key challenge to evaluate their persistence and fate under field conditions. This study aimed to develop and validate a strain-specific viability quantitative PCR (v-qPCR) assay for monitoring the viable population dynamics of the PGPB B. velezensis PH-023 in the rhizosphere. A v-qPCR method was developed for the unambiguous detection and quantification of B. velezensis PH-023 viable cells and spores in the rhizosphere of tomato. The TaqMan-based qPCR assay was designed within a PH-023-specific molecular marker. The nucleic acid-binding dye PMAxx was used in combination with qPCR to selectively amplify DNA of only viable cells. The v-qPCR showed good linearity over a 4-log range and good amplification efficiency. The performance of the v-qPCR method was assessed in the rhizosphere of tomato plants treated with a commercial biostimulant product based on B. velezensis PH-023 under greenhouse conditions and high and stable survival rates of PH-023 were confirmed by v-qPCR. Finally, confocal microscopy of stained roots of tomato plants inoculated with B. velezensis PH-023-based biostimulant product using a viability test showed preliminary evidence of association of the viable inoculated bacteria with the root surface, forming large cell aggregates in comparison with untreated plants. This study offers a strategy to develop and validate a strain-specific viability qPCR method for monitoring the viable population of B. velezensis PH-023 and provides evidence for the colonization ability of this strain formulated as a commercial microbial biostimulant in the rhizosphere. The method will allow further studies of ecological fate, including colonization and survival under field conditions, as well as improvements in formulations and delivery strategies for consistent agricultural benefits. It is expected that the development of the v-qPCR presented here provides a reference for similar studies with other beneficial bacterial strains in different environments. As far as we know, the application of strain-specific v-qPCR approaches for the quantification of the viable population of Bacillus sp. strains in soil or rhizosphere samples have not been reported yet.
+
+- Source: OpenAlex Soil Microbiology & Biogeochemistry: BMC Microbiology
+- Link: https://doi.org/10.1186/s12866-026-05209-y
+- Keyword score: 4 | LLM score: 4
+- Matched keywords: plant growth-promoting, rhizosphere
+## Looking Forward
+
+Today's candidates reflect ongoing progress in soil microbial ecology and microbially-driven biogeochemistry. Items to keep tracking: cross-scale observations, long-term experiments, mechanistic interpretations, and reusable analytical workflows.
+
+## References
+
+- **Temporal dynamics of soil physicochemical properties and bacterial community assembly during 12-year vegetation by planting Paspalum wettsteinii on degraded mountainous** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Environmental Science](https://doi.org/10.3389/fenvs.2026.1808649)
+- **Microplastics reshape rhizosphere microbial communities and nutrient cycling in tomato agroecosystems** — [PubMed Soil Microbiology & Biogeochemistry: BMC biology](https://pubmed.ncbi.nlm.nih.gov/42210268/)
+- **Interactions among Heavy Metals, Microplastics and Pesticides in Soil and Advances in Microbial Remediation** — [OpenAlex Soil Microbiology & Biogeochemistry: Journal of innovation and development](https://doi.org/10.54097/8rp5cp38)
+- **Biosynthesized selenium nanoparticles increase soybean resistance to root rot by recruiting beneficial microbes and reprogramming host metabolism** — [OpenAlex Soil Microbiology & Biogeochemistry: Microbiome](https://doi.org/10.1186/s40168-026-02439-0)
+- **Specific monitoring of viable plant growth-promoting Bacillus velezensis PH-023 in the rhizosphere of tomato** — [OpenAlex Soil Microbiology & Biogeochemistry: BMC Microbiology](https://doi.org/10.1186/s12866-026-05209-y)
