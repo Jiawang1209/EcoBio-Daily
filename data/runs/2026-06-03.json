@@ -1,0 +1,138 @@
+{
+  "date": "2026-06-03",
+  "started_at": "2026-06-03T04:00:51.517476+00:00",
+  "completed_at": "2026-06-03T04:07:18.928475+00:00",
+  "duration_seconds": 387.411,
+  "stages": {
+    "fetch_total": {
+      "total": 494,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 0,
+          "error": "Server error '502 Bad Gateway' for url 'https://www.nature.com/natecolevol.rss'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502"
+        },
+        {
+          "id": "nature_isme",
+          "count": 0,
+          "error": "Client error '404 Not Found' for url 'https://www.nature.com/ismej.rss'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 0,
+          "error": "Server error '503 Service Unavailable' for url 'https://www.nature.com/nmicrobiol.rss'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503"
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 27
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 29
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 30
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 30
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 30
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 30
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 20
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 20
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 494,
+      "out_count": 139
+    },
+    "url_dedup": {
+      "in_count": 139,
+      "out_count": 137
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 137,
+      "out_count": 124
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 124,
+      "out_count": 123,
+      "prior_seen_count": 186
+    },
+    "keyword_score": {
+      "in_count": 123,
+      "above_threshold": 33
+    },
+    "llm_relevance": {
+      "candidates": 20,
+      "kept": 5,
+      "backfilled": 0,
+      "fallback_used": false
+    },
+    "build_digest": {
+      "sections": 4,
+      "items": 5,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 4,
+      "failed": 0
+    },
+    "llm_grounding": {
+      "passed": 5,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/06/ecobio_digest_1d_2026-06-03_zh.md",
+      "en": "2026/06/ecobio_digest_1d_2026-06-03_en.md"
+    }
+  }
+}
