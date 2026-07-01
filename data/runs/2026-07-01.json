@@ -1,0 +1,135 @@
+{
+  "date": "2026-07-01",
+  "started_at": "2026-07-01T03:43:33.761925+00:00",
+  "completed_at": "2026-07-01T03:59:29.180003+00:00",
+  "duration_seconds": 955.418,
+  "stages": {
+    "fetch_total": {
+      "total": 461,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 8
+        },
+        {
+          "id": "nature_isme",
+          "count": 8
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 8
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 0,
+          "error": "Server error '503 Service Unavailable' for url 'https://api.openalex.org/works?search=%22soil+microbiome%22+OR+%22soil+microbial+community%22+OR+%22soil+bacterial+community%22+OR+%22soil+fungal+commun"
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 28
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 28
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 30
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 30
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 30
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 28
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 15
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 20
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 461,
+      "out_count": 82
+    },
+    "url_dedup": {
+      "in_count": 82,
+      "out_count": 82
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 82,
+      "out_count": 82
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 82,
+      "out_count": 79,
+      "prior_seen_count": 335
+    },
+    "keyword_score": {
+      "in_count": 79,
+      "above_threshold": 15
+    },
+    "llm_relevance": {
+      "candidates": 14,
+      "kept": 14,
+      "fallback_used": true
+    },
+    "build_digest": {
+      "sections": 2,
+      "items": 8,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 0,
+      "failed": 2
+    },
+    "llm_grounding": {
+      "passed": 0,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/07/ecobio_digest_1d_2026-07-01_zh.md",
+      "en": "2026/07/ecobio_digest_1d_2026-07-01_en.md"
+    }
+  }
+}
