@@ -1,0 +1,136 @@
+{
+  "date": "2026-07-02",
+  "started_at": "2026-07-02T03:29:38.137094+00:00",
+  "completed_at": "2026-07-02T03:36:21.077167+00:00",
+  "duration_seconds": 402.94,
+  "stages": {
+    "fetch_total": {
+      "total": 425,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 8
+        },
+        {
+          "id": "nature_isme",
+          "count": 8
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 8
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 0,
+          "error": "Server error '503 Service Unavailable' for url 'https://api.openalex.org/works?search=%22soil+microbiome%22+OR+%22soil+microbial+community%22+OR+%22soil+bacterial+community%22+OR+%22soil+fungal+commun"
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 28
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 28
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 23
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 27
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 0,
+          "error": "Server error '500 Server Error' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0167-8809'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web"
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 30
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 17
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 20
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 425,
+      "out_count": 67
+    },
+    "url_dedup": {
+      "in_count": 67,
+      "out_count": 67
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 67,
+      "out_count": 66
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 66,
+      "out_count": 63,
+      "prior_seen_count": 343
+    },
+    "keyword_score": {
+      "in_count": 63,
+      "above_threshold": 6
+    },
+    "llm_relevance": {
+      "candidates": 5,
+      "kept": 5,
+      "fallback_used": true
+    },
+    "build_digest": {
+      "sections": 3,
+      "items": 6,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 0,
+      "failed": 3
+    },
+    "llm_grounding": {
+      "passed": 0,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/07/ecobio_digest_1d_2026-07-02_zh.md",
+      "en": "2026/07/ecobio_digest_1d_2026-07-02_en.md"
+    }
+  }
+}
