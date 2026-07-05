@@ -1,0 +1,85 @@
+# EcoBio Daily - 2026-07-05
+
+> 生态学与微生物学最新研究进展日报。内容由配置源抓取、主题筛选和自动摘要生成，建议发布前人工快速复核。
+
+## Highlights
+
+- **Heating-Induced Redistribution and Isotopic Fractionation of Soil Organic Carbon Among Density Fractions**：Fire-induced transformation and isotopic fractionation of soil organic carbon (SOC) among density fractions remain poorly understood when investigating SOC turnover in postfire... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Science & Technology。
+- **Ecological Microenvironment Response of Rhizosphere Soil Microbial Communities to Varying Soil Amendments: Insights from Diversity, Stability, and Multi-Functionality**：Continuous cropping obstacles (CCOs) severely disrupt the soil physical structure, nutrient cycling, and microbial community balance, leading to decreased crop productivity.... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Plants。
+- **Artificial intelligence in soil microbiome-driven agriculture: from practical limits to a translational roadmap**：Background Soil microbiome research has been revolutionized by advances in high-throughput sequencing and multi-omics technologies, generating massive datasets that capture the... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Microbiomes。
+
+## 土壤微生物驱动生物地球化学
+
+### Heating-Induced Redistribution and Isotopic Fractionation of Soil Organic Carbon Among Density Fractions
+
+Fire-induced transformation and isotopic fractionation of soil organic carbon (SOC) among density fractions remain poorly understood when investigating SOC turnover in postfire vegetation recovery. To specifically focus on the heating-induced processes, laboratory-controlled pyrolysis of forest soils was studied in a temperature gradient (simulating fire intensities) by combining density fractionation, molecular biomarker, and δ 13 C analysis. Results showed that increasing heating intensity reduced SOC content, enhanced carbon aromatization, and generated substantial pyrogenic carbon (PyC). The free light fraction (fLF) exhibited higher SOC loss and lower PyC yield compared to the heavy fraction. Preferential loss of light isotopes ( 12 C) enriched 13 C in residual pools, elevating δ 13 C in bulk soil from −26.0‰ to −21.8‰. The most pronounced 13 C enrichment occurred in fLF due to extensive SOC loss, and this enriched carbon was readily solubilized into dissolved organic matter (DOM). Notably, the isotopic fractionation during heating significantly exceeded typical microbial-induced fractionation of <3‰. DOM extracted from soils heated at 400 °C featured aromatic and phenolic-C structures, indicating PyC origins. In contrast, DOM from the 550 to 700 °C treatments contained mostly carboxyl and carbonyl-C, derived from highly oxidized SOC. These 13 C-enriched components intensified fractionation between DOM and residual organic carbon. This study clarifies mechanisms of fire-driven SOC redistribution and isotopic fractionation, highlighting the critical role of wildfire in soil carbon cycling.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Science & Technology
+- 链接：https://doi.org/10.1021/acs.est.5c17341
+- 相关性评分：6 | LLM 评分：7
+- 命中关键词：soil carbon cycling, soil organic carbon, soil organic
+### Linking plantain derived metabolites in sheep urine with nitrification inhibition in soil.
+
+Metabolites from Plantago lanceolata (plantain) biomass have been linked with biological nitrification inhibition (BNI) in soil. After grazing, leaf metabolite chemistry is altered via digestion, and a suite of secondary metabolites are then delivered onto soil via dung and urine. The purpose of this study was to establish if urine from sheep grazed on plantain had BNI activity when added to pasture soil, and to identify the metabolite profile(s) that most likely contribute to the BNI effects observed. Groups of sheep (n=5) were grazed on one of nine different plantain cultivars in autumn and spring with analysis of leaf material, urine, soil incubation and BNI bioassay data used to identify potential metabolite candidates implicated with BNI. The urinary nitrogen and metabolite composition of sheep fed plantain varied significantly between cultivars and season. After 28 days of incubation, all soil microcosms treated with plantain-derived urine had up to 35% less nitrate than comparative ryegrass urine controls in both seasons, except one in autumn. The key phytochemistry associated with lower soil nitrate concentrations was phenylethanoid and iridoid glycosides resulting in a higher output of glucuronidated, methylated and sulfated secondary metabolites in the urine. Among 19 secondary metabolites identified in the urine, hydroxytyrosol-related metabolites as well as catechol glucuronide, 2-methoxyphenyl sulfate and guaiacol-beta-D-glucuronide appear to be the most likely target compounds with respect to the BNI effects observed. Variation in metabolites from different plantain cultivars affected the ratio of metabolite derivatives in urine, which ultimately affected soil nitrification rates. Cultivar phytochemistry is therefore an important consideration with respect to BNI under urine patches.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: bioRxiv (Cold Spring Harbor Laboratory)
+- 链接：https://doi.org/10.64898/2026.07.01.735958
+- 相关性评分：3 | LLM 评分：6
+- 命中关键词：nitrification
+### <i>Methyloraptor</i>
+
+Abstract Me.thy.lo.rap'tor. N.L. neut. n. methylum , the methyl group; N.L. neut. n. methyl , pertaining to the methyl group; L. masc. n. raptor , plunderer; N.L. masc. n. Methyloraptor , plunderer of methyl groups. Pseudomonadota / Alphaproteobacteria / Rhizobiales / Ancalomicrobiaceae / Methyloraptor The genus Methyloraptor accommodates Gram‐stain‐negative, rod‐shaped, neutrophilic and mesophilic, facultatively methylotrophic bacteria. Cells reproduce by irregular fission and occur singly or are arranged in rosettes. Young cells that separated from mother cells possess long lateral flagella and are highly motile. Cells in old cultures are nonmotile and are assembled in large star‐like aggregates. Colonies are milky‐white, circular, convex, translucent, and smooth. Members of the genus are obligately aerobic chemoheterotrophs. Sugars, N ‐acetylglucosamine, and methanol are the preferred growth substrates. Growth on methanol occurs in a wide range of concentrations from 0.01 to 3% (v/v). Methanol is utilized via the serine pathway. Growth factors are obligately required. These bacteria are satellites of aerobic methanotrophic bacteria. They are capable of attaching to cells of methanotrophs and destroying their cell walls, presumably to feed on methanol. The preferred host methanotrophs are members of the genus Methylococcus, but other methanotrophs may also be colonized by these bacteria. The genus belongs to the phylum Pseudomonadota, the class Alphaproteobacteria, the order Rhizobiales , and family Ancalomicrobiaceae . Representatives of this genus develop in high‐density microbial communities such as bioreactor cultures, but were also detected in rice paddies. DNA G + C content ( mol %): 68.4 (genome sequence). Type species : Methyloraptor flagellatus Saltykova et al. 2025, VL222.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Bergey's Manual of Systematics of Archaea and Bacteria
+- 链接：https://doi.org/10.1002/9781118960608.gbm02169
+- 相关性评分：1 | LLM 评分：6
+- 命中关键词：methanotroph
+## 农田土壤微生物
+
+### Ecological Microenvironment Response of Rhizosphere Soil Microbial Communities to Varying Soil Amendments: Insights from Diversity, Stability, and Multi-Functionality
+
+Continuous cropping obstacles (CCOs) severely disrupt the soil physical structure, nutrient cycling, and microbial community balance, leading to decreased crop productivity. However, the effects of soil amendment interventions on bacterial, fungal, and archaeal communities in foxtail millet (Setaria italica (L.) P. Beauvois.) systems are not well comprehended. Selected physical, chemical, biological soil amendment and crop rotations were evaluated for their effects on rhizosphere soil microbial diversity, composition, network characteristics, community assembly processes, niche breadth, and multi-functionality. High-throughput sequencing of 16S rRNA and ITS regions demonstrated that earthworm castings significantly enhanced archaeal Chao1, Shannon diversity, and multi-functionality. Meanwhile, Bacillus mucilaginosus enhanced fungal diversity, and B. subtilis promoted bacterial network complexity. In continuous cropping soil alone, microbial communities exhibited low diversity and were predominantly governed by ecological drift. In contrast, soil amendment treatments shifted assembly toward deterministic processes, including homogeneous and heterogeneous selection. However, the analysis demonstrated greater complexity and niche width in bacterial communities than in fungal or archaeal communities, with keystone modules driven by Actinomycetota, Ascomycota, and Halobacteriota. Structural equation modeling indicated that soil physicochemical properties directly mediated rhizosphere soil microbial alpha diversity, which in turn positively influenced multi-functionality. Overall, organic amendments and microbial inoculants were associated with increases in microbial diversity, network stability, and functionality in this pot experiment, suggesting that such practices may help mitigate CCOs and sustainably improve foxtail millet productivity in dryland agricultural systems.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Plants
+- 链接：https://doi.org/10.3390/plants15132082
+- 相关性评分：5 | LLM 评分：6
+- 命中关键词：crop rotation, microbial inoculant, rhizosphere, organic amendment
+### A New Dimension of Cross-Kingdom Interaction in the Hyphosphere
+
+This dataset contains full-length 16S and 18S rRNA amplicon sequencing data (Oxford Nanopore, PromethION R10.4.1) generated as part of a successive hyphal-baiting experiment examining protist and bacterial community dynamics in the hyphosphere of Fusarium oxysporum f. sp. vasinfectum (FOV4). Samples span three compartments (bulk rhizosphere soil and two successive hyphal-baiting generations, G1 and G2), capturing the taxonomic succession of bacterial and protist communities recruited to the fungal hyphosphere.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Figshare
+- 链接：https://doi.org/10.6084/m9.figshare.32896301.v1
+- 相关性评分：2 | LLM 评分：6
+- 命中关键词：rhizosphere
+### Microbiome‐mediated plant‐soil feedbacks as a tool for resilient agriculture
+
+Abstract Conventional agricultural intensification has eroded the biological foundations of productive soil by disrupting the reciprocal interactions, plant‐soil feedback (PSF), through which plants actively shape and are continuously shaped by the soil microbiome. Although the molecular mechanisms governing PSF direction are increasingly well‐characterized, deliberate PSF management as a practical tool for resilient crop production remains underdeveloped. This is largely because no integrative framework has translated these ecological insights into state‐contingent, field‐deployable decision rules. This review addresses that gap by first synthesizing the molecular basis of microbiome assembly, encompassing host genetic control of root exudate chemistry, receptor‐mediated microbial recognition, and the bidirectional chemical dialogue between plant and rhizosphere. Building from this mechanistic foundation, we move beyond cataloging mechanisms to present a novel, integrative three‐pillar management framework for actively steering PSF. This framework operationalizes PSF management by strategically combining: (i) engineering the plant partner (leveraging genetics to recruit beneficial microbiomes), (ii) managing the soil habitat (using agronomic practices to engineer suppressive ecological legacies), and (iii) deploying advanced microbial consortia. Critically, we argue that the recent meta‐omics revolution, integrating metagenomics, metatranscriptomics, metaproteomics, and metabolomics, is the enabling technology that transforms this framework from a conceptual model into a quantifiable, diagnosable, and agriculturally deployable system. Multi‐omics tools provide the empirical foundation for diagnosing soil feedback states, monitoring intervention outcomes, and building predictive models. By bridging the lab‐field gap and evaluating key translational challenges, this review provides a coherent, actionable roadmap for harnessing PSF to achieve cultivated resilience in modern agriculture.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: iMetaOmics.
+- 链接：https://doi.org/10.1002/imo2.70112
+- 相关性评分：1 | LLM 评分：6
+- 命中关键词：rhizosphere
+## 土壤微生物方法与工具
+
+### Artificial intelligence in soil microbiome-driven agriculture: from practical limits to a translational roadmap
+
+Background Soil microbiome research has been revolutionized by advances in high-throughput sequencing and multi-omics technologies, generating massive datasets that capture the taxonomic, functional, and metabolic diversity of microbial communities in agricultural soils; however, interpreting these complex datasets and translating them into practical agronomic insights remains challenging. Objectives To critically assess the role of artificial intelligence (AI) in soil microbiome-driven agriculture, focusing on methodological developments, prediction performance, existing limitations, and translational opportunities. Methods A narrative review was conducted to evaluate commonly used AI approaches, including random forest, gradient boosting, support vector machines, and deep learning architectures, alongside key microbiome data types such as amplicon sequencing, metagenomics, and functional gene profiling, with integration of environmental, agronomic, and meteorological datasets. Results The prediction of crop productivity, disease risk, nutrient cycling dynamics, and soil health indicators may be enhanced by AI-assisted integration of microbiome, soil physicochemical, and meteorological data, according to several studies. However, broad generalizations about predictive robustness and generalizability are limited by significant diversity in datasets, validation methods, and model architectures. Discussion To address these limitations, a five-phase implementation framework integrating centralized data systems, AI-driven analytics, multi-omics profiling, standardized soil sampling, and feedback-based model retraining within precision agriculture systems is proposed, providing a pathway for translating microbiome insights into field-scale decision support. Conclusion AI-enabled soil microbiome applications hold significant potential for sustainable agriculture, but future advancements will require large, multisite datasets, improved validation strategies, interpretable modeling approaches, and integration with digital agriculture technologies, highlighting both opportunities and practical constraints.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Microbiomes
+- 链接：https://doi.org/10.3389/frmbi.2026.1860559
+- 相关性评分：3 | LLM 评分：6
+- 命中关键词：amplicon sequencing, soil health
+## Looking Forward
+
+今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
+
+## References
+
+- **Heating-Induced Redistribution and Isotopic Fractionation of Soil Organic Carbon Among Density Fractions** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Science & Technology](https://doi.org/10.1021/acs.est.5c17341)
+- **Ecological Microenvironment Response of Rhizosphere Soil Microbial Communities to Varying Soil Amendments: Insights from Diversity, Stability, and Multi-Functionality** — [OpenAlex Soil Microbiology & Biogeochemistry: Plants](https://doi.org/10.3390/plants15132082)
+- **Artificial intelligence in soil microbiome-driven agriculture: from practical limits to a translational roadmap** — [OpenAlex Soil Microbiology & Biogeochemistry: Frontiers in Microbiomes](https://doi.org/10.3389/frmbi.2026.1860559)
+- **Linking plantain derived metabolites in sheep urine with nitrification inhibition in soil.** — [OpenAlex Soil Microbiology & Biogeochemistry: bioRxiv (Cold Spring Harbor Laboratory)](https://doi.org/10.64898/2026.07.01.735958)
+- **A New Dimension of Cross-Kingdom Interaction in the Hyphosphere** — [OpenAlex Soil Microbiology & Biogeochemistry: Figshare](https://doi.org/10.6084/m9.figshare.32896301.v1)
+- **<i>Methyloraptor</i>** — [OpenAlex Soil Microbiology & Biogeochemistry: Bergey's Manual of Systematics of Archaea and Bacteria](https://doi.org/10.1002/9781118960608.gbm02169)
+- **Microbiome‐mediated plant‐soil feedbacks as a tool for resilient agriculture** — [OpenAlex Soil Microbiology & Biogeochemistry: iMetaOmics.](https://doi.org/10.1002/imo2.70112)
