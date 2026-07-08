@@ -1,0 +1,67 @@
+# EcoBio Daily - 2026-07-08
+
+> 生态学与微生物学最新研究进展日报。内容由配置源抓取、主题筛选和自动摘要生成，建议发布前人工快速复核。
+
+## Highlights
+
+- **DNA-SIP reveals salinity-associated niche differentiation of potentially active methanogens in mangrove soils**：Mangrove forests are major blue carbon ecosystems but are often characterized by low surface methane (CH4) emissions. Such low emissions, however, do not necessarily indicate... 来源：bioRxiv Microbiology。
+- **Nitrous Oxide Emission Characteristics and Underlying Mechanisms in a Rice–Crab Co-Culture System Under Water and Nitrogen Regulation**：Global atmospheric N2O concentrations have risen to 335 ppb, with agricultural soils serving as a major emission source and rice paddies accounting for approximately 11% of... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Agronomy。
+- **Adsorption and incubation show iron (oxyhydr)oxides control the persistence of bacterial extracellular polymeric substances in soils**：Extracellular polymeric substances (EPS) constitute a significant component of soil organic matter (SOM), but the processes by which EPS are transformed and further retained by... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Carbon Research。
+
+## 土壤微生物驱动生物地球化学
+
+### DNA-SIP reveals salinity-associated niche differentiation of potentially active methanogens in mangrove soils
+
+Mangrove forests are major blue carbon ecosystems but are often characterized by low surface methane (CH4) emissions. Such low emissions, however, do not necessarily indicate weak methanogenesis, because CH4 production may be offset by internal CH4 consumption before reaching the atmosphere. Although previous community, genomic, and transcriptomic studies have implicated methylotrophic methanogenesis in mangrove sediments, direct taxon-resolved evidence linking methylated carbon assimilation to potentially active methanogens remains limited. Here, we combined methanogenic activity assays, DNA stable isotope probing (DNA-SIP), mcrA and 16S rRNA gene analyses, and phylogenetic comparisons to identify potentially active methanogens across saline-influenced mangrove soils. The results showed that CH4 production potentials were consistently dominated by methylotrophic pathways (1.86-2.78 g CH4 g-1 soil hr-1) across all sites. DNA-SIP, together with consistent community patterns in fresh soils, indicated the potential activity of methylotrophic and mixotrophic methanogens under saline conditions. Methanolobus-affiliated methanogens were associated with salinity, Na+, Cl-, and NH4+, whereas Methanosarcina and unclassified Methanosarcinaceae were linked to soil soluble organic carbon availability and water content, indicating niche differentiation among active methanogenic groups. Phylogenetic analyses incorporating reference sequences from diverse environments further showed that potentially active mangrove methanogens were dominated by saline-associated lineages. Together with our previous methanotrophic evidence from the same sites, these findings suggest that low CH4 emissions from mangrove blue carbon ecosystems can mask substantial internal CH4 cycling sustained by active methanogenesis and CH4 consumption.
+
+- 来源：bioRxiv Microbiology
+- 链接：https://www.biorxiv.org/content/10.64898/2026.07.05.736568v1?rss=1
+- 相关性评分：5 | LLM 评分：9
+- 命中关键词：methanogenesis, methanogen, methanotroph
+### Nitrous Oxide Emission Characteristics and Underlying Mechanisms in a Rice–Crab Co-Culture System Under Water and Nitrogen Regulation
+
+Global atmospheric N2O concentrations have risen to 335 ppb, with agricultural soils serving as a major emission source and rice paddies accounting for approximately 11% of agricultural N2O emissions. Rice–crab co-culture has been widely adopted because of its potential to increase and stabilize crop yields; however, the underlying mechanisms of N2O mitigation and the synergistic effects of crab bioturbation with water and nitrogen management remain unclear. Therefore, in this study, we conducted a two-year field experiment in Zhaodong, Heilongjiang Province, China, to elucidate the N2O mitigation effects of rice–crab co-culture under water and nitrogen regulation and the associated driving mechanisms. The results showed that rice–crab co-culture significantly reduced N2O emissions. Specifically, the N2O flux decreased by 19.9%, while cumulative N2O emissions decreased by 19.8%. Under the combined regulation of water and nitrogen management, the mitigation effect on N2O emissions was further enhanced, with a reduction of up to 30.8%. Regarding environmental factors, crab activity combined with shallow wet irrigation reduced soil water content and increased surface temperature. These changes promoted the transformation of nitrogen from inorganic forms to microbially assimilable forms, increasing the microbial nitrogen content by approximately 29.5%. Meanwhile, soil enzyme activities changed significantly: the activities of urease, sucrase, and protease increased, whereas nitrate reductase activity decreased. Structural equation modeling showed that the indirect effect of management practices was much greater than the direct effect, accounting for 63% of the total effect. Nitrogen transformation was the core mitigation pathway, characterized by the conversion of inorganic nitrogen into microbial biomass nitrogen, which reduced substrate availability for nitrification and denitrification. Enzyme activity regulation served as a secondary pathway, mainly through the inhibition of nitrate reductase activity. Overall, the rice–crab system achieved sustained N2O reduction by improving soil aeration and jointly regulating substrate limitation and weakening nitrogen transformation capacity.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Agronomy
+- 链接：https://doi.org/10.3390/agronomy16131294
+- 相关性评分：5 | LLM 评分：8
+- 命中关键词：nitrification, denitrification, n2o emission, n2o flux
+### Adsorption and incubation show iron (oxyhydr)oxides control the persistence of bacterial extracellular polymeric substances in soils
+
+Extracellular polymeric substances (EPS) constitute a significant component of soil organic matter (SOM), but the processes by which EPS are transformed and further retained by soil minerals remain poorly understood. This study investigated the chemical speciation of biogenic elements and mineral-SOM associations after EPS adsorption and turnover in typical clay minerals and three soils. Synchrotron-based X-ray absorption near-edge structure (XANES) analysis revealed that incubation induced approximately twice the changes in C and S speciation compared to EPS surface adsorption alone, suggesting that stimulated microbial activity is a more important pathway for EPS to participate in SOM turnover. Incubation with EPS significantly increased carboxylic carbon by 15.9%, while decreasing aromatics by 30.0% across the three studied soils. In-situ Fourier-transform infrared (μ-FTIR) spectroscopy showed enhanced spatial correlation between Fe oxides and organic functional groups (with an average increase in R2 of 90%) after incubation, whereas phyllosilicate-EPS associations were less stable and underwent disintegration in the Fe-rich, low-pH conditions of Mollisol and Alfisol. The differential preservation patterns for various molecules arise from molecular fractionation, with carboxylic-rich compounds preferentially enriched on iron oxides, while aromatic and aliphatic carbon are enriched on phyllosilicates. Overall, EPS stabilizes SOM by stimulating the microbial carbon pump to assimilate native SOM and facilitating its association with iron oxides.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Carbon Research
+- 链接：https://doi.org/10.1007/s44246-026-00278-0
+- 相关性评分：2 | LLM 评分：8
+- 命中关键词：soil organic matter, soil organic
+## 草地土壤微生物
+
+### Bacterial diversity and community assembly mechanisms in alpine wetland soils under the influence of grazing
+
+Wetlands are among the world's most significant ecosystems. Studying how different grazing intensities affect soil bacterial diversity and community assembly in alpine wetlands is crucial for their sustainable management. Based on 16S sequencing technology, this study analyzed the differences in the composition, structure, and community assembly mechanisms of bacterial communities under different grazing impacts on the Qinghai-Tibet Plateau. The research results showed that under the influence of grazing, there was no significant difference in the α-diversity of the soil bacterial community, but a certain degree of reorganization occurred at the phylum level of bacteria. At the same grazing intensity, the relative abundances of different bacterial phyla in the wetland were different, and at different grazing intensities, the relative abundances of the same phylum might have significant differences. Co-occurrence network analysis indicated that wetlands with medium grazing intensity had a higher degree of modularity. The results of the null model and neutral model showed that, with the increase in grazing intensity, the assembly process of the soil bacterial community gradually shifted from being dominated by deterministic processes to being dominated by neutral processes, with a decrease in heterogeneous selection and an increase in dispersal limitation.IMPORTANCEThis work innovatively clarifies grazing's regulatory effects on alpine wetland soil bacterial community assembly, revealing the deterministic-to-neutral shift with increasing grazing intensity and higher modularity under moderate grazing. It deepens understanding of "disturbance-microbial assembly" relationships, bridging environmental science, disturbance ecology, and microbiology. Practically, it provides a scientific basis for optimizing grazing management to maintain microbial function, crucial for sustainable management of Qinghai-Tibet alpine wetlands and similar ecosystems.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Microbiology Spectrum
+- 链接：https://doi.org/10.1128/spectrum.03791-25
+- 相关性评分：1 | LLM 评分：6
+- 命中关键词：grazing intensity
+## 农田土壤微生物
+
+### Climate and temporal variation in bacterial and fungal communities of the rhizosphere and roots of young avocado trees
+
+Abstract Soil amendments are known to improve soil health, but if and how they influence the soil microbiome over time is unclear. In this study, soil amendments were applied to young avocado trees and the rhizosphere and root microbial communities measured. Bacterial and fungal communities were hypothesised to change over time and to vary between soil amendment regimes: monthly mineral fertiliser, or a liquid nutrient fertiliser combined with a biostimulant applied monthly or quarterly. Communities were characterised by 16 S and ITS amplicon sequencing. Over 12 months, amendment regime explained less than 2% of bacterial and fungal community variation in either the rhizosphere or roots. Some rhizosphere taxa differed between amendments one month after the first amendment application, but these differences did not persist at later timepoints. Instead, pre-sampling climate, including mean air temperature and cumulative rainfall, and sampling timepoint, explained more rhizosphere community variation than amendment regime. In root samples, community composition differed between planting and the trial endpoint, with no significant effect of amendment observed at either timepoint. Therefore, microbial communities were more strongly influenced by climate variables than amendment regime, and detecting amendment effects may require longer trial durations, in more mature trees.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Biology and Fertility of Soils
+- 链接：https://doi.org/10.1007/s00374-026-02033-4
+- 相关性评分：4 | LLM 评分：5
+- 命中关键词：rhizosphere
+## Looking Forward
+
+今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
+
+## References
+
+- **DNA-SIP reveals salinity-associated niche differentiation of potentially active methanogens in mangrove soils** — [bioRxiv Microbiology](https://www.biorxiv.org/content/10.64898/2026.07.05.736568v1?rss=1)
+- **Nitrous Oxide Emission Characteristics and Underlying Mechanisms in a Rice–Crab Co-Culture System Under Water and Nitrogen Regulation** — [OpenAlex Soil Microbiology & Biogeochemistry: Agronomy](https://doi.org/10.3390/agronomy16131294)
+- **Adsorption and incubation show iron (oxyhydr)oxides control the persistence of bacterial extracellular polymeric substances in soils** — [OpenAlex Soil Microbiology & Biogeochemistry: Carbon Research](https://doi.org/10.1007/s44246-026-00278-0)
+- **Bacterial diversity and community assembly mechanisms in alpine wetland soils under the influence of grazing** — [OpenAlex Soil Microbiology & Biogeochemistry: Microbiology Spectrum](https://doi.org/10.1128/spectrum.03791-25)
+- **Climate and temporal variation in bacterial and fungal communities of the rhizosphere and roots of young avocado trees** — [OpenAlex Soil Microbiology & Biogeochemistry: Biology and Fertility of Soils](https://doi.org/10.1007/s00374-026-02033-4)
