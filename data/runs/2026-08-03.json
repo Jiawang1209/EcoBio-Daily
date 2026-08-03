@@ -1,0 +1,140 @@
+{
+  "date": "2026-08-03",
+  "started_at": "2026-08-03T02:40:46.017397+00:00",
+  "completed_at": "2026-08-03T02:43:01.993434+00:00",
+  "duration_seconds": 135.976,
+  "stages": {
+    "fetch_total": {
+      "total": 354,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 0
+        },
+        {
+          "id": "nature_isme",
+          "count": 0
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 0
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 49
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 28
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 29
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 30
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0929-1393'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0178-2762'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0167-8809'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A2049-2618'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 20
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=20&sort=issued&order=desc&filter=issn%3A0169-5347'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 354,
+      "out_count": 63
+    },
+    "url_dedup": {
+      "in_count": 63,
+      "out_count": 59
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 59,
+      "out_count": 50
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 50,
+      "out_count": 49,
+      "prior_seen_count": 465
+    },
+    "keyword_score": {
+      "in_count": 49,
+      "above_threshold": 24
+    },
+    "llm_relevance": {
+      "candidates": 17,
+      "kept": 7,
+      "backfilled": 0,
+      "fallback_used": false
+    },
+    "build_digest": {
+      "sections": 3,
+      "items": 7,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 0,
+      "failed": 3
+    },
+    "llm_grounding": {
+      "passed": 0,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/08/ecobio_digest_1d_2026-08-03_zh.md",
+      "en": "2026/08/ecobio_digest_1d_2026-08-03_en.md"
+    }
+  }
+}
