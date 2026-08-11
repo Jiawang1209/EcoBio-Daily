@@ -1,0 +1,142 @@
+{
+  "date": "2026-08-11",
+  "started_at": "2026-08-11T01:38:19.537220+00:00",
+  "completed_at": "2026-08-11T01:39:58.912828+00:00",
+  "duration_seconds": 99.376,
+  "stages": {
+    "fetch_total": {
+      "total": 328,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 8
+        },
+        {
+          "id": "nature_isme",
+          "count": 8
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 8
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 27
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 29
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0038-0717'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0929-1393'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0178-2762'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A0167-8809'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=30&sort=issued&order=desc&filter=issn%3A2049-2618'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=20&sort=issued&order=desc&filter=issn%3A0966-842X'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 0,
+          "error": "Client error '429 Too Many Requests' for url 'https://api.crossref.org/works?rows=20&sort=issued&order=desc&filter=issn%3A0169-5347'\nFor more information check: https://developer.mozilla.org/en-US/doc"
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 328,
+      "out_count": 47
+    },
+    "url_dedup": {
+      "in_count": 47,
+      "out_count": 47
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 47,
+      "out_count": 47
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 47,
+      "out_count": 47,
+      "prior_seen_count": 504
+    },
+    "keyword_score": {
+      "in_count": 47,
+      "above_threshold": 14
+    },
+    "llm_relevance": {
+      "candidates": 12,
+      "kept": 5,
+      "backfilled": 1,
+      "fallback_used": false
+    },
+    "build_digest": {
+      "sections": 2,
+      "items": 5,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 0,
+      "failed": 2
+    },
+    "llm_grounding": {
+      "passed": 0,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/08/ecobio_digest_1d_2026-08-11_zh.md",
+      "en": "2026/08/ecobio_digest_1d_2026-08-11_en.md"
+    }
+  }
+}
