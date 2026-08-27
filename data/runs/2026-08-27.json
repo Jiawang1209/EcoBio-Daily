@@ -1,0 +1,134 @@
+{
+  "date": "2026-08-27",
+  "started_at": "2026-08-27T07:25:12.178432+00:00",
+  "completed_at": "2026-08-27T07:49:06.575519+00:00",
+  "duration_seconds": 1434.397,
+  "stages": {
+    "fetch_total": {
+      "total": 494,
+      "sources": [
+        {
+          "id": "bioarxiv_ecology",
+          "count": 30
+        },
+        {
+          "id": "bioarxiv_microbiology",
+          "count": 30
+        },
+        {
+          "id": "nature_ecology",
+          "count": 0
+        },
+        {
+          "id": "nature_isme",
+          "count": 0
+        },
+        {
+          "id": "nature_microbiology",
+          "count": 0
+        },
+        {
+          "id": "nature_communications",
+          "count": 8
+        },
+        {
+          "id": "openalex_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "europe_pmc_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "pubmed_soil_micro",
+          "count": 50
+        },
+        {
+          "id": "crossref_ecology_letters",
+          "count": 27
+        },
+        {
+          "id": "crossref_global_change_biology",
+          "count": 29
+        },
+        {
+          "id": "crossref_soil_biology_biochemistry",
+          "count": 30
+        },
+        {
+          "id": "crossref_applied_soil_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_fems_microbiology_ecology",
+          "count": 30
+        },
+        {
+          "id": "crossref_biology_fertility_soils",
+          "count": 30
+        },
+        {
+          "id": "crossref_agriculture_ecosystems_environment",
+          "count": 30
+        },
+        {
+          "id": "crossref_microbiome",
+          "count": 30
+        },
+        {
+          "id": "crossref_trends_microbiology",
+          "count": 20
+        },
+        {
+          "id": "crossref_trends_ecology_evolution",
+          "count": 20
+        }
+      ]
+    },
+    "date_window": {
+      "in_count": 494,
+      "out_count": 128
+    },
+    "url_dedup": {
+      "in_count": 128,
+      "out_count": 122
+    },
+    "intra_day_doi_dedup": {
+      "in_count": 122,
+      "out_count": 112
+    },
+    "cross_day_doi_dedup": {
+      "in_count": 112,
+      "out_count": 111,
+      "prior_seen_count": 597
+    },
+    "keyword_score": {
+      "in_count": 111,
+      "above_threshold": 32
+    },
+    "llm_relevance": {
+      "candidates": 23,
+      "kept": 23,
+      "fallback_used": true
+    },
+    "build_digest": {
+      "sections": 3,
+      "items": 8,
+      "highlights": 3
+    },
+    "llm_brief": {
+      "ok": 0,
+      "failed": 3
+    },
+    "llm_grounding": {
+      "passed": 0,
+      "failed": 0,
+      "errored": 0,
+      "repaired": 0
+    },
+    "output": {
+      "zh": "2026/08/ecobio_digest_1d_2026-08-27_zh.md",
+      "en": "2026/08/ecobio_digest_1d_2026-08-27_en.md"
+    }
+  }
+}
