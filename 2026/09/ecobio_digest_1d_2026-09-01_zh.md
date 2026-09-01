@@ -1,0 +1,92 @@
+# EcoBio Daily - 2026-09-01
+
+> 生态学与微生物学最新研究进展日报。内容由配置源抓取、主题筛选和自动摘要生成，建议发布前人工快速复核。
+
+## Highlights
+
+- **Effects of different biochar application rates on CH(4) emissions and Microbial Carbon Pump (MCP) mediated carbon sequestration in paddy fields: a quantitative modeling approach**：effects of different biochar application rates on ch 4 emissions and microbial carbon pump mcp mediated carbon sequestration in paddy fields a quantitative modeling approach 来源：PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management。
+- **Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review**：Nitrogen is the element most frequently limiting primary productivity in terrestrial and aquatic ecosystems. While the atmosphere is approximately seventy-eight percent... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)。
+- **Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review**：Nitrogen is the element most frequently limiting primary productivity in terrestrial and aquatic ecosystems. While the atmosphere is approximately seventy-eight percent... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)。
+
+## 土壤微生物驱动生物地球化学
+
+### Effects of different biochar application rates on CH(4) emissions and Microbial Carbon Pump (MCP) mediated carbon sequestration in paddy fields: a quantitative modeling approach
+
+effects of different biochar application rates on ch 4 emissions and microbial carbon pump mcp mediated carbon sequestration in paddy fields a quantitative modeling approach
+
+- 来源：PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management
+- 链接：https://pubmed.ncbi.nlm.nih.gov/42673821/
+- 相关性评分：2 | LLM 评分：9
+- 命中关键词：carbon sequestration
+### Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review
+
+Nitrogen is the element most frequently limiting primary productivity in terrestrial and aquatic ecosystems. While the atmosphere is approximately seventy-eight percent dinitrogen gas, this chemically inert form is unavailable to most organisms without the enzymatic intervention of nitrogenase, a complex metalloenzyme found exclusively in certain prokaryotes. Among the diverse strategies by which biological nitrogen fixation occurs, the symbiotic association between leguminous plants and rhizobial bacteria represents the most quantitatively important and agriculturally significant pathway, contributing an estimated fifty to seventy million metric tons of fixed nitrogen annually to global agroecosystems. This narrative review examines the molecular biology of the legume--rhizobium symbiosis, the ecological roles of symbiotic nitrogen fixation across diverse ecosystems, and the evolutionary history of nitrogen-fixing symbioses. Drawing on the foundational genetic studies of Dixon and Kahn, the ecological frameworks of Vitousek et al. and Galloway et al., the structural biology of the nitrogenase complex by Rees et al., the genomic insights of Sprent, and the agricultural assessments of Herridge et al., the review synthesizes current understanding of how symbiotic nitrogen fixation shapes nutrient cycling, plant community dynamics, and ecosystem productivity.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- 链接：https://doi.org/10.5281/zenodo.22172540
+- 相关性评分：5 | LLM 评分：8
+- 命中关键词：nitrogen fixation, biological nitrogen fixation
+### Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review
+
+Nitrogen is the element most frequently limiting primary productivity in terrestrial and aquatic ecosystems. While the atmosphere is approximately seventy-eight percent dinitrogen gas, this chemically inert form is unavailable to most organisms without the enzymatic intervention of nitrogenase, a complex metalloenzyme found exclusively in certain prokaryotes. Among the diverse strategies by which biological nitrogen fixation occurs, the symbiotic association between leguminous plants and rhizobial bacteria represents the most quantitatively important and agriculturally significant pathway, contributing an estimated fifty to seventy million metric tons of fixed nitrogen annually to global agroecosystems. This narrative review examines the molecular biology of the legume--rhizobium symbiosis, the ecological roles of symbiotic nitrogen fixation across diverse ecosystems, and the evolutionary history of nitrogen-fixing symbioses. Drawing on the foundational genetic studies of Dixon and Kahn, the ecological frameworks of Vitousek et al. and Galloway et al., the structural biology of the nitrogenase complex by Rees et al., the genomic insights of Sprent, and the agricultural assessments of Herridge et al., the review synthesizes current understanding of how symbiotic nitrogen fixation shapes nutrient cycling, plant community dynamics, and ecosystem productivity.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- 链接：https://doi.org/10.5281/zenodo.22172541
+- 相关性评分：5 | LLM 评分：8
+- 命中关键词：nitrogen fixation, biological nitrogen fixation
+### Influence of biochar on soil nitrogen dynamics: Critical review with bibliometric insights
+
+Excessive application of nitrogenous fertiliser poses a significant threat to environmental sustainability. Biochar has emerged as a multifunctional amendment to mitigate this environmental risk by increasing nitrogen (N) retention and nutrient use efficiency across diverse agro ecosystems. This review critically synthesises evidence from meta-analyses, incubation and field studies to elucidate how biochar influences N transformation and different loss pathways such as denitrification, leaching and volatilisation. The large surface area, porous structure and variable surface chemistry of biochar results in increasing ammonium (NH₄+) adsorption and reduction in nitrate (NO₃-) leaching, thereby enhancing N retention in soil, which is governed by several factors, such as application rate, feedstock type, pyrolysis temperature and soil condition. To contextualise this evidence, a bibliometric review of 1026 scopus-indexed articles published between 2017–26 was carried out using bibliometrix with biblioshiny and VOSviewer. The findings indicated a rapid diversified growth of scientific production and a transition from broad subjects, e.g. soil improvement and carbon management to narrower subjects, e.g., N dynamics, microbial communities and soil health. The network analysis also indicated that the field continues to diversify into new application-oriented fields. We identified methodological inconsistencies and proposed validation through long-term studies and site-specific response models for future research.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Plant Science Today
+- 链接：https://doi.org/10.14719/pst.14745
+- 相关性评分：3 | LLM 评分：7
+- 命中关键词：nitrification, denitrification
+## 农田土壤微生物
+
+### Soil Microbial and Biochemical Properties under Conservation Agriculture in rice-based cropping systems in lower Indo-Gangetic Plain of West Bengal
+
+Microbial and biochemical properties of soil respond quickly with management practices, than chemical and physical properties. Moreover, impact of conservation agriculture (CA) on soil microbial properties is limited to microbial enumeration, but its effect on soil enzyme and microbial activity is little documented. To address these problems soil enzyme activities [dehydrogenase (DHA), {beta}-glucosidase (BGA), acid phosphatase (AcP) and alkaline phosphatase (AlP) and fluoresceine diacetate (FDA)], microbial activites ((Nitrogen fixation (NFBAct), Phosphate solubilization (PSBAct) & Cellulolytic activities (CDBAct)), microbial biomass ((Soil microbial biomass carbon (SMBC) & soil microbial biomass nitrogen (SMBN)) and available nutrient were studied to evaluate biological soil health in alluvial soil of lower Indo-Gangetic plain (IGP) under CA. Field experiment was conducted in split plot design (SPD), under 3 cropping systems (RMCp: rice-maize-cowpea; RWGg: rice-wheat- green gram; RCfBr; rice-cauliflower- bororice/summer rice). Tillage operations (CT: conventional; MT: minimum and ZT: zero tillage) was main plot and residue application as sub plot treatments [(R0 (no residue), R50 (50% residue) and R100 (100% residue)], treatments were replicated thrice. Biological soil health index (BSHI) indicated that among different degree of CA, ZT (0.464) and (MT=0.441) and R100 (0.464) treatment showed better response. Among different cropping system RMCp (0.359) & RWGg (0.343) outperformed RCfBr (0.609) cropping system with respect to (wrt) microbial and biochemical properties of the soil. Results indicated that for restoring microbial and biochemical properties of soil CA can be used as sustainable practice to restore agro-ecosystem. Keywords: Conservation agriculture, Cropping systems, Soil enzyme, Soil microbial properties, Residue application, Tillage operations.
+
+- 来源：bioRxiv Microbiology
+- 链接：https://www.biorxiv.org/content/10.64898/2026.08.31.748290v1?rss=1
+- 相关性评分：3 | LLM 评分：8
+- 命中关键词：tillage
+### FROM HERBICIDE POLLUTION TO SOIL RECOVERY: MICROBIAL BIODEGRADATION AND COST-EFFECTIVE CONSORTIA FOR RESTORING AGRICULTURAL SOIL HEALTH
+
+Herbicides support reliable crop production, but repeated applications can leave residues and transformation products in the soil and water. These compounds may disrupt microorganisms that decompose organic matter, cycle nutrients, form soil aggregates, and support plant growth. This review examines microbial biodegradation as a practical and potentially affordable method for reducing herbicide residues while aiding in the recovery of agricultural soils. The discussion focuses on bacteria, fungi, indigenous microbial communities, and microbial consortia, with examples of atrazine, 2,4-dichlorophenoxyacetic acid, and glyphosate. Microbial processes include hydrolysis, oxidation, dehalogenation, phosphonate cleavage, and aromatic ring breakdown. Biostimulation, bioaugmentation, compost-assisted treatment, biopiling, slurry bioreactors, and rhizosphere-assisted remediation were compared. Particular attention is given to the cost advantages of using locally adapted microorganisms, low-cost organic amendments, in situ treatment, and consortia in which different members complete different steps in a degradation pathway. Important limitations include the poor bioavailability of aged residues, variable soil conditions, metabolite accumulation, weak survival of introduced strains, and difficulty in transferring laboratory results to working farms. Metagenomics, functional omics, synthetic biology, and controlled genome editing may improve treatment design; however, their use must remain subject to ecological and regulatory safeguards. Therefore, successful remediation should be measured by both chemical reduction and the recovery of microbial activity, nutrient cycling, plant–microbe partnerships, soil structure, and crop productivity.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- 链接：https://doi.org/10.5281/zenodo.22159387
+- 相关性评分：6 | LLM 评分：7
+- 命中关键词：agricultural soil, rhizosphere, organic amendment
+### FROM HERBICIDE POLLUTION TO SOIL RECOVERY: MICROBIAL BIODEGRADATION AND COST-EFFECTIVE CONSORTIA FOR RESTORING AGRICULTURAL SOIL HEALTH
+
+Herbicides support reliable crop production, but repeated applications can leave residues and transformation products in the soil and water. These compounds may disrupt microorganisms that decompose organic matter, cycle nutrients, form soil aggregates, and support plant growth. This review examines microbial biodegradation as a practical and potentially affordable method for reducing herbicide residues while aiding in the recovery of agricultural soils. The discussion focuses on bacteria, fungi, indigenous microbial communities, and microbial consortia, with examples of atrazine, 2,4-dichlorophenoxyacetic acid, and glyphosate. Microbial processes include hydrolysis, oxidation, dehalogenation, phosphonate cleavage, and aromatic ring breakdown. Biostimulation, bioaugmentation, compost-assisted treatment, biopiling, slurry bioreactors, and rhizosphere-assisted remediation were compared. Particular attention is given to the cost advantages of using locally adapted microorganisms, low-cost organic amendments, in situ treatment, and consortia in which different members complete different steps in a degradation pathway. Important limitations include the poor bioavailability of aged residues, variable soil conditions, metabolite accumulation, weak survival of introduced strains, and difficulty in transferring laboratory results to working farms. Metagenomics, functional omics, synthetic biology, and controlled genome editing may improve treatment design; however, their use must remain subject to ecological and regulatory safeguards. Therefore, successful remediation should be measured by both chemical reduction and the recovery of microbial activity, nutrient cycling, plant–microbe partnerships, soil structure, and crop productivity.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)
+- 链接：https://doi.org/10.5281/zenodo.22159386
+- 相关性评分：6 | LLM 评分：7
+- 命中关键词：agricultural soil, rhizosphere, organic amendment
+### Effect of sunhemp green manuring on soil physicochemical properties, nutrient cycling and microbial activity in rabi maize
+
+This field investigation was conducted during the rabi (winter) season (November 2022 to March 2023) at the College Farm, Professor Jayashankar Telangana Agricultural University (PJTAU), Hyderabad, Telangana, India, to evaluate the effects of sunhemp in situ green manuring at 45 days after sowing (DAS) and variable nitrogen application at the tasselling stage on microbial dynamics, nutrient cycling and physicochemical properties of the rhizosphere soil of rabi maize. At 20 days after incorporation (DAI), it was found that the green-manured treatments recorded significantly higher microbial population (cellulolytic: 83.7–92.4 × 103 CFU g-1; lignolytic: 206–244 × 104 CFU g-1 soil) and enzymatic activities (dehydrogenase: 80.5 µg triphenyl formazan (TPF) g-1 soil; fluorescein diacetate: 88.5 µg fluorescein g-1 soil) compared to sole maize because of the presence of higher amount of organic matter in those treatments which is reflecting the importance of organic manures in maintaining the soil health. Similarly, in the case of available nutrients, the green manured treatments recorded significantly higher amounts of available nitrogen (222–227 kg ha-1), phosphorus (25.5–27.8 kg ha-1) and potassium (316–324 kg ha-1) due to the release of nutrients from the decomposing green manure. The presence of higher organic matter in the green manured plots improved soil moisture (21.1–22.7 %) and soil temperature (24.2–25.1 °C) compared to sole maize (19.4 % moisture and 23.6 °C). Sunhemp produced a biomass of 1.33 to 1.42 t ha-1, with lower levels of lignin fibre (1.26–1.34 %) and higher levels of cellulose and hemicellulose, indicating rapid decomposability of the organic biomass. The study revealed that in situ green manuring benefits the rhizosphere soil nutrient status and microbial activity, thereby improving soil health and productivity of rabi maize.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Plant Science Today
+- 链接：https://doi.org/10.14719/pst.13162
+- 相关性评分：2 | LLM 评分：7
+- 命中关键词：rhizosphere
+## Looking Forward
+
+今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
+
+## References
+
+- **Effects of different biochar application rates on CH(4) emissions and Microbial Carbon Pump (MCP) mediated carbon sequestration in paddy fields: a quantitative modeling approach** — [PubMed Soil Microbiology & Biogeochemistry: Journal of environmental management](https://pubmed.ncbi.nlm.nih.gov/42673821/)
+- **Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.22172540)
+- **Symbiotic Nitrogen Fixation and Its Role in Ecosystem Functioning: A Narrative Review** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.22172541)
+- **Soil Microbial and Biochemical Properties under Conservation Agriculture in rice-based cropping systems in lower Indo-Gangetic Plain of West Bengal** — [bioRxiv Microbiology](https://www.biorxiv.org/content/10.64898/2026.08.31.748290v1?rss=1)
+- **FROM HERBICIDE POLLUTION TO SOIL RECOVERY: MICROBIAL BIODEGRADATION AND COST-EFFECTIVE CONSORTIA FOR RESTORING AGRICULTURAL SOIL HEALTH** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.22159387)
+- **FROM HERBICIDE POLLUTION TO SOIL RECOVERY: MICROBIAL BIODEGRADATION AND COST-EFFECTIVE CONSORTIA FOR RESTORING AGRICULTURAL SOIL HEALTH** — [OpenAlex Soil Microbiology & Biogeochemistry: Zenodo (CERN European Organization for Nuclear Research)](https://doi.org/10.5281/zenodo.22159386)
+- **Influence of biochar on soil nitrogen dynamics: Critical review with bibliometric insights** — [OpenAlex Soil Microbiology & Biogeochemistry: Plant Science Today](https://doi.org/10.14719/pst.14745)
+- **Effect of sunhemp green manuring on soil physicochemical properties, nutrient cycling and microbial activity in rabi maize** — [OpenAlex Soil Microbiology & Biogeochemistry: Plant Science Today](https://doi.org/10.14719/pst.13162)
