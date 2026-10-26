@@ -1,0 +1,76 @@
+# EcoBio Daily - 2026-10-26
+
+> 生态学与微生物学最新研究进展日报。内容由配置源抓取、主题筛选和自动摘要生成，建议发布前人工快速复核。
+
+## Highlights
+
+- **In the synthetic biology era, engineered fungi could mitigate carbon dioxide emissions and enhance environmental resilience**：Abstract Over the past two decades, there has been a staggering increase in greenhouse gas emissions, particularly carbon dioxide (CO 2 ) from unrestrained anthropogenic... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Communications Earth & Environment。
+- **BIOFERTILIZERS AND BIOPESTICIDES: LOW-COST INPUT APPROACHES**：The increasing cost of agricultural inputs and the ecological consequences associated with intensive use of synthetic fertilizers and pesticides have created a strong need for... 来源：OpenAlex Soil Microbiology & Biogeochemistry。
+- **Impact of biodynamic preparations on soil properties suggests enhanced microbial community diversity in vineyards in Bordeaux, France**：Abstract A six-year field study was conducted at Château Lafite Rothschild in Bordeaux, France, to investigate the effects of biodynamic (BD) preparations on soil... 来源：OpenAlex Soil Microbiology & Biogeochemistry: Organic Agriculture。
+
+## 土壤微生物方法与工具
+
+### In the synthetic biology era, engineered fungi could mitigate carbon dioxide emissions and enhance environmental resilience
+
+Abstract Over the past two decades, there has been a staggering increase in greenhouse gas emissions, particularly carbon dioxide (CO 2 ) from unrestrained anthropogenic activities, leading to notable environmental shifts. Despite continuous efforts to reduce emissions, the world is not making satisfactory progress, which calls for immediate action to implement alternative strategies to enhance environmental sustainability. The Earth naturally absorbs and stores carbon through various processes, but merely keeping pace with ongoing human activities is no longer sufficient. Land plants and marine prokaryotes absorb CO 2 during photosynthesis and store carbon as biomass. Eukaryotic organisms also represent a valuable resource that can provide insights into the biological fixation and removal of atmospheric CO 2 . Expanding the capacities of Earth’s natural systems offers enormous potential for enhancing carbon sinks and promoting environmental resilience. Although extensive synthetic engineering of plant systems has been conducted to enhance their native carbon fixation pathways, research on microorganisms, especially fungi, has been limited. In this review, we specifically explore the role of soil-borne fungi in carbon management, elucidating their responses to environmental shifts and their potential for climate change mitigation. We place particular emphasis on the role of various fungal guilds in this process, highlighting those that should be prioritized for future synthetic biology applications. We then engage with previous endeavors to address primary challenges in advancing genetic tools for these understudied fungi. Lastly, we discuss how integrating synthetic biology practices into the field of soil-associated fungi can drive advances in long-term carbon storage, enhance degradation of environmental pollutants, and improve nutrient exchange and soil health, contributing to more resilient soil ecosystems and sustainable environmental interventions. Rising carbon dioxide emissions from human activities are driving environmental change and increasing the need for strategies that strengthen natural carbon sinks and ecosystem resilience. While plants and microorganisms play important roles in carbon capture and storage, the potential of soil-associated fungi remains comparatively underexplored, particularly from a synthetic biology perspective. In this Review, we examine the roles of soil-borne fungi in carbon management, their responses to environmental change, and their potential contributions to climate change mitigation. We highlight key fungal guilds that could be prioritized for future synthetic biology applications and discuss current challenges in developing genetic tools for understudied fungi. Finally, we explore how engineering soil-associated fungi could support long-term carbon storage while providing broader environmental benefits, including pollutant degradation, nutrient exchange, and improved soil health. Together, these opportunities position fungal synthetic biology as a promising approach for developing more resilient soil ecosystems and sustainable environmental interventions.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Communications Earth & Environment
+- 链接：https://doi.org/10.1038/s43247-026-04088-5
+- 相关性评分：1 | LLM 评分：7
+- 命中关键词：soil health
+## 农田土壤微生物
+
+### BIOFERTILIZERS AND BIOPESTICIDES: LOW-COST INPUT APPROACHES
+
+The increasing cost of agricultural inputs and the ecological consequences associated with intensive use of synthetic fertilizers and pesticides have created a strong need for affordable and environmentally compatible alternatives. Biofertilizers and biopesticides represent two important groups of biological inputs that can contribute to sustainable crop production while reducing dependence on synthetic agrochemicals. Biofertilizers contain beneficial microorganisms that improve nutrient availability or nutrient acquisition by plants through biological nitrogen fixation, nutrient solubilization, nutrient mobilization and stimulation of plant growth. Important examples include Rhizobium spp. Azotobacter spp. Azospirillum spp. Phosphate-solubilizing microorganisms and arbuscular mycorrhizal fungi. Biopesticides are based on microorganisms, natural products or biologically derived substances that suppress insect pests, pathogens and weeds. Important examples include Bacillus thuringiensis, Beauveria bassiana, Metarhizium anisopliae, baculoviruses, Trichoderma spp. and botanical pesticides. Both groups can be produced and applied through relatively simple technologies and therefore have considerable potential to reduce input costs, especially when integrated with organic manures, crop residues and integrated nutrient and pest management. Microbial inoculants can improve nutrient-use efficiency and in some situations, reduce mineral fertilizer application without compromising crop performance. Similarly, biopesticides can provide targeted pest suppression while supporting integrated pest management and reducing reliance on conventional pesticides. However, their performance depends on strain quality, formulation, environmental conditions, application methods and compatibility with existing farm practices. This chapter discusses the principles, types, benefits, application strategies, constraints and future potential of biofertilizers and biopesticides as low-cost agricultural inputs. Keywords: Biofertilizers; biopesticides; microbial inoculants; biological nitrogen fixation; phosphate solubilization; biocontrol; integrated nutrient management; integrated pest management; sustainable agriculture; low-cost inputs
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry
+- 链接：https://doi.org/10.67465/mindradix.063.15
+- 相关性评分：9 | LLM 评分：6
+- 命中关键词：biofertilizer, microbial inoculant, biocontrol, rhizobium, arbuscular mycorrhiza, crop residue
+### Building Bridges Belowground: Pythium oligandrum En-hances Rhizosphere Network Connectivity
+
+Biological control agents (BCAs) offer a potential sustainable alternative to fungicides for crop dis-ease management, but their effects on resident plant microbiomes and microbial interactions remain poorly understood. Here, we investigated the effects of the BCA Pythium oligandrum on disease con-trol and the rhizosphere microbiome of starch potato cv. Kuras in a field trial. We compared a labora-tory strain and a commercial formulation (Polygandron) with commonly used fungicides during early blight development. The laboratory strain suppressed early blight at plant senescence, but this effect did not persist until harvest, whereas fungicide treatment provided near-complete disease suppression throughout the growing season. P. oligandrum caused transient changes in rhizosphere fungal com-munity composition at flowering, while bacterial community richness varied among sampling times in untreated controls. However, bacterial co-occurrence network analysis revealed pronounced treat-ment-specific changes in microbial connectivity. Application of the laboratory strain increased net-work connectivity, resulting in almost a threefold increase in mean degree and greater interconnected-ness among bacterial taxa. In contrast, Polygandron and fungicide treatments reduced mean degree, indicating reduced connectivity within the bacterial network. Fungicide treatment additionally altered network organisation, including increased betweenness centrality and changes in modularity. Togeth-er, our results show that P. oligandrum can modify microbial interactions in the potato rhizosphere without substantially altering overall bacterial community composition, highlighting the value of in-tegrating microbial network structure with community-level analyses when evaluating the ecological effects of BCAs.
+
+- 来源：bioRxiv Microbiology
+- 链接：https://www.biorxiv.org/content/10.64898/2026.10.22.761010v1?rss=1
+- 相关性评分：2 | LLM 评分：6
+- 命中关键词：rhizosphere
+### [Effects of the nitrogen-fixing and phosphate-solubilizing bacterial strain T4 on the growth and rhizosphere environment of Astragalus membranaceus var. mongholicus].
+
+.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: PubMed
+- 链接：https://pubmed.ncbi.nlm.nih.gov/42920228
+- 相关性评分：2 | LLM 评分：6
+- 命中关键词：rhizosphere
+### Plant Oxidative Stress Mediates the Synergistic Transformation of Benzotriazole Ultraviolet Stabilizers in Rhizosphere Soil: Insights from Dual Exposure Pathways
+
+Abstract Benzotriazole ultraviolet stabilizers (BUVs) are widespread emerging contaminants in soil. However, their transformation in the rhizosphere and the regulatory effects of plant oxidative stress on rhizosphere remediation remain unclear. The objective of this study was to investigate these effects using molecular simulations and rhizosphere and foliar exposure experiments. The removal efficiency of the four BUVs was 15–46% higher in the rhizosphere of Helianthus annuus than under natural soil degradation. The plant rhizosphere promoted BUV desorption from soil and induced hydroxylation as a specific transformation pathway. Direct rhizosphere exposure triggered oxidative stress and accelerated reactive oxygen species (ROS) accumulation in soil. Rhizosphere ROS contributed approximately 31.2%–42.7% to BUV transformation. Foliar exposure experiments suggested that plant oxidative stress is an important contributor to rhizosphere ROS generation. Under BUV stress, plant oxidative stress regulated the composition of dissolved organic matter (DOM) and the selective enrichment of bacteria, including Acidobacteriota, Actinomycota, and Bacteroidota. Multivariate correlation network analysis suggested that foliar exposure resulted in more complex interactions among rhizosphere microenvironmental characteristics than did direct rhizosphere exposure. This study provides insights into BUV transformation in the rhizosphere and establishes a framework for plant signal-guided rhizosphere remediation strategies.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Environmental Science & Technology
+- 链接：https://doi.org/10.1021/acs.est.6c08784
+- 相关性评分：2 | LLM 评分：6
+- 命中关键词：rhizosphere
+## 土壤微生物驱动生物地球化学
+
+### Impact of biodynamic preparations on soil properties suggests enhanced microbial community diversity in vineyards in Bordeaux, France
+
+Abstract A six-year field study was conducted at Château Lafite Rothschild in Bordeaux, France, to investigate the effects of biodynamic (BD) preparations on soil microbiological and chemical properties. Basal respiration (B-Resp), microbial biomass carbon (MBC), total carbon (C-total), and soil organic carbon (SOC) were analyzed in soils from organically managed vineyards, comparing those without (BD −) and with BD preparations (BD +). Accordingly, two treatments were arranged in a randomized block design with four replicates. Soil microbial activity was assessed using the multi-substrate-induced respiration (multi-SIR) method, which measured the catabolic response to 17 low molecular weight organic substances (LMWOS). The results indicated that BD + plots exhibited significantly higher B-Resp (+ 40.0%) and MBC (+ 33.7%) compared to BD − plots, suggesting enhanced microbial metabolic activity. An upward trend in SOC (+ 17.4%) and C-total (+ 16.7%) was observed in BD + soils, indicating improved carbon sequestration potential. The multi-SIR analysis revealed a significant increase in respiratory responses to D-glucose and D-fructose in BD + plots, and an increasing trend of respiratory response for 13 other LMWOS. A higher respiratory response suggests a lower anabolic demand for specific substrates. Principal component analysis distinctively separated BD + from BD − treatments, underscoring the microbial functional profile changed by BD preparations. The significant increases observed in BD + treatments, particularly in B-Resp, MBC, and the catabolic use of D-glucose and D-fructose, demonstrate that integrating BD preparations into organic vineyard systems enhances the biological activity of microbial communities in soils. In the ongoing experiment further research will allow us to understand better longer-term impacts of BD on soil properties.
+
+- 来源：OpenAlex Soil Microbiology & Biogeochemistry: Organic Agriculture
+- 链接：https://doi.org/10.1007/s13165-026-00582-4
+- 相关性评分：3 | LLM 评分：6
+- 命中关键词：soil organic carbon, soil organic, carbon sequestration
+## Looking Forward
+
+今天的候选内容显示，生态学与微生物学研究正在围绕环境变化响应、微生物群落功能、生物多样性监测和数据驱动方法持续推进。后续值得重点跟踪跨尺度观测、长期实验数据、微生物机制解释和可复用分析工具。
+
+## References
+
+- **In the synthetic biology era, engineered fungi could mitigate carbon dioxide emissions and enhance environmental resilience** — [OpenAlex Soil Microbiology & Biogeochemistry: Communications Earth & Environment](https://doi.org/10.1038/s43247-026-04088-5)
+- **BIOFERTILIZERS AND BIOPESTICIDES: LOW-COST INPUT APPROACHES** — [OpenAlex Soil Microbiology & Biogeochemistry](https://doi.org/10.67465/mindradix.063.15)
+- **Impact of biodynamic preparations on soil properties suggests enhanced microbial community diversity in vineyards in Bordeaux, France** — [OpenAlex Soil Microbiology & Biogeochemistry: Organic Agriculture](https://doi.org/10.1007/s13165-026-00582-4)
+- **Building Bridges Belowground: Pythium oligandrum En-hances Rhizosphere Network Connectivity** — [bioRxiv Microbiology](https://www.biorxiv.org/content/10.64898/2026.10.22.761010v1?rss=1)
+- **[Effects of the nitrogen-fixing and phosphate-solubilizing bacterial strain T4 on the growth and rhizosphere environment of Astragalus membranaceus var. mongholicus].** — [OpenAlex Soil Microbiology & Biogeochemistry: PubMed](https://pubmed.ncbi.nlm.nih.gov/42920228)
+- **Plant Oxidative Stress Mediates the Synergistic Transformation of Benzotriazole Ultraviolet Stabilizers in Rhizosphere Soil: Insights from Dual Exposure Pathways** — [OpenAlex Soil Microbiology & Biogeochemistry: Environmental Science & Technology](https://doi.org/10.1021/acs.est.6c08784)
